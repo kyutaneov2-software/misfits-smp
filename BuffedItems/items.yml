@@ -1,0 +1,3044 @@
+# -------------------------------------------------------------------------------------------
+# Buffed Items v1.9.0 by Altkat(StreetMelodeez)
+# Discord: https://discord.gg/nxY3fc7xz9
+# Website: https://altkat.github.io
+# Wiki: https://github.com/AltKat/BuffedItems/wiki
+# -------------------------------------------------------------------------------------------
+#
+#  IMPORTANT:
+#  • Use the in-game editor for the best experience: /bi menu
+#  • For manual editing and advanced features, please read the WIKI.
+#  • Apply changes with: /bi reload
+#
+# -------------------------------------------------------------------------------------------
+
+items:
+  # ==========================================================================
+  # 📜 SECTION 1: CONSUMABLES & UTILITY ITEMS
+  # ==========================================================================
+
+  identify_scroll:
+    material: PAPER
+    display:
+      name: '&bIdentify Scroll'
+      lore:
+      - ''
+      - '&#D3D3D3A risky scroll used to identify'
+      - '&#D3D3D3valuable items.'
+      - ''
+      - '&cCost: &e$500'
+      - '&7- &aSuccess: &650% (Reward)'
+      - '&7- &cFailure: &450% (Scroll wasted)'
+      - ''
+      glow: true
+    active_ability:
+      enabled: true
+      cooldown: 0
+      costs:
+      - type: MONEY
+        amount: 500.0
+        message: '&cYou need &e$500 &cto use this scroll.'
+      actions:
+        commands:
+        - '[delay:70] [chance:50] [console] give %player% diamond_sword 1 ;; [title]
+          &aSUCCESS!|&7Item Identified.'
+        - '[else][title] &cFAILED!|&7The scroll crumbled to dust.'
+      usage:
+        depletion_sound: NONE
+        limit: 1
+        action: DESTROY
+      sounds:
+        success: ITEM_BOOK_PAGE_TURN;1.0;1.0
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+      visuals:
+        cast:
+          sound:
+            sound: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
+            enabled: true
+            delay: 70
+          title:
+            enabled: true
+            header: '&#ea81b8P&#e785b4a&#e489b0p&#e08dabe&#dd91a7r&#da94a3''&#d7989fs
+              &#d0a096b&#cda492e&#caa88ei&#c6ac8an&#c3b086g &#bdb77di&#b9bb79d&#b6bf75e&#b3c371n&#b0c76ct&#accb68i&#a9cf64f&#a6d260e&#a3d65cd&#9fda57.&#9cde53.&#99e24f.'
+            subtitle: '&bGood Luck!'
+            stay: 40
+          particles:
+          - type: WITCH
+            shape: BURST
+            count: 20
+            speed: 0.1
+            offset_x: 0.0
+            offset_y: 0.0
+            offset_z: 0.0
+            mode: CONTINUOUS
+  
+  # ==========================================================================
+  # 🎁 SECTION 2: SINGLE ITEMS & CHARMS
+  # ==========================================================================
+
+  bunny_charm:
+    material: RABBIT_FOOT
+    display:
+      name: '&#54C885B&#4FC88Cu&#49C892n&#44C899n&#3EC8A0y &#34C8ADC&#2EC8B4h&#29C8BBa&#23C8C1r&#1EC8C8m'
+      lore:
+      - ''
+      - '&#E8D5FFA pulsating charm that channels'
+      - '&#D5C2FFthe energy of swift creatures.'
+      - ''
+      - '&#98FB98Passive Effects (Off Hand):'
+      - '&#C0FFC0• Jump Boost II'
+      - '&#C0FFC0• Slow Falling I'
+      - '&#C0FFC0• +10% Knockback Resistance'
+      glow: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          potion_effects:
+          - JUMP_BOOST;2
+          - SLOW_FALLING;1
+          attributes:
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.1
+  
+  swiftness_boots:
+    material: IRON_BOOTS
+    display:
+      name: '&#FFD700B&#FFE500o&#FFF700o&#E5FF00t&#CDFF00s &#B5FF00o&#9DFF00f &#85FF00S&#6DFF00w&#55FF00i&#3DFF00f&#25FF00t&#0DFF00n&#00FF15e&#00FF2Ds&#00FF45s'
+      lore:
+      - ''
+      - '&#87CEFDFeel the wind beneath your feet.'
+      - '&#87CEFDA sprinter''s dream.'
+      - ''
+      - '&#00FF00Passive Effects:'
+      - '&#00FF00• Speed III (Always Active)'
+      - '&#00FF00• +15% Movement Speed'
+      - '&#00FF00• Jump Boost I'
+      glow: true
+    enchantments:
+    - FEATHER_FALLING;4
+    - PROTECTION;4
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        BOOTS:
+          potion_effects:
+          - SPEED;3
+          - JUMP_BOOST;1
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: CHERRY_LEAVES
+          shape: POINT
+          count: 1
+          speed: 0.1
+          offset_x: 0.0
+          offset_y: 0.0
+          offset_z: 0.0
+          mode: CONTINUOUS
+  
+  miners_dream:
+    material: DIAMOND_PICKAXE
+    enchantments:
+    - EFFICIENCY;5
+    - UNBREAKING;3
+    - MENDING;1
+    - FORTUNE;3
+    flags:
+      UNBREAKABLE: true
+      HIDE_ENCHANTS: true
+    display:
+      name: '&#CC513DM&#C65B3Ci&#BF663An&#B97039e&#B37A37r&#AC8536''&#A68F34s &#99A431D&#93AE30r&#8DB82Ee&#86C32Da&#80CD2Bm'
+      lore:
+      - ''
+      - '&#DAA520This legendary pickaxe hums with'
+      - '&#DAA520the very essence of the earth.'
+      - ''
+      - '&#00FF00Passive Effects (Main Hand):'
+      - '&#7FFF7F• SPEED II'
+      - '&#7FFF7F• +2 Attack Speed'
+      - '&#7FFF7F• Unbreakable'
+      - ''
+      - '&eActive (Right-Click - 10s CD):'
+      - '&6Super Mining Speed: &aHASTE III for 5s'
+      - ''
+      - '&#FFD700Enchantments:'
+      - '&#DAA520Efficiency V, Unbreaking III, Fortune III, Mending'
+      glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          potion_effects:
+          - SPEED;2
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+    active_ability:
+      enabled: true
+      cooldown: 10
+      duration: 5
+      actions:
+        commands:
+        - '[actionbar] &aHaste Burst Activated! (5s)'
+        effects:
+          potion_effects:
+          - HASTE;3
+      visuals:
+        cast:
+          particles:
+          - type: EXPLOSION
+            shape: BURST
+            count: 20
+            speed: 0.1
+            offset_x: 0.0
+            offset_y: 0.0
+            offset_z: 0.0
+            mode: CONTINUOUS
+          title:
+            enabled: true
+          boss-bar:
+            title: '&#6bc26eS&#6dc473u&#6ec579p&#70c77ee&#72c983r &#75cc8eM&#77cd93i&#79cf98n&#7ad19di&#7cd2a3n&#7ed4a8g
+              &#81d7b2S&#83d9b8p&#85dabde&#86dcc2e&#88dec7d &#8be1d2A&#8de3d7c&#8fe4dct&#90e6e2i&#92e7e7v&#94e9eca&#96ebf1t&#97ecf7e&#99eefcd'
+            color: BLUE
+            style: SOLID
+            enabled: true
+  
+  angelic_wings:
+    material: ELYTRA
+    display:
+      name: '&#FFF5EEA&#FFF8E7n&#FFFAE0g&#FFFDD9e&#FFFFD2l&#FFFDD9i&#FFFAE0c &#FFF8E7W&#FFF5EEi&#FFF2EEn&#FFEFDFg&#FFECD8s'
+      lore:
+      - ''
+      - '&7Blessed wings from the heavens,'
+      - '&7granting divine protection.'
+      - ''
+      - '&f👼 &lHOLY AURA:'
+      - '&7- &fRegeneration II'
+      - '&7- &fSlow Falling'
+      - '&7- &f+2 Max Health'
+      - '&7- &fHealing Aura (nearby allies)'
+      - ''
+      glow: true
+    enchantments:
+    - UNBREAKING;4
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        CHESTPLATE:
+          potion_effects:
+          - REGENERATION;2
+          - SLOW_FALLING;1
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+      visuals:
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+        - type: FIREWORK
+          mode: ON_EQUIP
+          shape: BURST
+          count: 5
+    active_ability:
+      enabled: true
+      cooldown: 30
+      actions:
+        commands:
+        - '[console] effect give %player% regeneration 3 5'
+        - '[console] effect give %player% absorption 2 10'
+        - '[title] &eDIVINE BLESSING!|&fYou feel renewed'
+        effects:
+          potion_effects:
+          - REGENERATION;3;10
+  
+  # ==========================================================================
+  # 🏹 SECTION 3: BOWS (Fixed - No Right-Click Conflicts)
+  # ==========================================================================
+
+  forest_bow:
+    material: BOW
+    display:
+      name: '&#7CB342F&#86B74Ao&#90BC47r&#9AC14De&#A4C653s&#AED968t &#B8CE7DB&#C2D382o&#CCD887w'
+      lore:
+      - ''
+      - '&7A bow carved from living wood,'
+      - '&7whispers to the arrows.'
+      - ''
+      - '&2&lPASSIVE:'
+      - '&7- &a+15% Arrow Speed'
+      - '&7- &a+10% Draw Speed'
+      - '&7- &a5% chance for arrows to duplicate'
+      - ''
+    enchantments:
+    - POWER;5
+    - FLAME;1
+    - UNBREAKING;3
+    - MENDING;1
+    - INFINITY;1
+    - PUNCH;2
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.1
+  
+  infernal_bow:
+    material: BOW
+    display:
+      name: '&#FF5722I&#FF7043n&#FF8A65f&#FFA726e&#FFB74Dr&#FFCC80n&#FFE0B2a&#FFF3E0l'
+      lore:
+      - ''
+      - '&7A bow forged in nether fire,'
+      - '&7arrows leave trails of flame.'
+      - ''
+      - '&6&lPASSIVE:'
+      - '&7- &c+20% Arrow Speed'
+      - '&7- &c+15% Draw Speed'
+      - '&7- &cArrows set targets on fire for 3s'
+      - '&7- &c+10% Critical Damage'
+      - ''
+    enchantments:
+    - POWER;6
+    - FLAME;2
+    - UNBREAKING;4
+    - MENDING;1
+    - PUNCH;2
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+  
+  storm_bow:
+    material: BOW
+    display:
+      name: '&#4FC3F7S&#64B5F6t&#7AA9F5o&#8F9EF4r&#A493F3m &#B989F2B&#CD7EF1o&#E274F0w'
+      lore:
+      - ''
+      - '&7A bow crackling with lightning,'
+      - '&7each shot commands the storm.'
+      - ''
+      - '&b&lPASSIVE:'
+      - '&7- &b+25% Arrow Speed'
+      - '&7- &b+20% Draw Speed'
+      - '&7- &b10% chance to strike lightning'
+      - '&7- &b+15% Critical Damage'
+      - '&7- &bArrows pierce through 1 target'
+      - ''
+    enchantments:
+    - POWER;6
+    - FLAME;1
+    - UNBREAKING;4
+    - MENDING;1
+    - PUNCH;2
+    - INFINITY;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: ELECTRIC_SPARK
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  # ==========================================================================
+  # ⚔️ SECTION 4: SPEARS / TRIDENTS
+  # ==========================================================================
+
+  hunters_spear:
+    material: TRIDENT
+    display:
+      name: '&#8D6E63H&#9C7F75u&#AB8F87n&#BBA099t&#CAB1ABe&#D9C2B6r&#E8D3C1''&#F7E4CCs'
+      lore:
+      - ''
+      - '&7A balanced spear for hunting,'
+      - '&7extends your reach in combat.'
+      - ''
+      - '&8&lPASSIVE:'
+      - '&7- &f+1 Block Reach'
+      - '&7- &f+10% Attack Speed'
+      - '&7- &f15% Knockback on hit'
+      - ''
+    enchantments:
+    - IMPALING;5
+    - LOYALTY;3
+    - UNBREAKING;4
+    - MENDING;1
+    - RIPTIDE;3
+    - CHANNELING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.1
+  
+  dragonspine_spear:
+    material: TRIDENT
+    display:
+      name: '&#D32F2FD&#E53935r&#F44336a&#EF5350g&#F06292o&#F48FB1n&#F8BBD0s&#FFCDD2p&#FFEBEEi&#FFFFFFn&#FFEBEEe'
+      lore:
+      - ''
+      - '&7A spear carved from dragon bone,'
+      - '&7impales multiple enemies.'
+      - ''
+      - '&4&lPASSIVE:'
+      - '&7- &c+1.5 Block Reach'
+      - '&7- &c+15% Attack Speed'
+      - '&7- &cPierces through 2 enemies'
+      - '&7- &c+10% Damage to armored'
+      - ''
+    enchantments:
+    - IMPALING;5
+    - LOYALTY;3
+    - UNBREAKING;5
+    - MENDING;1
+    - RIPTIDE;3
+    - CHANNELING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: FLAME
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  void_spear:
+    material: TRIDENT
+    display:
+      name: '&#311B92V&#4527A0o&#5A2FB0i&#6E3CC0d &#8249D0S&#965FDFp&#AA79E9e&#BE9FF2a&#D2C4FCr'
+      lore:
+      - ''
+      - '&7A spear that tears reality,'
+      - '&7pulling enemies toward you.'
+      - ''
+      - '&5&lPASSIVE:'
+      - '&7- &d+2 Block Reach'
+      - '&7- &d+20% Attack Speed'
+      - '&7- &dPulls enemies on hit'
+      - '&7- &d+15% Damage to slowed'
+      - ''
+    enchantments:
+    - IMPALING;6
+    - LOYALTY;3
+    - UNBREAKING;5
+    - MENDING;1
+    - RIPTIDE;3
+    - CHANNELING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: PORTAL
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  # ==========================================================================
+  # 🛡️ SECTION 5: SHIELDS
+  # ==========================================================================
+
+  reinforced_shield:
+    material: SHIELD
+    display:
+      name: '&#BCAAA4R&#C9B9B3e&#D6C8C3i&#E3D7D2n&#F0E6E2f&#FDF5F0o&#FFFFFFr&#FDF5F0c&#F0E6E2e&#E3D7D2d'
+      lore:
+      - ''
+      - '&7A sturdy shield reinforced with iron,'
+      - '&7absorbs impacts effectively.'
+      - ''
+      - '&7&lPASSIVE:'
+      - '&7- &f+15% Block Efficiency'
+      - '&7- &f+10% Knockback Resistance'
+      - ''
+    enchantments:
+    - UNBREAKING;4
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          attributes:
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.1
+  
+  magma_shield:
+    material: SHIELD
+    display:
+      name: '&#FF7043M&#FF8A65a&#FFA726g&#FFB74Dm&#FFCC80a &#FFE0B2S&#FFF3E0h&#FFFFFFi&#FFF3E0e&#FFE0B2l&#FFCC80d'
+      lore:
+      - ''
+      - '&7A shield forged in magma,'
+      - '&7burns attackers on block.'
+      - ''
+      - '&6&lPASSIVE:'
+      - '&7- &c+20% Block Efficiency'
+      - '&7- &c+15% Knockback Resistance'
+      - '&7- &cSets attackers on fire for 2s'
+      - '&7- &c+5% Damage reflection'
+      - ''
+    enchantments:
+    - UNBREAKING;4
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          attributes:
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.15
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+      visuals:
+        particles:
+        - type: FLAME
+          mode: ON_BLOCK
+          shape: POINT
+          count: 1
+  
+  aegis_shield:
+    material: SHIELD
+    display:
+      name: '&#FFD54FA&#FFB74De&#FFA726g&#FF8A65i&#FF7043s &#FF6B6B o&#EF5350f &#D32F2Ft&#C62828h&#B71C1ce
+        &#880E4F A&#7B1FA2n&#6A1B9Ac&#4A148Ci&#38006Be&#2C0A70n&#1A237Et&#0D47A1s'
+      lore:
+      - ''
+      - '&7Legendary shield of ancient kings,'
+      - '&7grants invulnerability when timed right.'
+      - ''
+      - '&e&lPASSIVE:'
+      - '&7- &6+30% Block Efficiency'
+      - '&7- &6+25% Knockback Resistance'
+      - '&7- &6+10% Damage reflection'
+      - '&7- &6+1 Armor when equipped'
+      - ''
+    enchantments:
+    - UNBREAKING;5
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          attributes:
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.25
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+      visuals:
+        particles:
+        - type: TOTEM_OF_UNDYING
+          mode: ON_EQUIP
+          shape: BURST
+          count: 5
+  
+  # ==========================================================================
+  # 📿 SECTION 6: TALISMANS & ACCESSORIES
+  # ==========================================================================
+
+  tide_talisman:
+    material: NAUTILUS_SHELL
+    display:
+      name: '&#4FC3F7T&#5AB3E6i&#65A3D5d&#7293C4e &#7F83B3T&#8C73A2i&#996391d&#A65380a&#B3436fl&#C0335em&#BD2A5ea&#B71C5cn'
+      lore:
+      - ''
+      - '&7A talisman holding ocean energy,'
+      - '&7helps you breathe and swim faster.'
+      - ''
+      - '&b&lPASSIVE (Inventory):'
+      - '&7- &bWater Breathing I'
+      - '&7- &b+15% Swim Speed'
+      - '&7- &b+1 Health'
+      - ''
+    glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          potion_effects:
+          - WATER_BREATHING;1
+          - DOLPHINS_GRACE;1
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+      visuals:
+        particles:
+        - type: SPLASH
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  mage_talisman:
+    material: AMETHYST_SHARD
+    display:
+      name: '&#BA68C8M&#AB47BCa&#9C27B0g&#8E24AAe&#7B1FA2''&#6A1B9As &#4A148CT&#38006Ba&#2C0A70l&#1A237Ei&#0D47A1s&#1565C0m&#1976D2a&#1E88E5n'
+      lore:
+      - ''
+      - '&7A talisman pulsing with magic,'
+      - '&7enhances your spellcasting.'
+      - ''
+      - '&d&lPASSIVE (Inventory):'
+      - '&7- &d+10% Ability Cooldown Reduction'
+      - '&7- &d+1 Ability Duration'
+      - '&7- &d+2 Health'
+      - ''
+    glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+      visuals:
+        particles:
+        - type: ENCHANTMENT_TABLE
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  warriors_seal:
+    material: NETHERITE_INGOT
+    permission: buffeditems.item.warriors_seal
+    display:
+      name: '&#D32F2FW&#C62828a&#B71C1Cr&#B71C1Cr&#C2185Bi&#C51162o&#B4004Er''&#9C27B0s
+        &#7B1FA2S&#512DA8e&#303F9Fa&#1976D2l'
+      lore:
+      - ''
+      - '&7An ancient seal of fallen warriors,'
+      - '&7grants combat mastery.'
+      - ''
+      - '&c&lPASSIVE (Inventory):'
+      - '&7- &c+10% Attack Damage'
+      - '&7- &c+10% Attack Speed'
+      - '&7- &c+2 Health'
+      - '&7- &c+5% Lifesteal'
+      - ''
+    glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: SOUL
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  # ==========================================================================
+  # 🔥 SECTION 7: DRAGONBORN SET
+  # ==========================================================================
+
+  dragonborn_helmet:
+    material: NETHERITE_HELMET
+    permission: buffeditems.set.dragonborn
+    display:
+      name: '&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n
+        &#FF9800H&#FFA000e&#FFA700l&#FFAF00m&#FFB600e&#FFBE00t'
+      lore:
+      - ''
+      - '&7Helm forged in dragonfire,'
+      - '&7grants the wearer dragon''s might.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &cFire Resistance II'
+      - '&7- &6Strength I'
+      - '&7- &e+1 Attack Damage'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - AQUA_AFFINITY;1
+    - RESPIRATION;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        HEAD:
+          potion_effects:
+          - FIRE_RESISTANCE;2
+          - STRENGTH;1
+          attributes:
+          - GENERIC_ATTACK_DAMAGE;ADD_NUMBER;1.0
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#FF4500D&#FF6347r&#FF7F4Fa&#FF8C69g&#FFA07Ao&#FFB6C1n &#FF4500F&#FF6347u&#FF7F4Fr&#FF8C69y'
+          color: RED
+          style: SOLID
+        particles:
+        - type: FLAME
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          speed: 0.05
+    active_ability:
+      enabled: true
+      cooldown: 20
+      actions:
+        commands:
+        - '[console] execute at %player% run particle flame ~ ~1 ~ 0.5 0.5 0.5 0.1
+          25'
+        - '[actionbar] &c&l🔥 DRAGON''S BREATH!'
+        effects:
+          potion_effects:
+          - FIRE_RESISTANCE;3;5
+  
+  dragonborn_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.dragonborn
+    display:
+      name: '&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n
+        &#FF9800C&#FFA000h&#FFA700e&#FFAF00s&#FFB600t&#FFBE00p&#FFC700l&#FFCF00a&#FFD800t&#FFE000e'
+      lore:
+      - ''
+      - '&7Chestplate scale-forged from'
+      - '&7dragonscale, unyielding and fierce.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &cFire Resistance II'
+      - '&7- &6Strength I'
+      - '&7- &e+3 Armor'
+      - '&7- &e+2 Armor Toughness'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - FIRE_RESISTANCE;2
+          - STRENGTH;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;2.0
+      visuals:
+        particles:
+        - type: FLAME
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+  
+  dragonborn_leggings:
+    material: NETHERITE_LEGGINGS
+    permission: buffeditems.set.dragonborn
+    display:
+      name: '&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n
+        &#FF9800L&#FFA000e&#FFA700g&#FFAF00g&#FFB600i&#FFBE00n&#FFC700g&#FFCF00s'
+      lore:
+      - ''
+      - '&7Leggings wrought in magma,'
+      - '&7moving with the lava''s flow.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &cFire Resistance II'
+      - '&7- &6Strength I'
+      - '&7- &e+2 Armor'
+      - '&7- &e+10% Movement Speed'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        LEGS:
+          potion_effects:
+          - FIRE_RESISTANCE;2
+          - STRENGTH;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: FLAME
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  dragonborn_boots:
+    material: NETHERITE_BOOTS
+    permission: buffeditems.set.dragonborn
+    display:
+      name: '&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n
+        &#FF9800T&#FFA000a&#FFA700l&#FFAF00o&#FFB600n&#FFBE00s'
+      lore:
+      - ''
+      - '&7Boots that leave cinders'
+      - '&7wherever the dragon walks.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &cFire Resistance II'
+      - '&7- &e+1 Armor'
+      - '&7- &e+15% Movement Speed'
+      - '&7- &eImmunity to magma block damage'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        FEET:
+          potion_effects:
+          - FIRE_RESISTANCE;2
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: FLAME
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  elemental_staff:
+    material: NETHERITE_SWORD
+    permission: buffeditems.set.dragonborn
+    display:
+      name: '&#FFA500Elemental Staff'
+      lore:
+      - ''
+      - '&7Channels chaotic elemental energy.'
+      - ''
+      - '&eActive (Right-Click):'
+      - '&7Casts a lightning spell:'
+      - '&e• 60% Lightning Strike'
+      - ''
+      - '&8Mana Cost: &b20'
+      - ''
+      glow: true
+    enchantments:
+    - SHARPNESS;5
+    - UNBREAKING;3
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;3
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+    active_ability:
+      enabled: true
+      actions:
+        commands:
+        - '[chance:60] [console] execute at %player% run summon lightning_bolt ^ ^
+          ^8 ;; [message] &e&l⚡ THUNDER!'
+        - '[else] [message] &c&l⚠ &7Spell fizzled! &c(40% failure)'
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 20
+        message: '&c&l⚠ &7Not enough mana! &c(20 &7required)'
+      usage:
+        depletion_sound: ENTITY_ZOMBIE_ATTACK_IRON_DOOR;1.0;0.5
+        depleted_try_sound: BLOCK_DISPENSER_FAIL;1.0;1.2
+      sounds:
+        success: BLOCK_BEACON_POWER_SELECT;1.0;1.0
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+        cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
+      visuals:
+        cast:
+          particles:
+          - type: ELECTRIC_SPARK
+            shape: BURST
+            count: 20
+            speed: 0.1
+            offset_x: 0.0
+            offset_y: 0.0
+            offset_z: 0.0
+            mode: CONTINUOUS
+  
+  # ==========================================================================
+  # ❄️ SECTION 8: FROSTBORN SET
+  # ==========================================================================
+
+  frost_walker_boots:
+    material: NETHERITE_BOOTS
+    permission: buffeditems.set.frostborn
+    display:
+      name: '&#ADD8E6F&#B0E0E6r&#B0E2FFo&#87CEFAs&#87CEFBt &#B0E2FFW&#B0E0E6a&#ADD8E6l&#87CEFAk&#87CEFBe&#87CEFAr'
+      lore:
+      - ''
+      - '&7Boots carved from eternal ice,'
+      - '&7allowing the wearer to walk on water.'
+      - ''
+      - '&b❄️ &lFROST AURA:'
+      - '&7- &bSpeed II'
+      - '&7- &bDolphin''s Grace'
+      - '&7- &bFrost Walker'
+      - '&7- &b+10% Movement Speed'
+      - ''
+      - '&b❄️ &lICE PRISON:'
+      - '&7Right-Click: Freeze nearby enemies'
+      - ''
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;3
+    - FROST_WALKER;2
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        BOOTS:
+          potion_effects:
+          - SPEED;2
+          - DOLPHINS_GRACE;1
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#E0FFFFF&#D9F9F9r&#D2F4F4o&#CBF0F0s&#C4EBEBt &#BDE6E6W&#B6E1E1a&#AFDCDCl&#A8D7D7k&#A1D2D2e&#9ACECEr'
+          color: BLUE
+          style: SOLID
+        action-bar:
+          enabled: true
+          mode: CONTINUOUS
+          message: '&b❄️ &fThe cold winds follow you... &b❄️'
+          delay: 200
+          duration: 40
+        particles:
+        - type: SNOWFLAKE
+          mode: CONTINUOUS
+          shape: POINT
+          count: 2
+          speed: 0.05
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          speed: 0.05
+        - type: FIREWORK
+          mode: ON_EQUIP
+          shape: BURST
+          count: 8
+          speed: 0.1
+  
+  frost_crown_helmet:
+    material: NETHERITE_HELMET
+    permission: buffeditems.set.frostborn
+    display:
+      name: '&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t &#E4F5FAC&#F0F8FCr&#FFFFFFo&#F0F8FCw&#E4F5FAn'
+      lore:
+      - ''
+      - '&7A crown of eternal ice,'
+      - '&7chilling the very air around it.'
+      - ''
+      - '&b&lPASSIVE AURA:'
+      - '&7- &bWater Breathing'
+      - '&7- &bDolphin''s Grace'
+      - '&7- &b+1 Armor'
+      - ''
+      color: '#A8E6F0'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - AQUA_AFFINITY;1
+    - RESPIRATION;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        HEAD:
+          potion_effects:
+          - WATER_BREATHING;1
+          - DOLPHINS_GRACE;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+      visuals:
+        particles:
+        - type: SNOWFLAKE
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  frost_robe_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.frostborn
+    display:
+      name: '&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t &#E4F5FAR&#F0F8FCo&#FFFFFFb&#F0F8FCe'
+      lore:
+      - ''
+      - '&7A robe that never melts,'
+      - '&7warmth is foreign to it.'
+      - ''
+      - '&b&lPASSIVE AURA:'
+      - '&7- &bFire Resistance I'
+      - '&7- &b+3 Armor'
+      - '&7- &b+2 Armor Toughness'
+      - ''
+      color: '#A8E6F0'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - FIRE_RESISTANCE;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;2.0
+        CHESTPLATE:
+          potion_effects:
+          - HEALTH_BOOST;2
+          - INCREASE_DAMAGE;2
+          - GLOWING;1
+          - HEAL;2
+      visuals:
+        particles:
+        - type: SNOWFLAKE
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+  
+  frost_legs_leggings:
+    material: NETHERITE_LEGGINGS
+    permission: buffeditems.set.frostborn
+    display:
+      name: '&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t &#E4F5FAL&#F0F8FCe&#FFFFFFg&#F0F8FCs'
+      lore:
+      - ''
+      - '&7Leggings that crackle with frost,'
+      - '&7each step leaves a chill.'
+      - ''
+      - '&b&lPASSIVE AURA:'
+      - '&7- &b+2 Armor'
+      - '&7- &b+10% Movement Speed'
+      - '&7- &bSlow Falling'
+      - ''
+      color: '#A8E6F0'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        LEGS:
+          potion_effects:
+          - SLOW_FALLING;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: SNOWFLAKE
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  ice_scepter:
+    material: NETHERITE_SWORD
+    permission: buffeditems.set.frostborn
+    display:
+      name: '&#A8E6F0I&#B4E9F2c&#C0ECF4e &#CCEFF6S&#D8F2F8c&#E4F5FAe&#F0F8FCp&#FFFFFFt&#F0F8FCe&#E4F5FAr'
+      lore:
+      - ''
+      - '&7A scepter that commands the frost,'
+      - '&7freezing all who oppose.'
+      - ''
+      - '&b&lACTIVE ABILITY:'
+      - '&7Right-Click: &bIce Prison'
+      - '&7Freezes nearby enemies for 3s'
+      - '&7Slows enemies within 8 blocks'
+      - '&7Cooldown: &b15 seconds'
+      - ''
+      - '&8Mana Cost: &b20'
+      - ''
+      glow: true
+    enchantments:
+    - SHARPNESS;5
+    - UNBREAKING;3
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;3
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+    active_ability:
+      enabled: true
+      cooldown: 15
+      actions:
+        commands:
+        - '[console] execute at %player% run particle snowflake ~ ~2 ~ 4 2 4 0.1 100'
+        - '[console] execute at %player% run particle end_rod ~ ~2 ~ 3 1 3 0.1 75'
+        - '[console] execute at %player% run effect give @e[distance=..8,type=!player]
+          slowness 3 4'
+        - '[console] execute at %player% run playsound entity_evoker_cast_spell master
+          @a ~ ~ ~ 1.0 0.5'
+        - '[actionbar] &b❄️ &lICE PRISON! &7Enemies frozen for 3s'
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 20
+        message: '&c&l⚠ &7Not enough mana! &c(20 &7required)'
+      visuals:
+        cast:
+          particles:
+          - type: SNOWFLAKE
+            shape: SPHERE
+            count: 30
+            speed: 0.2
+            radius: 4.0
+            mode: CONTINUOUS
+          sound:
+            sound: ENTITY_SNOW_GOLEM_SHOOT;1.0;0.5
+            enabled: true
+            delay: 0
+      usage:
+        depletion_sound: ENTITY_SNOW_GOLEM_DEATH;1.0;0.5
+        depleted_try_sound: BLOCK_DISPENSER_FAIL;1.0;1.2
+      sounds:
+        success: ENTITY_EVOKER_CAST_SPELL;1.0;0.5
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+        cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
+  
+  # ==========================================================================
+  # 👻 SECTION 9: PHANTOM SET (Soul/Spooky Theme)
+  # ==========================================================================
+  # Complete 7-piece set with new spear and crossbow
+  # ==========================================================================
+
+  phantom_kings_breastplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#9932CCP&#A73FD2h&#B54DD7a&#C45ADDn&#D267E3t&#E075E8o&#EE82EEm &#F089EAK&#F18CE8i&#F290E6n&#F393E4g&#F497E2''&#F59AE0s
+        &#F7A1DDC&#F7A4DBh&#F8A8D9e&#F9ABD7s&#FAAFD5t&#FBB2D3p&#FCB6D1l&#FDB9CFa&#FEBDCDt&#FFC0CBe'
+      lore:
+      - ''
+      - '&7A relic from the fallen kingdom,'
+      - '&7bound to the soul of its wearer.'
+      - ''
+      - '&5&l👻 PHANTOM AURA:'
+      - '&7- &dResistance II'
+      - '&7- &dSpeed I'
+      - '&7- &d+0.3 Knockback Resistance'
+      - '&7- &d+5% Lifesteal'
+      - '&7- &d+10% Damage to undead'
+      - '&7- &dPermanent Invisibility'
+      - ''
+      - '&5&l👻 PHANTOM SHIFT:'
+      - '&7When below &d30% HP&7:'
+      - '&7- &dGrants Invisibility for 6s'
+      - '&7- &dGrants Speed III for 6s'
+      - '&7- &dGrants Slow Falling for 6s'
+      - '&7- &dCooldown: &530 seconds'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+      color: '#0A0E14'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    enchants: true
+    enchantable: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_DYE: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - RESISTANCE;1
+          - SPEED;1
+          - NIGHT_VISION;1
+          - INVISIBILITY;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;12.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;5.0
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.3
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.05
+        CHESTPLATE:
+          potion_effects:
+          - GLOWING;2
+          - INVISIBILITY;2
+          - NIGHT_VISION;1
+          - HEALTH_BOOST;3
+          - INCREASE_DAMAGE;2
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#4B0082P&#5A0D8Ah&#691A92a&#78279An&#8434A2t&#9141AAo&#A54EC1m'
+          color: PURPLE
+          style: SOLID
+        particles:
+        - type: SOUL
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+        sound:
+          sound: AMBIENT_SOUL_SAND_VALLEY_MOOD;0.1;0.8
+          enabled: true
+          period: 300
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 30
+        message: '&5&l⚠ &dPhantom Shift recharging: &5%cooldown%s'
+      condition: health_percent < 30
+      actions:
+        commands:
+        - '[actionbar] &5&l👻 PHANTOM SHIFT! &dYou phase through reality'
+        - '[console] execute as %player% at %player% run particle portal ~ ~1 ~ 4
+          2 4 0.2 100'
+        - '[console] execute as %player% at %player% run particle soul ~ ~1 ~ 4 2
+          4 0.1 75'
+        - '[console] execute as %player% at %player% run playsound entity_ender_dragon_flap
+          master @a ~ ~ ~ 0.5 0.7'
+        - '[console] execute as %player% run title %player% times 0 40 20'
+        - '[console] execute as %player% run title %player% title {"text":"PHANTOM
+          SHIFT","color":"dark_purple","bold":true}'
+        - '[console] execute as %player% run title %player% subtitle {"text":"You
+          phase through reality","color":"light_purple"}'
+        effects:
+          potion_effects:
+          - INVISIBILITY;1;120
+          - SPEED;3;120
+          - SLOW_FALLING;1;120
+          - DAMAGE_RESISTANCE;1;120
+  
+  wither_kings_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#2F4F4FW&#4A5D5Di&#5F6B6Bt&#6F7A7Ah&#7E8A8Ae&#8C9A9Ar &#9FAAAAK&#ADB8B8i&#BAC5C5n&#C8D2D2g&#D5DFDF''&#E2ECECs'
+      lore:
+      - ''
+      - '&7Chestplate infused with wither energy,'
+      - '&7spreading decay to all who approach.'
+      - ''
+      - '&8💀 &lWITHER AURA:'
+      - '&7- &8Resistance II'
+      - '&7- &8Wither Immunity'
+      - '&7- &8+4 Armor'
+      - '&7- &8Nearby enemies get Wither I'
+      - '&7- &8+10% damage to living entities'
+      - ''
+      - '&8💀 &lWITHER BLAST:'
+      - '&7Right-Click: &8Unleash wither energy'
+      - '&7- &8Damages and withers nearby enemies'
+      - '&7- &8Cooldown: &715 seconds'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+      color: '#2F4F4F'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    enchants: true
+    enchantable: true
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - RESISTANCE;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;4.0
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#2F4F4FW&#4A5D5Di&#5F6B6Bt&#6F7A7Ah&#7E8A8Ae&#8C9A9Ar'
+          color: PURPLE
+          style: SOLID
+        particles:
+        - type: SMOKE
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+        sound:
+          sound: ENTITY_WITHER_AMBIENT;0.2;0.5
+          enabled: true
+          period: 200
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 15
+        message: '&8&l⚠ &7Wither Blast recharging: &8%cooldown%s'
+      actions:
+        commands:
+        - '[actionbar] &8💀 &lWITHER BLAST! &7Decay spreads around you'
+        - '[console] execute as %player% at %player% run particle soul ~ ~1 ~ 5 2
+          5 0.1 100'
+        - '[console] execute as %player% at %player% run particle large_smoke ~ ~1
+          ~ 4 2 4 0.1 75'
+        - '[console] execute as %player% at %player% run playsound entity_wither_shoot
+          master @a ~ ~ ~ 0.8 0.8'
+        - '[console] execute as %player% run title %player% times 0 40 20'
+        - '[console] execute as %player% run title %player% title {"text":"WITHER
+          BLAST","color":"dark_gray","bold":true}'
+        - '[console] execute as %player% run title %player% subtitle {"text":"Decay
+          spreads around you","color":"gray"}'
+        - '[delay:2] [console] execute as %player% at %player% run effect give @e[distance=..6,type=!player]
+          wither 3 1'
+        - '[delay:2] [console] execute as %player% at %player% run effect give @e[distance=..4,type=!player]
+          instant_damage 1 0'
+        effects:
+          potion_effects:
+          - DAMAGE_RESISTANCE;2;100
+          - FIRE_RESISTANCE;2;100
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 25
+        message: '&8&l⚠ &7Not enough mana! &8(25 &7required)'
+  
+  soul_charm:
+    material: ECHO_SHARD
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#5D3FD3S&#6A4ED3o&#765DD3u&#837CD3l &#906BD3C&#9D7AD3h&#AA89D3a&#B698D3r&#C3A7D3m'
+      lore:
+      - ''
+      - '&7A charm that pulses with'
+      - '&7the energy of lost souls.'
+      - ''
+      - '&5&lPASSIVE AURA:'
+      - '&7- &d+15% Movement Speed'
+      - '&7- &dGlow when near mobs'
+      - '&7- &d+2 Max Health'
+      - '&7- &d+5% Lifesteal'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+      glow: true
+    enchantments:
+    - UNBREAKING;3
+    - MENDING;1
+    enchants: true
+    enchantable: true
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          potion_effects:
+          - GLOWING;1
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.05
+      visuals:
+        particles:
+        - type: SOUL
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+        sound:
+          sound: AMBIENT_SOUL_SAND_VALLEY_MOOD;0.2;1.0
+          enabled: true
+          period: 300
+  
+  shadow_cloak:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#2C2C2CS&#3A3A3Ah&#484848a&#565656d&#646464o&#727272w &#808080C&#8E8E8El&#9C9C9Co&#AAAAAAa&#B8B8B8k'
+      lore:
+      - ''
+      - '&7A cloak woven from shadows,'
+      - '&7hiding the wearer from sight.'
+      - ''
+      - '&8&l🌑 SHADOW AURA:'
+      - '&7- &8Invisibility when sneaking'
+      - '&7- &8+2 Armor'
+      - '&7- &8+10% Movement Speed'
+      - '&7- &8+5% Attack Damage'
+      - ''
+      - '&8&l🌑 SHADOW MELD:'
+      - '&7Right-Click: &8Merge with shadows'
+      - '&7- &8Grants Invisibility for 5s'
+      - '&7- &8Grants Speed III for 5s'
+      - '&7- &8Cooldown: &720 seconds'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+      color: '#1A1A1A'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    enchants: true
+    enchantable: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - INVISIBILITY;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.05
+      visuals:
+        particles:
+        - type: SMOKE
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+        sound:
+          sound: ENTITY_WITHER_SPAWN;0.1;0.5
+          enabled: true
+          period: 300
+    active_ability:
+      enabled: true
+      cooldown: 20
+      actions:
+        commands:
+        - '[actionbar] &8🌑 &lSHADOW MELD! &7You fade into darkness'
+        - '[console] execute as %player% at %player% run particle large_smoke ~ ~1
+          ~ 3 2 3 0.1 50'
+        - '[console] execute as %player% at %player% run particle portal ~ ~1 ~ 3
+          2 3 0.1 50'
+        - '[console] execute as %player% at %player% run playsound entity_enderman_teleport
+          master @a ~ ~ ~ 0.8 0.5'
+        effects:
+          potion_effects:
+          - INVISIBILITY;1;100
+          - SPEED;2;100
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 20
+        message: '&8&l⚠ &7Not enough mana! &8(20 &7required)'
+  
+  assassins_dagger:
+    material: NETHERITE_SWORD
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#2C2C2CA&#3A3A3As&#484848s&#565656a&#646464s&#727272s&#808080i&#8E8E8En&#9C9C9C''&#AAAAAAs
+        &#B8B8B8D&#C6C6C6a&#D4D4D4g&#E2E2E2g&#F0F0F0e&#FFFFFFr'
+      lore:
+      - ''
+      - '&7A blade that drinks the light,'
+      - '&7perfect for silent eliminations.'
+      - ''
+      - '&8🗡️ &lSHADOW STEP:'
+      - '&7Right-Click: Teleport forward'
+      - '&7- &8Blink 5 blocks forward'
+      - '&7- &8Grants Invisibility for 2s'
+      - '&7- &8Cooldown: &73 seconds'
+      - ''
+      - '&8Mana Cost: &b20'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+    enchantments:
+    - SHARPNESS;6
+    - UNBREAKING;4
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;4
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          potion_effects:
+          - INVISIBILITY;1
+          - SPEED;2
+          - STRENGTH;3
+          - HEALTH_BOOST;2
+          attributes:
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.25
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: SMOKE
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 3
+        message: '&8&l⚠ &7Shadow Step recharging: &8%cooldown%s'
+      actions:
+        commands:
+        - '[console] execute as %player% at %player% run minecraft:tp %player% ^ ^
+          ^5'
+        - '[console] execute as %player% run effect give %player% invisibility 2 1
+          true'
+        - '[console] execute as %player% at %player% run particle soul ~ ~1 ~ 1 1
+          1 0.1 20'
+        - '[console] execute as %player% at %player% run particle large_smoke ~ ~1
+          ~ 0.5 0.5 0.5 0.1 20'
+        - '[console] execute as %player% at %player% run playsound entity_enderman_teleport
+          master @a ~ ~ ~ 0.8 1.0'
+        - '[actionbar] &8🗡️ &lSHADOW STEP! &8Teleported forward'
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 20
+        message: '&c&l⚠ &7Not enough mana! &c(20 &7required)'
+  
+  shadow_striker_bow:
+    material: BOW
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#2C2C2CS&#3A3A3Ah&#484848a&#565656d&#646464o&#727272w &#808080S&#8E8E8Et&#9C9C9Cr&#AAAAAAi&#B8B8B8k&#C6C6C6e&#D4D4D4r'
+      lore:
+      - ''
+      - '&7A bow that fires arrows dipped in'
+      - '&7liquid shadow, seeking victims in darkness.'
+      - ''
+      - '&8🏹 &lSHADOW ARROWS:'
+      - '&7- &8Arrows apply Blindness for 3s'
+      - '&7- &8+20% damage to blinded targets'
+      - '&7- &8Arrows phase through blocks briefly'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+    enchantments:
+    - POWER;6
+    - UNBREAKING;4
+    - MENDING;1
+    - FLAME;1
+    - INFINITY;1
+    - PUNCH;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+      HIDE_UNBREAKABLE: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          potion_effects:
+          - INVISIBILITY;1
+          - SPEED;1
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+          conditions:
+          - '%player_sneaking% == true'
+      projectiles:
+        ARROW:
+          on_hit:
+            potion_effects:
+            - BLINDNESS;1;3
+            commands:
+            - '[console] execute as %player% at %target% run particle smoke %x% %y%
+              %z% 0.5 0.5 0.5 0.05 10'
+            - '[console] execute as %player% at %target% run particle soul %x% %y%
+              %z% 0.5 0.5 0.5 0.02 5'
+          damage:
+            multiplier: 1.2
+            conditions:
+            - '%target_has_potion% == BLINDNESS'
+          visuals:
+            trail:
+            - type: SOUL
+              count: 1
+              speed: 0.05
+          return_chance: 15
+          phase_ticks: 10
+      visuals:
+        particles:
+        - type: SOUL
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          conditions:
+          - '%player_sneaking% == false'
+    active_ability:
+      enabled: false
+      cooldown:
+        length: 6
+        message: '&8&l⚠ &7Veiled Shot recharging: &8%cooldown%s'
+      conditions:
+      - '%player_sneaking% == true'
+      - '%cached_hand% == MAIN_HAND'
+      actions:
+        commands:
+        - '[console] execute as %player% at %player% run minecraft:arrow %player%
+          ^ ^ ^1 2.0 0.2'
+        - '[console] execute as %player% run effect give %player% glowing 3 1 true'
+        - '[console] execute as %player% at %player% run particle glow %x% %y% %z%
+          0.5 0.5 0.5 0.01 10'
+        - '[console] execute as %player% at %player% run particle soul %x% %y% %z%
+          0.5 0.5 0.5 0.05 20'
+        - '[console] execute as %player% at %player% run playsound entity_illusioner_cast_spell
+          master @a ~ ~ ~ 0.8 1.2'
+        - '[actionbar] &8🏹 &lVEILED SHOT! &7Revealing arrow fired'
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 25
+        message: '&c&l⚠ &7Not enough mana! &c(25 &7required)'
+  
+  # ==========================================================================
+  # 👻 NEW PHANTOM SET WEAPONS
+  # ==========================================================================
+
+  shadow_piercer_spear:
+    material: NETHERITE_SPEAR
+    permission: buffeditems.set.phantom
+    display:
+      name: '&#483D8BS&#4F4F9Fh&#5A5AA7a&#6565AFd&#7070B7o&#7B7BBFw &#8686C7P&#9191CFi&#9C9CD7e&#A7A7DFr&#B2B2E7c&#BDBDEFe&#C8C8F7r'
+      lore:
+      - ''
+      - '&7A spear that pierces both flesh'
+      - '&7and shadow, leaving no trace.'
+      - ''
+      - '&8🗡️ &lSHADOW PIERCER:'
+      - '&7- &8+1.5 Block Reach'
+      - '&7- &8+20% Attack Speed'
+      - '&7- &8Arrows phase through blocks'
+      - '&7- &8+15% Damage to invisible targets'
+      - '&7- &8Reveals hit enemies (Glowing for 3s)'
+      - ''
+      - '&8&oSet Bonus: (2/7) &f+10% damage to undead'
+      - '&8&oSet Bonus: (4/7) &fWither I on hit'
+      - '&8&oSet Bonus: (7/7) &fIntangible for 3s below 20% HP & Shadow Walk'
+      - ''
+    enchantments:
+    - IMPALING;6
+    - PLUNGEE;3
+    - UNBREAKING;5
+    - MENDING;1
+    - FIREASPECT;3
+    - CHANNELING;1
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: SOUL
+          mode: CONTINUOUS
+          shape: HELIX
+          count: 1
+          speed: 0.02
+          radius: 0.5
+
+  
+  # ==========================================================================
+  # ⚔️ SECTION 10: BERSERKER SET
+  # ==========================================================================
+
+  warriors_talisman:
+    material: NETHERITE_INGOT
+    permission: buffeditems.set.berserker
+    display:
+      name: '&#FF0000&oW&#FF0A00&oa&#FF1400&or&#FF1E00&or&#FF2800&oi&#FF3300&oo&#FF3D00&or&#FF4700&o''&#FF5100&os
+        &#FF6500&oT&#FF6F00&oa&#FF7900&ol&#FF8400&oi&#FF8E00&os&#FF9800&om&#FFA200&oa&#FFAC00&on'
+      lore:
+      - ''
+      - '&#8B0000Forged in dragon''s fire, this talisman'
+      - '&#8B0000bolsters the wearer''s life force.'
+      - ''
+      - '&#FFB6C1Passive Effects (Inventory):'
+      - '&#FFB6C1• +2 Max Health (1 Heart)'
+      - '&#FFB6C1• +1.0 Armor Toughness'
+      - '&#FFB6C1• Permanent Strength I'
+      - '&#FFB6C1• Regeneration I (Slow Heal)'
+      - ''
+      glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          potion_effects:
+          - STRENGTH;1
+          - REGENERATION;1
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;1.0
+  
+  berserkers_greaves:
+    material: NETHERITE_BOOTS
+    permission: buffeditems.set.berserker
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;3
+    - THORNS;3
+    display:
+      name: '&cBerserker Greaves'
+      lore:
+      - ''
+      - '&#FF0000Boots stained with the fury'
+      - '&#FF0000of countless battles.'
+      - ''
+      - '&#FFB6C1Passive Effects (Boots):'
+      - '&#FFB6C1• +15% Movement Speed'
+      - '&#FFB6C1• -1.0 Armor (Tradeoff)'
+      - '&#FFB6C1• Fire Resistance I'
+      - '&#FFB6C1• Speed I when worn'
+      - ''
+      - '&#FFD700Enchantments:'
+      - '&#FF6347Protection IV, Unbreaking IV, Mending, Feather Falling IV, Depth
+        Strider III, Thorns III'
+      glow: true
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        BOOTS:
+          potion_effects:
+          - FIRE_RESISTANCE;1
+          - SPEED;1
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_ARMOR;ADD_NUMBER;-1.0
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#8B0000B&#A52A2Ao&#B22222o&#DC143Ct&#FF4500s &#FF6347o&#FF7F4Ff
+            &#FF8C69F&#FFA07Au&#FFB6C1r&#FFC0CBy'
+          color: RED
+          style: SOLID
+        particles:
+        - type: FLAME
+          shape: POINT
+          count: 1
+        sound:
+          sound: BLOCK_CHAIN_BREAK;1.0;1.0
+          enabled: true
+  
+  berserker_helmet:
+    material: NETHERITE_HELMET
+    permission: buffeditems.set.berserker
+    display:
+      name: '&cBerserker Helmet'
+      lore:
+      - ''
+      - '&7A helm stained with the blood'
+      - '&7of countless enemies.'
+      - ''
+      - '&c&lPASSIVE AURA:'
+      - '&7- &c+1 Armor'
+      - '&7- &cStrength I when below 50% HP'
+      - '&7- &c+5% Attack Speed'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - AQUA_AFFINITY;1
+    - RESPIRATION;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        HEAD:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.05
+      visuals:
+        particles:
+        - type: DAMAGE_INDICATOR
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  berserker_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.berserker
+    display:
+      name: '&cBerserker Chestplate'
+      lore:
+      - ''
+      - '&7Chestplate that grows stronger'
+      - '&7with every blow taken.'
+      - ''
+      - '&c&lPASSIVE AURA:'
+      - '&7- &c+3 Armor'
+      - '&7- &cResistance I when below 50% HP'
+      - '&7- &c+1 Armor Toughness'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        CHEST:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;1.0
+      visuals:
+        particles:
+        - type: COPPER_FIRE_FLAME
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 10
+  
+  berserker_leggings:
+    material: NETHERITE_LEGGINGS
+    permission: buffeditems.set.berserker
+    display:
+      name: '&cBerserker Leggings'
+      lore:
+      - ''
+      - '&7Leggings that channel rage'
+      - '&7into every step.'
+      - ''
+      - '&c&lPASSIVE AURA:'
+      - '&7- &c+2 Armor'
+      - '&7- &c+10% Movement Speed'
+      - '&7- &c+5% Attack Damage'
+      - '&7- &c+1 Armor Toughness'
+      - ''
+      color: '#8B0000'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    enchants: true
+    enchantable: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    passive_effects:
+      slots:
+        LEGS:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;1.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.05
+  
+  berserker_axe:
+    material: NETHERITE_AXE
+    permission: buffeditems.set.berserker
+    display:
+      name: '&cBerserker Axe'
+      lore:
+      - ''
+      - '&7An axe that hungers for battle,'
+      - '&7growing stronger as you bleed.'
+      - ''
+      - '&c&lBERSERKER FURY:'
+      - '&7- &c+10% Damage (base)'
+      - '&7- &c+5% Damage per 10% missing health'
+      - '&7- &c+15% Attack Speed'
+      - '&7- &c+5% Lifesteal when below 50% HP'
+      - ''
+      - '&c&lBLOOD RAGE:'
+      - '&7Right-Click: &cUnleash your fury'
+      - '&7- &cStrength II for 5s'
+      - '&7- &cResistance I for 5s'
+      - '&7- &cDamages nearby enemies'
+      - '&7Cooldown: &c25 seconds'
+      - ''
+      - '&8Mana Cost: &b25'
+      - ''
+    enchantments:
+    - SHARPNESS;6
+    - UNBREAKING;4
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;4
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 15
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;-2.0
+      visuals:
+        action-bar:
+          enabled: true
+          mode: CONDITIONAL
+          condition: health_percent < 50
+          message: '&c&l BERSERKER FURY ACTIVE! '
+          delay: 100
+          duration: 40
+        particles:
+        - type: DAMAGE_INDICATOR
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          condition: health_percent < 50
+        - type: LAVA
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          condition: health_percent < 30
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 25
+        message: '&c&l⚠ &7Blood Rage recharging: &c%cooldown%s'
+      actions:
+        commands:
+        - '[actionbar] &c&lBLOOD RAGE! &7You feel your blood boiling!'
+        - '[console] execute as %player% at %player% run particle sweep_attack ~ ~1
+          ~ 2 1 2 0.1 30'
+        - '[console] execute as %player% at %player% run particle lava ~ ~1 ~ 2 1
+          2 0.1 50'
+        - '[console] execute as %player% at %player% run playsound entity_wither_spawn
+          master @a ~ ~ ~ 0.3 1.2'
+        - '[console] execute as %player% run title %player% times 0 40 10'
+        - '[console] execute as %player% run title %player% title {"text":"BLOOD RAGE","color":"red","bold":true}'
+        - '[console] execute as %player% run title %player% subtitle {"text":"Feel
+          the fury!","color":"gold"}'
+        - '[delay:5] [console] execute as %player% at %player% run effect give @e[distance=..4,type=!player]
+          instant_damage 1 0'
+        effects:
+          potion_effects:
+          - INCREASE_DAMAGE;2;100
+          - DAMAGE_RESISTANCE;1;100
+          - FIRE_RESISTANCE;1;100
+          - SPEED;1;100
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 25
+        message: '&c&l⚠ &7Not enough mana! &c(25 &7required)'
+      - type: HUNGER
+        amount: 1
+      - type: HEALTH
+        amount: 0.5
+      visuals:
+        cast:
+          particles:
+          - type: LAVA
+            shape: BURST
+            count: 30
+            speed: 0.2
+            radius: 2.0
+            mode: CONTINUOUS
+          sound:
+            sound: ENTITY_WITHER_SPAWN;0.8;1.2
+            enabled: true
+      usage:
+        depletion_sound: ENTITY_ZOMBIE_ATTACK_IRON_DOOR;1.0;0.5
+        depleted_try_sound: BLOCK_DISPENSER_FAIL;1.0;1.2
+      sounds:
+        success: ENTITY_WITHER_SPAWN;0.8;1.0
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+        cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
+  
+  # ==========================================================================
+  # ⭐ SECTION 11: STARBOUND SET
+  # ==========================================================================
+
+  starbound_helmet:
+    material: NETHERITE_HELMET
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4H&#FFE2C8e&#FFE3DCl&#FFE4F0m&#FFE5FFe&#FFE6FFt'
+      lore:
+      - ''
+      - '&7A helmet forged from fallen stars,'
+      - '&7granting cosmic vision.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &eNight Vision'
+      - '&7- &e+2 Armor'
+      - '&7- &e+10% Movement Speed'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
+      color: '#FFD700'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - AQUA_AFFINITY;1
+    - RESPIRATION;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        HEAD:
+          potion_effects:
+          - NIGHT_VISION;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#FFD700S&#FFDC33t&#FFE166a&#FFE699r&#FFEBCCb&#FFF0FFo&#FFF5FFu&#FFFAFFn&#FFFFFFd
+            &#FFF5FFH&#FFEBFFe&#FFE0FFl&#FFD6FFm&#FFCCFFe&#FFC2FFt'
+          color: YELLOW
+          style: SOLID
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  starbound_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4C&#FFE2C8h&#FFE3DCe&#FFE4F0s&#FFE5FFt'
+      lore:
+      - ''
+      - '&7Chestplate that holds the light'
+      - '&7of a thousand suns.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &e+4 Armor'
+      - '&7- &e+3 Armor Toughness'
+      - '&7- &eRegeneration I'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
+      color: '#FFD700'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - REGENERATION;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;4.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;3.0
+        CHESTPLATE:
+          potion_effects:
+          - HEALTH_BOOST;3
+          - INCREASE_DAMAGE;2
+          - HERO_OF_THE_VILLAGE;1
+          - GLOWING;1
+          - ABSORPTION;1
+      visuals:
+        particles:
+        - type: END_ROD
+          shape: SPHERE
+          count: 15
+          speed: 0.0
+          radius: 1.5
+          period: 10.0
+          offset_x: 0.0
+          offset_y: 0.0
+          offset_z: 0.0
+          mode: CONTINUOUS
+  
+  starbound_leggings:
+    material: NETHERITE_LEGGINGS
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4L&#FFE2C8e&#FFE3DCg&#FFE4F0s'
+      lore:
+      - ''
+      - '&7Leggings that move with'
+      - '&7the speed of comets.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &e+3 Armor'
+      - '&7- &e+15% Movement Speed'
+      - '&7- &eJump Boost II'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
+      color: '#FFD700'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        LEGS:
+          potion_effects:
+          - JUMP_BOOST;2
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  starbound_boots:
+    material: NETHERITE_BOOTS
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4B&#FFE2C8o&#FFE3DCo&#FFE4F0t&#FFE5FFs'
+      lore:
+      - ''
+      - '&7Boots that leave trails of stardust,'
+      - '&7allowing flight among the stars.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &e+2 Armor'
+      - '&7- &e+20% Movement Speed'
+      - '&7- &eFrost Walker II'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
+      color: '#FFD700'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;3
+    - FROST_WALKER;2
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        FEET:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.2
+      visuals:
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  starbound_wings:
+    material: ELYTRA
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4W&#FFE2C8i&#FFE3DCn&#FFE4F0g&#FFE5FFs'
+      lore:
+      - ''
+      - '&7Wings that carry you'
+      - '&7across the cosmos.'
+      - ''
+      - '&6&lPASSIVE AURA:'
+      - '&7- &eSlow Falling'
+      - '&7- &e+10% Movement Speed'
+      - '&7- &eGlow when flying'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
+      color: '#FFD700'
+      glow: true
+    enchantments:
+    - UNBREAKING;4
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - SLOW_FALLING;1
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        particles:
+        - type: FIREWORK
+          mode: ON_EQUIP
+          shape: BURST
+          count: 5
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  starbound_blade:
+    material: NETHERITE_SWORD
+    permission: buffeditems.set.starbound
+    display:
+      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+        &#FFE1B4B&#FFE2C8l&#FFE3DCa&#FFE4F0d&#FFE5FFe'
+      lore:
+      - ''
+      - '&7A blade that cuts through'
+      - '&7the fabric of reality.'
+      - ''
+      - '&6&l✨ COSMIC AURA:'
+      - '&7- &e+20% Attack Damage'
+      - '&7- &e+20% Attack Speed'
+      - '&7- &e+5% Lifesteal'
+      - '&7- &e+5% Critical Strike Chance'
+      - '&7- &eGlowing aura around wielder'
+      - ''
+      - '&6&l☄️ STARFALL:'
+      - '&7Right-Click: &eSummon meteors from the sky'
+      - '&7- &eSummons 3 meteors in an area'
+      - '&7- &eEach meteor explodes'
+      - '&7- &eMobs are &elevitated &eon impact'
+      - '&7Cooldown: &e25 seconds'
+      - ''
+      - '&8Mana Cost: &b30'
+      - ''
+      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/6) &f+10% Damage'
+      - '&8&oSet Bonus: (6/6) &fCosmic Aura - &eFlight for 5s after Starfall'
+      - ''
+    enchantments:
+    - SHARPNESS;6
+    - UNBREAKING;4
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;4
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 18
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+          - GENERIC_LUCK;ADD_NUMBER;1.0
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#FFD700S&#FFDD33t&#FFE166a&#FFE599r&#FFE9CCb&#FFEDFFo&#FFF2FFu&#FFF6FFn&#FFFFFFd
+            &#FFF6FFC&#FFF2FFo&#FFEDFFs&#FFE9CCm&#FFE599i&#FFE166c'
+          color: YELLOW
+          style: SOLID
+        action-bar:
+          enabled: true
+          mode: CONTINUOUS
+          message: '&e✨ &fCosmic energy flows through you... &e✨'
+          delay: 200
+          duration: 40
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+        sound:
+          sound: ENTITY_FIREWORK_ROCKET_TWINKLE;0.2;1.5
+          enabled: true
+          period: 200
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 25
+        message: '&e&l⚠ &7Starfall recharging: &e%cooldown%s'
+      actions:
+        commands:
+        - '[actionbar] &e&l☄️ STARFALL! &7Meteors rain from the heavens!'
+        - '[console] execute as %player% at %player% run particle end_rod ~ ~3 ~ 5
+          3 5 0.1 100'
+        - '[console] execute as %player% at %player% run particle firework ~ ~2 ~
+          3 2 3 0.1 75'
+        - '[console] execute as %player% at %player% run playsound entity_firework_rocket_blast
+          master @a ~ ~ ~ 0.8 1.0'
+        - '[console] execute as %player% at %player% run playsound entity_lightning_bolt_thunder
+          master @a ~ ~ ~ 0.3 1.5'
+        - '[console] execute as %player% run title %player% times 0 40 20'
+        - '[console] execute as %player% run title %player% title {"text":"STARFALL","color":"gold","bold":true}'
+        - '[console] execute as %player% run title %player% subtitle {"text":"Meteors
+          rain from the sky!","color":"yellow"}'
+        - '[delay:5] [console] summon tnt ~ ~10 ~ {Fuse:30,Motion:[0.0,-0.5,0.0]}'
+        - '[delay:5] [console] summon tnt ~3 ~12 ~1 {Fuse:30,Motion:[0.0,-0.5,0.0]}'
+        - '[delay:5] [console] summon tnt ~-3 ~13 ~-1 {Fuse:30,Motion:[0.0,-0.5,0.0]}'
+        - '[delay:15] [console] execute as %player% at %player% run effect give @e[distance=..8,type=!player]
+          levitation 1 2'
+        - '[delay:15] [console] execute as %player% at %player% run particle end_rod
+          ~ ~2 ~ 6 3 6 0.1 150'
+        - '[condition] inventory_has_item material:NETHERITE_HELMET name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+          &#FFE1B4H&#FFE2C8e&#FFE3DCl&#FFE4F0m&#FFE5FFe&#FFE6FFt"'
+        - '[condition] inventory_has_item material:NETHERITE_CHESTPLATE name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+          &#FFE1B4C&#FFE2C8h&#FFE3DCe&#FFE4F0s&#FFE5FFt"'
+        - '[condition] inventory_has_item material:NETHERITE_LEGGINGS name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+          &#FFE1B4L&#FFE2C8e&#FFE3DCg&#FFE4F0s"'
+        - '[condition] inventory_has_item material:NETHERITE_BOOTS name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+          &#FFE1B4B&#FFE2C8o&#FFE3DCo&#FFE4F0t&#FFE5FFs"'
+        - '[condition] inventory_has_item material:ELYTRA name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
+          &#FFE1B4W&#FFE2C8i&#FFE3DCn&#FFE4F0g&#FFE5FFs"'
+        effects:
+          potion_effects:
+          - INCREASE_DAMAGE;2;100
+          - DAMAGE_RESISTANCE;1;100
+          - SPEED;2;100
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 30
+        message: '&e&l⚠ &7Not enough mana! &e(30 &7required)'
+      visuals:
+        cast:
+          particles:
+          - type: END_ROD
+            shape: BURST
+            count: 30
+            speed: 0.2
+            radius: 3.0
+            mode: CONTINUOUS
+          - type: FIREWORK
+            shape: SPHERE
+            count: 20
+            speed: 0.15
+            radius: 2.5
+            mode: CONTINUOUS
+          sound:
+            sound: ENTITY_FIREWORK_ROCKET_LAUNCH;0.8;0.8
+            enabled: true
+      usage:
+        depletion_sound: ENTITY_FIREWORK_ROCKET_BLAST;1.0;0.5
+        depleted_try_sound: BLOCK_DISPENSER_FAIL;1.0;1.2
+      sounds:
+        success: ENTITY_FIREWORK_ROCKET_BLAST;0.8;1.0
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+        cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
+  
+  # ==========================================================================
+  # 🆓 FREE SECTION - PLAYTIME+ REWARDS
+  # ==========================================================================
+
+  wanderer_compass:
+    material: COMPASS
+    display:
+      name: '&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ɢᴜɪᴅᴇ'
+      lore:
+      - ''
+      - '&7A compass that always points'
+      - '&7towards your next adventure.'
+      - ''
+      - '&7&lPASSIVE:'
+      - '&7- &fPoints to your bed/spawn'
+      - '&7- &fGlows in hand'
+      - ''
+    enchantments:
+    - UNBREAKING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+  
+  rooted_pickaxe:
+    material: IRON_PICKAXE
+    display:
+      name: '&aʀᴏᴏᴛᴇᴅ_ᴘɪᴄᴋ'
+      lore:
+      - ''
+      - '&7A pickaxe that feels like an'
+      - '&7extension of your own arm.'
+      - ''
+      - '&a&lPASSIVE:'
+      - '&7- &aEfficiency III'
+      - '&7- &aUnbreaking II'
+      - '&7- &a+5% Mining XP'
+      - ''
+    enchantments:
+    - EFFICIENCY;3
+    - UNBREAKING;2
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.05
+  
+  rooted_axe:
+    material: IRON_AXE
+    display:
+      name: '&aʀᴏᴏᴛᴇᴅ_ᴀxᴇ'
+      lore:
+      - ''
+      - '&7Cuts through wood like butter.'
+      - ''
+      - '&a&lPASSIVE:'
+      - '&7- &aEfficiency III'
+      - '&7- &aUnbreaking II'
+      - ''
+    enchantments:
+    - EFFICIENCY;3
+    - UNBREAKING;2
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+  
+  delver_lantern:
+    material: LANTERN
+    display:
+      name: '&eᴅᴇʟᴠᴇʀꜱ_ʟɪɢʜᴛ'
+      lore:
+      - ''
+      - '&7A lantern that never goes out,'
+      - '&7lighting the deepest caves.'
+      - ''
+      - '&e&lPASSIVE (Off Hand):'
+      - '&7- &eNight Vision when in caves'
+      - '&7- &e+10% Mining Speed'
+      - ''
+    enchantments:
+    - UNBREAKING;3
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        OFF_HAND:
+          potion_effects:
+          - NIGHT_VISION;1
+  
+  delver_helmet:
+    material: IRON_HELMET
+    display:
+      name: '&eᴅᴇʟᴠᴇʀꜱ_ʜᴇʟᴍ'
+      lore:
+      - ''
+      - '&7A helmet built for deep exploration.'
+      - ''
+      - '&e&lPASSIVE:'
+      - '&7- &eRespiration II'
+      - '&7- &e+5% Mining Speed'
+      - ''
+    enchantments:
+    - PROTECTION;3
+    - UNBREAKING;3
+    - RESPIRATION;2
+    - AQUA_AFFINITY;1
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+  
+  artisan_apron:
+    material: GOLDEN_CHESTPLATE
+    display:
+      name: '&6ᴀʀᴛɪꜱᴀɴ_ᴀᴘʀᴏɴ'
+      lore:
+      - ''
+      - '&7An apron worn by master crafters.'
+      - ''
+      - '&6&lPASSIVE:'
+      - '&7- &e+10% Crafting Speed'
+      - '&7- &e+5% Repair Efficiency'
+      - '&7- &e+1 Armor'
+      - ''
+    color: 16755200
+    enchantments:
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_DYE: true
+    glow: true
+    passive_effects:
+      slots:
+        CHEST:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;1.0
+  
+  artisan_chisel:
+    material: IRON_PICKAXE
+    display:
+      name: '&6ᴀʀᴛɪꜱᴀɴ_ᴄʜɪꜱᴇʟ'
+      lore:
+      - ''
+      - '&7A tool for precise work.'
+      - ''
+      - '&6&lPASSIVE:'
+      - '&7- &eSilk Touch'
+      - '&7- &eEfficiency IV'
+      - '&7- &eUnbreaking III'
+      - ''
+    enchantments:
+    - EFFICIENCY;4
+    - UNBREAKING;3
+    - SILK_TOUCH;1
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+  
+  seasoned_cloak:
+    material: IRON_CHESTPLATE
+    display:
+      name: '&aꜱᴇᴀꜱᴏɴᴇᴅ_ᴄʟᴏᴀᴋ'
+      lore:
+      - ''
+      - '&7A cloak that has weathered'
+      - '&7countless storms.'
+      - ''
+      - '&a&lPASSIVE:'
+      - '&7- &a+10% Movement Speed'
+      - '&7- &a+2 Armor'
+      - '&7- &aSlow Falling when falling'
+      - ''
+    color: 65378
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_DYE: true
+    glow: true
+    passive_effects:
+      slots:
+        CHEST:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+          potion_effects:
+          - SLOW_FALLING;1
+  
+  seasoned_boots:
+    material: IRON_BOOTS
+    display:
+      name: '&aꜱᴇᴀꜱᴏɴᴇᴅ_ʙᴏᴏᴛꜱ'
+      lore:
+      - ''
+      - '&7Boots that have walked'
+      - '&7across every biome.'
+      - ''
+      - '&a&lPASSIVE:'
+      - '&7- &aFeather Falling IV'
+      - '&7- &aDepth Strider II'
+      - '&7- &a+10% Speed'
+      - ''
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;3
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;2
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        FEET:
+          attributes:
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+  
+  luminous_ring:
+    material: GOLD_NUGGET
+    display:
+      name: '&dʟᴜᴍɪɴᴏᴜꜱ_ʀɪɴɢ'
+      lore:
+      - ''
+      - '&7A ring that glows with inner light.'
+      - ''
+      - '&d&lPASSIVE (Inventory):'
+      - '&7- &dNight Vision'
+      - '&7- &d+5% XP Gain'
+      - '&7- &d+1 Health'
+      - ''
+    enchantments:
+    - UNBREAKING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          potion_effects:
+          - NIGHT_VISION;1
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+  
+  luminous_cape:
+    material: DIAMOND_CHESTPLATE
+    display:
+      name: '&dʟᴜᴍɪɴᴏᴜꜱ_ᴄᴀᴘᴇ'
+      lore:
+      - ''
+      - '&7A cape that shimmers with'
+      - '&7captured starlight.'
+      - ''
+      - '&d&lPASSIVE:'
+      - '&7- &d+15% Movement Speed'
+      - '&7- &d+3 Armor'
+      - '&7- &dGlowing trail'
+      - ''
+    color: 16733695
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_DYE: true
+    glow: true
+    passive_effects:
+      slots:
+        CHEST:
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+      visuals:
+        particles:
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+  
+  starbound_amulet:
+    material: NETHER_STAR
+    display:
+      name: '&5ꜱᴛᴀʀʙᴏᴜɴᴅ_ᴀᴍᴜʟᴇᴛ'
+      lore:
+      - ''
+      - '&7An amulet holding the essence'
+      - '&7of a fallen star.'
+      - ''
+      - '&5&lPASSIVE (Inventory):'
+      - '&7- &d+2 Health'
+      - '&7- &d+5% All XP'
+      - '&7- &d+1 Luck'
+      - '&7- &dSlow Falling when low'
+      - ''
+    enchantments:
+    - UNBREAKING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        INVENTORY:
+          attributes:
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+          - GENERIC_LUCK;ADD_NUMBER;1.0
+  
+  starbound_sword:
+    material: DIAMOND_SWORD
+    display:
+      name: '&5ꜱᴛᴀʀʙᴏᴜɴᴅ_ꜱᴡᴏʀᴅ'
+      lore:
+      - ''
+      - '&7A sword that gleams with'
+      - '&7the light of distant stars.'
+      - ''
+      - '&5&lPASSIVE:'
+      - '&7- &dSharpness V'
+      - '&7- &d+10% Damage'
+      - '&7- &dFire Aspect I'
+      - '&7- &d+5% Lifesteal'
+      - ''
+    enchantments:
+    - SHARPNESS;5
+    - UNBREAKING;3
+    - MENDING;1
+    - FIRE_ASPECT;1
+    - LOOTING;2
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+  
+  starbound_pickaxe:
+    material: DIAMOND_PICKAXE
+    display:
+      name: '&5ꜱᴛᴀʀʙᴏᴜɴᴅ_ᴘɪᴄᴋᴀxᴇ'
+      lore:
+      - ''
+      - '&7A pickaxe that can mine'
+      - '&7the very fabric of reality.'
+      - ''
+      - '&5&lPASSIVE:'
+      - '&7- &dEfficiency V'
+      - '&7- &dFortune III'
+      - '&7- &dUnbreaking III'
+      - '&7- &d+15% Mining Speed'
+      - ''
+    enchantments:
+    - EFFICIENCY;5
+    - FORTUNE;3
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+  
+  starbound_wings_free:
+    material: ELYTRA
+    display:
+      name: '&5ꜱᴛᴀʀʙᴏᴜɴᴅ_ᴡɪɴɢꜱ'
+      lore:
+      - ''
+      - '&7Wings that carry you'
+      - '&7through the cosmos.'
+      - ''
+      - '&5&lPASSIVE:'
+      - '&7- &dUnbreaking III'
+      - '&7- &dMending'
+      - '&7- &dSlow Falling'
+      - ''
+    enchantments:
+    - UNBREAKING;3
+    - MENDING;1
+    flags:
+      HIDE_ENCHANTS: true
+    glow: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - SLOW_FALLING;1
+  
+  # ==========================================================================
+  # 🎟️ REFERRAL ITEMS
+  # ==========================================================================
+
+  referral_reward_tokens_tier1:
+      material: NETHER_STAR
+      permission: buffeditems.referral.5
+      display:
+        name: '&#C0C0C0&lC&#C6C6C6&lo&#CCCCCC&lm&#D2D2D2&lm&#D8D8D8&lu&#DEDEDE&ln&#E4E4E4&li&#EAEAEA&lt&#F0F0F0&ly
+          &#FFFFFF&lS&#FAFAFA&lu&#F5F5F5&lp&#F0F0F0&lp&#EBEBEB&lo&#E6E6E6&lr&#E0E0E0&lt&#DBDBDB&le&#D6D6D6&lr'
+        lore:
+        - ''
+        - '&7A token of appreciation for bringing'
+        - '&75 new players to the Misfits community!'
+        - ''
+        - '&6&lREWARDS:'
+        - '&8  &f❖ &e$5,000 in-game money'
+        - ''
+        - '&8  &f❖ &b+5,000 Mining XP'
+        - '&8  &f❖ &b+5,000 Foraging XP'
+        - '&8  &f❖ &b+5,000 Farming XP'
+        - '&8  &f❖ &b+5,000 Fishing XP'
+        - '&8  &f❖ &b+5,000 Excavation XP'
+        - '&8  &f❖ &b+5,000 Archery XP'
+        - '&8  &f❖ &b+5,000 Defense XP'
+        - '&8  &f❖ &b+5,000 Fighting XP'
+        - '&8  &f❖ &b+5,000 Endurance XP'
+        - '&8  &f❖ &b+5,000 Agility XP'
+        - '&8  &f❖ &b+5,000 Alchemy XP'
+        - '&8  &f❖ &b+5,000 Enchanting XP'
+        - '&8  &f❖ &b+5,000 Sorcery XP'
+        - '&8  &f❖ &b+5,000 Healing XP'
+        - '&8  &f❖ &b+5,000 Forging XP'
+        - ''
+        - '&7&oFirst step to becoming a legend!'
+      glow: true
+      active_ability:
+      enabled: true
+      cooldown: 0
+      actions:
+        commands:
+        - '[console] eco give %player% 5000'
+        - '[console] sk skill add %player% 5000 mining'
+        - '[console] sk skill add %player% 5000 foraging'
+        - '[console] sk skill add %player% 5000 farming'
+        - '[console] sk skill add %player% 5000 fishing'
+        - '[console] sk skill add %player% 5000 excavation'
+        - '[console] sk skill add %player% 5000 archery'
+        - '[console] sk skill add %player% 5000 defense'
+        - '[console] sk skill add %player% 5000 fighting'
+        - '[console] sk skill add %player% 5000 endurance'
+        - '[console] sk skill add %player% 5000 agility'
+        - '[console] sk skill add %player% 5000 alchemy'
+        - '[console] sk skill add %player% 5000 enchanting'
+        - '[console] sk skill add %player% 5000 sorcery'
+        - '[console] sk skill add %player% 5000 healing'
+        - '[console] sk skill add %player% 5000 forging'
+        - '[console] give %player% paper 1 name:&7&lTIER1_CLAIMED remove:true'
+        - '[broadcast] &7{player} &fhas claimed their &e5-invite &freferral reward!'
+        - '[console] execute at %player% run particle villager_happy ~ ~2 ~ 2 2 2 0.1 30'
+        - '[console] execute at %player% run particle end_rod ~ ~1 ~ 2 1 2 0.05 20'
+        - '[console] execute at %player% run playsound entity_experience_orb_pickup master @a ~ ~ ~ 0.5 1.2'
+      usage:
+        depletion_sound: ENTITY_PLAYER_LEVELUP
+        limit: 1
+        action: DESTROY
+      sounds:
+        success: ENTITY_PLAYER_LEVELUP;0.8;1.2
+      visuals:
+        cast:
+          particles:
+          - type: VILLAGER_HAPPY
+            shape: SPHERE
+            count: 30
+            speed: 0.1
+            mode: CONTINUOUS
+          - type: END_ROD
+            shape: RING
+            count: 20
+            speed: 0.05
+            mode: CONTINUOUS
+          title:
+            enabled: true
+            header: '&7&l5 INVITES!'
+            subtitle: '&fWelcome to the community!'
+            fade_in: 10
+            stay: 40
+            fade_out: 10
+
+  referral_reward_tokens_tier2:
+      material: NETHER_STAR
+      permission: buffeditems.referral.10
+      display:
+        name: '&#FFD700&lR&#FFD914&le&#FFDA28&lf&#FFDB3C&le&#FFDC50&lr&#FFDD64&lr&#FFDE78&la&#FFDF8C&ll
+          &#FFE1B4&lR&#FFE2C8&le&#FFE3DC&lw&#FFE4F0&la&#FFE5FF&lr&#FFE6FF&ld'
+        lore:
+        - ''
+        - '&7A token of gratitude for bringing'
+        - '&710 players to the Misfits community!'
+        - ''
+        - '&6&lREWARDS:'
+        - '&8  &f❖ &e$5,000 in-game money'
+        - ''
+        - '&8  &f❖ &b+10000 Mining XP'
+        - '&8  &f❖ &b+10000 Foraging XP'
+        - '&8  &f❖ &b+10000 Farming XP'
+        - '&8  &f❖ &b+10000 Fishing XP'
+        - '&8  &f❖ &b+10000 Excavation XP'
+        - '&8  &f❖ &b+10000 Archery XP'
+        - '&8  &f❖ &b+10000 Defense XP'
+        - '&8  &f❖ &b+10000 Fighting XP'
+        - '&8  &f❖ &b+10000 Endurance XP'
+        - '&8  &f❖ &b+10000 Agility XP'
+        - '&8  &f❖ &b+10000 Alchemy XP'
+        - '&8  &f❖ &b+10000 Enchanting XP'
+        - '&8  &f❖ &b+10000 Sorcery XP'
+        - '&8  &f❖ &b+10000 Healing XP'
+        - '&8  &f❖ &b+10000 Forging XP'
+        - ''
+      glow: true
+      active_ability:
+      enabled: true
+      cooldown: 0
+      actions:
+        commands:
+        - '[console] eco give %player% 10000'
+        - '[console] sk skill add %player% 10000 mining'
+        - '[console] sk skill add %player% 10000 foraging'
+        - '[console] sk skill add %player% 10000 farming'
+        - '[console] sk skill add %player% 10000 fishing'
+        - '[console] sk skill add %player% 10000 excavation'
+        - '[console] sk skill add %player% 10000 archery'
+        - '[console] sk skill add %player% 10000 defense'
+        - '[console] sk skill add %player% 10000 fighting'
+        - '[console] sk skill add %player% 10000 endurance'
+        - '[console] sk skill add %player% 10000 agility'
+        - '[console] sk skill add %player% 10000 alchemy'
+        - '[console] sk skill add %player% 10000 enchanting'
+        - '[console] sk skill add %player% 10000 sorcery'
+        - '[console] sk skill add %player% 10000 healing'
+        - '[console] sk skill add %player% 10000 forging'
+        - '[console] give %player% paper 1 name:&e&lREFERRAL_TOKEN_CLAIMED_FLAG remove:true'
+        - '[broadcast] &6&l{player} &ehas claimed their 10-invite referral reward!'
+        - '[console] execute at %player% run particle firework ~ ~2 ~ 2 2 2 0.3 50'
+        - '[console] execute at %player% run particle end_rod ~ ~2 ~ 3 2 3 0.1 50'
+        - '[console] execute at %player% run playsound entity_firework_rocket_blast
+          master @a ~ ~ ~ 0.8 1.0'
+      usage:
+        depletion_sound: ENTITY_PLAYER_LEVELUP
+        limit: 1
+        action: DESTROY
+      sounds:
+        success: ENTITY_PLAYER_LEVELUP;1.0;1.5
+      visuals:
+        cast:
+          particles:
+          - type: FIREWORK
+            shape: BURST
+            count: 50
+            speed: 0.2
+            mode: CONTINUOUS
+          - type: END_ROD
+            shape: SPHERE
+            count: 40
+            speed: 0.15
+            mode: CONTINUOUS
+          title:
+            enabled: true
+            header: '&6&l10 INVITES!'
+            subtitle: '&eYou''ve earned your reward!'
+            fade_in: 10
+            stay: 40
+            fade_out: 10
+
+version: 2
