@@ -1,0 +1,11 @@
+# See what files changed (optional)
+git status
+
+# Add all changes
+git add .
+
+# Commit with a message describing your changes
+git commit -m "Updated supporter list and fixed typo"
+
+# Push to GitHub
+git push
