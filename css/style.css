@@ -467,6 +467,13 @@ body.menu-open {
     font-size: 0.9rem;
 }
 
+.hero-hook {
+    margin-top: 1rem;
+    opacity: 0.9;
+    line-height: 1.6;
+    color: var(--soft-lavender);
+}
+
 .join-btn {
     margin: 1rem auto 0;
     font-size: clamp(0.9rem, 2vw, 1rem);
