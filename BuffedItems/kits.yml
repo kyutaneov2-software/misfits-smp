@@ -1,0 +1,457 @@
+kits:
+  # ====================================
+  # 🌱 FREE RANK KITS - PLAYTIME+ PROGRESSION
+  # ====================================
+  # These kits match PlayTime+ ranks and give FREE BuffedItems
+  # ====================================
+
+  wanderer:
+    delay: 43200  # 12 hours
+    items:
+    - iron_sword 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ʙʟᴀᴅᴇ lore:&8❖_&8&lᴄʜɪᴘᴘᴇᴅ_ʙʏ_ʀᴏᴀᴅ_ᴀɴᴅ_ʀᴀɪɴ fire_aspect:2 sharpness:3 unbreaking:2
+    - iron_helmet 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ʜᴏᴏᴅ lore:&8❖_&8&lᴡᴏʀɴ_ᴜɴᴅᴇʀ_ᴏᴘᴇɴ_ꜱᴋɪᴇꜱ aqua_affinity:1 projectile_protection:5 respiration:3 unbreaking:3 color:10511680
+    - iron_chestplate 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ᴄᴏᴀᴛ lore:&8❖_&8&lꜱᴛɪᴛᴄʜᴇᴅ_ᴛᴏ_ʟᴀꜱᴛ protection:5 unbreaking:3 color:10511680
+    - iron_leggings 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ᴛʀᴏᴜꜱᴇʀꜱ lore:&8❖_&8&lᴍᴀᴅᴇ_ꜰᴏʀ_ʟᴏɴɢ_ᴘᴀᴛʜꜱ blast_protection:5 swift_sneak:3 unbreaking:3 color:10511680
+    - iron_boots 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ʙᴏᴏᴛꜱ lore:&8❖_&8&lɴᴇᴠᴇʀ_ꜱᴛᴀʏ_ɪɴ_ᴏɴᴇ_ᴘʟᴀᴄᴇ depth_strider:3 feather_falling:5 soul_speed:3 unbreaking:3 color:10511680
+    - iron_pickaxe 1 efficiency:4 unbreaking:2
+    - iron_axe 1 efficiency:3 unbreaking:2
+    - iron_shovel 1 efficiency:3 unbreaking:2
+    - bread 32
+    - torch 64
+    - cooked_beef 16
+    - compass 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ɢᴜɪᴅᴇ lore:&8❖_&8&lɴᴇᴠᴇʀ_ʟᴏꜱᴛ    
+    # ✨ FREE BUFFEDITEMS - Wanderer's Compass
+    - /buffeditems:bi give {player} wanderer_compass 1
+    - /tell {player} &7⚡ The path is clear before you...
+
+  rooted:
+    delay: 57600  # 16 hours
+    items:
+    - iron_sword 1 name:&aʀᴏᴏᴛᴇᴅ_ʙʟᴀᴅᴇ lore:&8❖_&lꜰᴏʀɢᴇᴅ_ꜰʀᴏᴍ_ᴇᴀʀᴛʜ sharpness:3 unbreaking:3
+    - iron_helmet 1 name:&aʀᴏᴏᴛᴇᴅ_ʜᴇʟᴍ lore:&8❖_&lꜰɪʀᴍ_ᴀꜱ_ꜱᴏɪʟ protection:4 unbreaking:3
+    - iron_chestplate 1 name:&aʀᴏᴏᴛᴇᴅ_ᴄᴏᴀᴛ lore:&8❖_&lɢʀᴏᴡɴ_ᴛᴏ_ʟᴀꜱᴛ protection:4 unbreaking:3
+    - iron_leggings 1 name:&aʀᴏᴏᴛᴇᴅ_ʟᴇɢɢɪɴɢꜱ lore:&8❖_&lꜱᴛᴇᴀᴅʏ_ꜱᴛᴀɴᴄᴇ protection:4 unbreaking:3
+    - iron_boots 1 name:&aʀᴏᴏᴛᴇᴅ_ʙᴏᴏᴛꜱ lore:&8❖_&lɴᴏ_ꜱʟɪᴘ_ɪɴ_ᴍᴜᴅ feather_falling:4 unbreaking:3 depth_strider:2
+    - iron_pickaxe 1 name:&aʀᴏᴏᴛᴇᴅ_ᴘɪᴄᴋ lore:&8❖_&lᴇᴀʀᴛʜ_ʏɪᴇʟᴅꜱ efficiency:4 fortune:1 unbreaking:3
+    - iron_axe 1 name:&aʀᴏᴏᴛᴇᴅ_ᴀxᴇ lore:&8❖_&lᴄᴜᴛꜱ_ᴡʜᴀᴛ_ɢʀᴏᴡꜱ efficiency:4
+    - iron_shovel 1 name:&aʀᴏᴏᴛᴇᴅ_ꜱʜᴏᴠᴇʟ lore:&8❖_&lᴛɪʟʟꜱ_ᴅᴇᴇᴘ efficiency:4
+    - oak_log 64 name:&aʀᴏᴏᴛᴇᴅ_ʟᴜᴍʙᴇʀ lore:&8❖_&lꜰʀᴇꜱʜ_ᴄᴜᴛ
+    - cobblestone 128 name:&aʀᴏᴏᴛᴇᴅ_ꜱᴛᴏɴᴇ lore:&8❖_&lʀᴀᴡ_ᴀɴᴅ_ꜰɪʀᴍ
+    - lantern 16 name:&aʀᴏᴏᴛᴇᴅ_ʟᴀɴᴛᴇʀɴ lore:&8❖_&lɢʟᴏᴡꜱ_ɪɴ_ꜰᴏɢ
+    - cooked_porkchop 32 name:&aʀᴏᴏᴛᴇᴅ_ʀᴀᴛɪᴏɴꜱ lore:&8❖_&lꜱɪᴍᴘʟᴇ_ꜱᴜꜱᴛᴇɴᴀɴᴄᴇ
+    - bread 32
+    
+    # ✨ FREE BUFFEDITEMS - Rooted Pickaxe + Axe
+    - /buffeditems:bi give {player} rooted_pickaxe 1
+    - /buffeditems:bi give {player} rooted_axe 1
+    - /tell {player} &a🌱 The earth feels like home...
+
+  delver:
+    delay: 64800  # 18 hours
+    items:
+    - iron_sword 1 name:&eᴅᴇʟᴠᴇʀꜱ_ᴇᴅɢᴇ lore:&8❖_&lʙᴏʀɴ_ɪɴ_ᴅᴀʀᴋɴᴇꜱꜱ sharpness:4 fire_aspect:2 unbreaking:3
+    - iron_helmet 1 name:&eᴅᴇʟᴠᴇʀꜱ_ʜᴇʟᴍ lore:&8❖_&lꜱᴇᴇꜱ_ɪɴ_ꜱʜᴀᴅᴏᴡ protection:4 unbreaking:3 respiration:2
+    - iron_chestplate 1 name:&eᴅᴇʟᴠᴇʀꜱ_ᴄᴏʀᴇ lore:&8❖_&lᴄᴀʀᴠᴇᴅ_ʙʏ_ᴛɪᴍᴇ protection:4 unbreaking:3
+    - iron_leggings 1 name:&eᴅᴇʟᴠᴇʀꜱ_ɢᴀɪᴛ lore:&8❖_&lᴇᴠᴇʀ_ᴅᴇᴇᴘᴇʀ protection:4 unbreaking:3
+    - iron_boots 1 name:&eᴅᴇʟᴠᴇʀꜱ_ᴛʀᴇᴀᴅ lore:&8❖_&lɴᴏ_ʀᴇᴛʀᴇᴀᴛ feather_falling:4 unbreaking:3 depth_strider:2
+    - iron_pickaxe 1 name:&eᴅᴇʟᴠᴇʀꜱ_ᴘɪᴄᴋ lore:&8❖_&lꜱᴛᴏɴᴇ_ʏɪᴇʟᴅꜱ efficiency:5 fortune:3 unbreaking:3
+    - iron_axe 1 name:&eᴅᴇʟᴠᴇʀꜱ_ᴀxᴇ lore:&8❖_&lᴛᴀᴋᴇꜱ_ᴀʟʟ efficiency:4
+    - iron_shovel 1 name:&eᴅᴇʟᴠᴇʀꜱ_ꜱʜᴏᴠᴇʟ lore:&8❖_&lᴍᴏᴠᴇꜱ_ᴇᴀʀᴛʜ efficiency:4
+    - torch 128 name:&eᴅᴇʟᴠᴇʀꜱ_ʟɪɢʜᴛ lore:&8❖_&lʙʀᴇᴀᴋꜱ_ᴅᴀʀᴋ
+    - cooked_beef 64 name:&eᴅᴇʟᴠᴇʀꜱ_ʀᴀᴛɪᴏɴꜱ lore:&8❖_&lʜᴇᴀʀᴛʏ_ꜰᴜᴇʟ
+    - water_bucket 1 name:&eᴅᴇʟᴠᴇʀꜱ_ꜰʟᴀꜱᴋ lore:&8❖_&lᴄᴀʟᴍꜱ_ʟᴀᴠᴀ
+    - bucket 1
+    - lava_bucket 1
+    
+    # ✨ FREE BUFFEDITEMS - Delver's Lantern + Helmett
+    - /buffeditems:bi give {player} delver_lantern 1
+    - /buffeditems:bi give {player} delver_helmet 1
+    - /tell {player} &e⛏️ The depths hold no fear for you!
+
+  artisan:
+    delay: 86400  # 24 hours
+    items:
+    - diamond_sword 1 name:&6ᴀʀᴛɪꜱᴀɴ_ʙʟᴀᴅᴇ lore:&8❖_&lᴄʀᴀꜰᴛᴇᴅ_ᴡɪᴛʜ_ᴘʀᴇᴄɪꜱɪᴏɴ sharpness:4 unbreaking:3
+    - diamond_helmet 1 name:&6ᴀʀᴛɪꜱᴀɴ_ʜᴇʟᴍ lore:&8❖_&lꜰᴏʀɢᴇᴅ_ᴛᴏ_ꜰɪᴛ_ᴘᴇʀꜰᴇᴄᴛʟʏ protection:4 unbreaking:3 thorns:2
+    - diamond_chestplate 1 name:&6ᴀʀᴛɪꜱᴀɴ_ᴄᴏʀᴇ lore:&8❖_&lʙᴀʟᴀɴᴄᴇᴅ_ᴀɴᴅ_ʀᴇꜱɪʟɪᴇɴᴛ protection:4 unbreaking:3
+    - diamond_leggings 1 name:&6ᴀʀᴛɪꜱᴀɴ_ʟᴇɢɢɪɴɢꜱ lore:&8❖_&lꜱʜᴀᴘᴇᴅ_ʙʏ_ꜱᴋɪʟʟ protection:4 unbreaking:3
+    - diamond_boots 1 name:&6ᴀʀᴛɪꜱᴀɴ_ꜱᴛᴇᴘꜱ lore:&8❖_&lꜱᴛᴇᴘꜱ_ᴏꜰ_ᴀ_ᴄʀᴀꜰᴛꜱᴍᴀɴ feather_falling:4 unbreaking:3 depth_strider:2
+    - sentry_armor_trim_smithing_template 4 name:&6ꜱᴇɴᴛʀʏ_ᴛʀɪᴍ_ᴛᴇᴍᴘʟᴀᴛᴇ lore:&8❖_&lᴛʜᴇ_ɢᴜᴀʀᴅɪᴀɴ'ꜱ_ᴡᴀᴛᴄʜ
+    - gold_ingot 32 name:&6ᴛʀɪᴍ_ᴍᴀᴛᴇʀɪᴀʟ lore:&8❖_&lꜰᴏʀ_ꜱᴇɴᴛʀʏ_ᴛʀɪᴍ
+    - diamond_pickaxe 1 name:&6ᴀʀᴛɪꜱᴀɴ_ᴛᴏᴏʟ lore:&8❖_&lᴘʀᴇᴄɪꜱɪᴏɴ_ɪɴ_ᴇᴠᴇʀʏ_ꜱᴛʀɪᴋᴇ efficiency:5 fortune:3 unbreaking:3
+    - diamond_axe 1 name:&6ᴀʀᴛɪꜱᴀɴ_ᴄᴜᴛᴛᴇʀ lore:&8❖_&lᴄʟᴇᴀɴ_ᴄᴜᴛꜱ_ᴍᴀᴛᴛᴇʀ efficiency:5
+    - diamond_shovel 1 name:&6ᴀʀᴛɪꜱᴀɴ_ꜱᴘᴀᴅᴇ lore:&8❖_&lᴍᴏʟᴅɪɴɢ_ᴛʜᴇ_ʟᴀɴᴅ efficiency:5
+    - anvil 1 lore:&8❖_&lᴡʜᴇʀᴇ_ɪᴅᴇᴀꜱ_ᴀʀᴇ_ꜰᴏʀɢᴇᴅ
+    - blast_furnace 1 lore:&8❖_&lꜰɪʀᴇ_ʀᴇꜰɪɴᴇꜱ_ᴀʟʟ
+    - smoker 1 lore:&8❖_&lᴘᴀᴛɪᴇɴᴄᴇ_ᴄᴏᴏᴋᴇᴅ
+    - emerald 16 lore:&8❖_&lᴄᴜʀʀᴇɴᴄʏ_ᴏꜰ_ᴍᴀꜱᴛᴇʀꜱ
+    - diamond 8
+    
+    # ✨ FREE BUFFEDITEMS - Artisan Apron + Chisel
+    - /buffeditems:bi give {player} artisan_apron 1
+    - /buffeditems:bi give {player} artisan_chisel 1
+    - /tell {player} &6🔨 Your creations will be legendary!
+
+  seasoned:
+    delay: 129600  # 36 hours
+    items:
+    - diamond_sword 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ʙʟᴀᴅᴇ lore:&8❖_&lꜰᴏʀɢᴇᴅ_ʙʏ_ᴇxᴘᴇʀɪᴇɴᴄᴇ sharpness:5 fire_aspect:2 looting:3 unbreaking:3
+    - diamond_helmet 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ʜᴇʟᴍ lore:&8❖_&lᴡᴇᴀʀ_ᴏꜰ_ᴍᴀɴʏ_ᴡᴀʀꜱ protection:4 unbreaking:3 thorns:2 respiration:3 aqua_affinity:1
+    - diamond_chestplate 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ᴄᴏʀᴇ lore:&8❖_&lʜᴀʀᴅᴇɴᴇᴅ_ʙʏ_ᴛɪᴍᴇ protection:4 unbreaking:3 thorns:2
+    - diamond_leggings 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ɢᴀɪᴛ lore:&8❖_&lᴛᴇꜱᴛᴇᴅ_ᴀɴᴅ_ᴛʀᴜᴇ protection:4 unbreaking:3 thorns:2 swift_sneak:3
+    - diamond_boots 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ᴛʀᴇᴀᴅ lore:&8❖_&lꜰɪʀᴍ_ᴛʜʀᴏᴜɢʜ_ᴀʟʟ protection:4 unbreaking:3 feather_falling:4 depth_strider:3 soul_speed:3 thorns:2
+    - ward_armor_trim_smithing_template 4 name:&6ᴡᴀʀᴅ_ᴛʀɪᴍ_ᴛᴇᴍᴘʟᴀᴛᴇ lore:&8❖_&lᴘʀᴏᴛᴇᴄᴛɪᴠᴇ_ᴡᴀʀᴅ
+    - diamond 16 name:&6ᴛʀɪᴍ_ᴍᴀᴛᴇʀɪᴀʟ lore:&8❖_&lꜰᴏʀ_ᴡᴀʀᴅ_ᴛʀɪᴍ
+    - diamond_pickaxe 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ᴘɪᴄᴋ lore:&8❖_&lᴋɴᴏᴡꜱ_ᴡʜᴇʀᴇ_ᴛᴏ_ꜱᴛʀɪᴋᴇ efficiency:5 fortune:3 unbreaking:3
+    - diamond_axe 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ᴀxᴇ lore:&8❖_&lꜱᴡɪɴɢ_ᴡɪᴛʜ_ᴄᴏɴꜰɪᴅᴇɴᴄᴇ efficiency:5 fortune:3 unbreaking:3
+    - diamond_shovel 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ꜱʜᴏᴠᴇʟ lore:&8❖_&lᴅɪɢɢɪɴɢ_ᴡɪᴛʜ_ɪɴᴛᴇɴᴛ efficiency:5 fortune:3 unbreaking:3
+    - cooked_beef 64 lore:&8❖_&lꜱᴜꜱᴛᴇɴᴀɴᴄᴇ_ᴏꜰ_ᴠᴇᴛᴇʀᴀɴꜱ
+    - golden_apple 8 lore:&8❖_&lʀᴇᴡᴀʀᴅ_ᴏꜰ_ꜱᴜʀᴠɪᴠᴀʟ
+    - diamond 32
+    - emerald 32
+    - shield 1 name:&6ꜱᴇᴀꜱᴏɴᴇᴅ_ᴡᴀʀᴅ lore:&8❖_&lᴜɴʙʀᴇᴀᴋᴀʙʟᴇ_ᴠᴏᴡ unbreaking:3
+    
+    # ✨ FREE BUFFEDITEMS - Seasoned Cloak + Boots
+    - /buffeditems:bi give {player} seasoned_cloak 1
+    - /buffeditems:bi give {player} seasoned_boots 1
+    - /tell {player} &a🌿 The elements bow to your experience!
+
+  luminous:
+    delay: 136800  # 38 hours
+    items:
+    - diamond_sword 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ʙʟᴀᴅᴇ lore:&8❖_&lʀᴀᴅɪᴀɴᴛ_ꜰᴏʀᴄᴇ sharpness:5 fire_aspect:2 looting:3 unbreaking:3
+    - diamond_helmet 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ʜᴇʟᴍ lore:&8❖_&lʟɪɢʜᴛ_ᴄᴀꜱᴛ_ɪɴ_ꜱᴛᴇᴇʟ protection:4 unbreaking:3 thorns:2 respiration:3 aqua_affinity:1
+    - diamond_chestplate 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ᴄᴏʀᴇ lore:&8❖_&lɢʟᴏᴡɪɴɢ_ᴡɪᴛʜ_ᴘᴜʀᴘᴏꜱᴇ protection:4 unbreaking:3 thorns:2
+    - diamond_leggings 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ʀᴀᴅɪᴀɴᴄᴇ lore:&8❖_&lʀᴀᴅɪᴀɴᴄᴇ_ɪɴ_ᴍᴏᴠᴇᴍᴇɴᴛ protection:4 unbreaking:3 thorns:2 swift_sneak:3
+    - diamond_boots 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ꜱᴛʀɪᴅᴇ lore:&8❖_&lᴡᴀʟᴋ_ᴏɴ_ʟɪɢʜᴛ protection:4 unbreaking:3 feather_falling:4 depth_strider:3 soul_speed:3 thorns:2
+    - raiser_armor_trim_smithing_template 4 name:&dʀᴀɪꜱᴇʀ_ᴛʀɪᴍ_ᴛᴇᴍᴘʟᴀᴛᴇ lore:&8❖_&lᴇʟᴇᴠᴀᴛᴇᴅ_ʙᴇʏᴏɴᴅ
+    - amethyst_shard 32 name:&dᴛʀɪᴍ_ᴍᴀᴛᴇʀɪᴀʟ lore:&8❖_&lꜰᴏʀ_ʀᴀɪꜱᴇʀ_ᴛʀɪᴍ
+    - diamond_pickaxe 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ᴘɪᴄᴋ lore:&8❖_&lᴄʀʏꜱᴛᴀʟ_ᴘʀᴇᴄɪꜱɪᴏɴ efficiency:5 fortune:3 unbreaking:3
+    - diamond_axe 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ᴀxᴇ lore:&8❖_&lʟᴜᴍɪɴᴏᴜꜱ_ꜱᴛʀɪᴋᴇ efficiency:5 fortune:3 unbreaking:3
+    - diamond_shovel 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ꜱᴘᴀᴅᴇ lore:&8❖_&lʙʀɪɢʜᴛᴇɴ_ᴛʜᴇ_ᴘᴀᴛʜ efficiency:5 fortune:3 unbreaking:3
+    - shield 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ᴀᴇɢɪꜱ lore:&8❖_&lʟɪɢʜᴛ_ᴛʜᴀᴛ_ᴇɴᴅᴜʀᴇꜱ unbreaking:3
+    - enchanting_table 1 name:&dʟᴜᴍɪɴᴏᴜꜱ_ᴀʟᴛᴀʀ lore:&8❖_&lᴡʜɪꜱᴘᴇʀꜱ_ᴏꜰ_ᴘᴏᴡᴇʀ
+    - lapis_lazuli 64 name:&dᴀʀᴄᴀɴᴇ_ʟᴀᴘɪꜱ lore:&8❖_&lᴀʀᴄᴀɴᴇ_ᴄᴀᴛᴀʟʏꜱᴛ
+    - experience_bottle 48 name:&dꜱᴛᴏʀᴇᴅ_ᴇxᴘ lore:&8❖_&lꜱᴛᴏʀᴇᴅ_ᴋɴᴏᴡʟᴇᴅɢᴇ
+    - cooked_beef 64 lore:&8❖_&lꜱᴜꜱᴛᴇɴᴀɴᴄᴇ_ᴏꜰ_ʟɪɢʜᴛ
+    - golden_apple 12 lore:&8❖_&lʀᴀᴅɪᴀɴᴛ_ʜᴇᴀʟɪɴɢ
+    - diamond 48
+    - emerald 64
+    
+    # ✨ FREE BUFFEDITEMS - Luminous Ring + Cape
+    - /buffeditems:bi give {player} luminous_ring 1
+    - /buffeditems:bi give {player} luminous_cape 1
+    - /tell {player} &d✨ Light bends to your will!
+
+  starbound:
+    delay: 259200  # 72 hours
+    items:
+    - netherite_sword 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ʙʟᴀᴅᴇ lore:&8❖_&lꜰᴏʀɢᴇᴅ_ɪɴ_ꜱᴛᴀʀʟɪɢʜᴛ sharpness:5 fire_aspect:2 looting:3 unbreaking:3
+    - netherite_helmet 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴠɪꜱᴀɢᴇ lore:&8❖_&lᴄᴏꜱᴍɪᴄ_ᴠɪꜱɪᴏɴ protection:4 unbreaking:3 thorns:2 respiration:3 aqua_affinity:1
+    - netherite_chestplate 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ʜᴇᴀʀᴛ lore:&8❖_&lʙᴏʀɴ_ᴏꜰ_ᴛʜᴇ_ꜱᴋʏ protection:4 unbreaking:3 thorns:2
+    - netherite_leggings 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴏʀʙɪᴛ lore:&8❖_&lᴍᴏᴠᴇ_ʟɪᴋᴇ_ᴄᴏᴍᴇᴛꜱ protection:4 unbreaking:3 thorns:2 swift_sneak:3
+    - netherite_boots 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴛʀᴀɪʟ lore:&8❖_&lᴛʀᴀɪʟꜱ_ᴏꜰ_ꜱᴛᴀʀꜰɪʀᴇ protection:4 unbreaking:3 feather_falling:4 depth_strider:3 soul_speed:3 thorns:2
+    - eye_armor_trim_smithing_template 4 name:&cᴇʏᴇ_ᴛʀɪᴍ_ᴛᴇᴍᴘʟᴀᴛᴇ lore:&8❖_&lᴛʜᴇ_ᴄᴏꜱᴍᴏꜱ_ᴡᴀᴛᴄʜᴇꜱ
+    - netherite_ingot 4 name:&cᴛʀɪᴍ_ᴍᴀᴛᴇʀɪᴀʟ lore:&8❖_&lꜰᴏʀ_ᴇʏᴇ_ᴛʀɪᴍ
+    - netherite_pickaxe 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴘɪᴄᴋ lore:&8❖_&lᴄᴏꜱᴍɪᴄ_ꜰʀᴀᴄᴛᴜʀᴇ efficiency:5 fortune:3 unbreaking:3
+    - netherite_axe 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴀxᴇ lore:&8❖_&lꜰᴀʟʟɪɴɢ_ꜱᴛᴀʀ efficiency:5 fortune:3 unbreaking:3
+    - netherite_shovel 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ꜱᴡᴇᴇᴘ lore:&8❖_&lᴏʀʙɪᴛᴀʟ_ᴄʟᴇᴀʀ efficiency:5 fortune:3 unbreaking:3
+    #- mace 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ᴍᴀᴄᴇ lore:&8❖_&lꜰᴀʟʟɪɴɢ_ꜱᴛᴀʀ_ꜱᴛʀɪᴋᴇ density:5 breach:3 unbreaking:3
+    - shield 1 name:&cꜱᴛᴀʀʙᴏᴜɴᴅ_ʙᴀꜱᴛɪᴏɴ lore:&8❖_&lᴄᴏꜱᴍɪᴄ_ᴅᴇꜰᴇɴꜱᴇ unbreaking:3
+    - elytra 1 name:&cᴡɪɴɢꜱ_ᴏꜰ_ꜱᴛᴀʀꜰɪʀᴇ lore:&8❖_&lᴡɪɴɢꜱ_ᴏꜰ_ᴛʜᴇ_ᴠᴏɪᴅ unbreaking:3
+    - firework_rocket 64 name:&cꜱᴛᴀʀʀᴜɴɴᴇʀ_ʀᴏᴄᴋᴇᴛꜱ lore:&8❖_&lꜱᴛᴀʀꜱ_ᴀᴛ_ʏᴏᴜʀ_ᴄᴏᴍᴍᴀɴᴅ
+    - golden_apple 16 lore:&8❖_&lᴄᴏꜱᴍɪᴄ_ꜱᴜꜱᴛᴇɴᴀɴᴄᴇ
+    - totem_of_undying 2 lore:&8❖_&lᴄʜᴏꜱᴇɴ_ʙʏ_ꜰᴀᴛᴇ
+    - enchanted_golden_apple 1 lore:&8❖_&lꜰʀᴜɪᴛ_ᴏꜰ_ᴛʜᴇ_ᴄᴏꜱᴍᴏꜱ
+    
+    # ✨ FREE BUFFEDITEMS - Starbound Amulet + Sword + Pickaxe + Wings
+    - /buffeditems:bi give {player} starbound_amulet 1
+    - /buffeditems:bi give {player} starbound_sword 1
+    - /buffeditems:bi give {player} starbound_pickaxe 1
+    - /buffeditems:bi give {player} starbound_wings_free 1
+    - /tell {player} &5&l🌟 The cosmos embraces you!
+    - /broadcast &d{player} &5has reached Starbound rank!
+
+  # ====================================
+  # 👑 PAID-ONLY KITS - EVERBOUND SUPPORTER
+  # ====================================
+  # These kits give legendary BuffedItems (paid-only)
+  # ====================================
+
+#/////#s
+
+  # ====================================
+  # 🔥 LEGENDARY SET KITS (PAID-ONLY)
+  # ====================================
+  # Individual pieces for collection
+  # ====================================
+
+  miner:
+    delay: 86400  # 24 hours
+    items:
+      - /buffeditems:bi give {player} miners_dream 1
+      - /tell {player} &aYou received the Miner's Dream!
+
+  dragonborn_helmet:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} dragonborn_helmet 1
+      - /tell {player} &c🔥 You received the Dragonborn Helmet!
+
+  dragonborn_chestplate:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} dragonborn_chestplate 1
+      - /tell {player} &c🔥 You received the Dragonborn Chestplate!
+
+  dragonborn_leggings:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} dragonborn_leggings 1
+      - /tell {player} &c🔥 You received the Dragonborn Leggings!
+
+  dragonborn_boots:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} dragonborn_boots 1
+      - /tell {player} &c🔥 You received the Dragonborn Boots!
+
+  frost_crown:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} frost_crown_helmet 1
+      - /tell {player} &b❄️ You received the Frost Crown!
+
+  frost_robe:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} frost_robe_chestplate 1
+      - /tell {player} &b❄️ You received the Frost Robe!
+
+  frost_legs:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} frost_legs_leggings 1
+      - /tell {player} &b❄️ You received the Frost Leggings!
+
+  frost_boots:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} frost_walker_boots 1
+      - /tell {player} &b❄️ You received the Frost Walker Boots!
+
+  ice_scepter:
+    delay: 43200
+    items:
+      - /buffeditems:bi give {player} ice_scepter 1
+      - /tell {player} &b❄️ You received the Ice Scepter!
+
+  wither_chest:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} wither_kings_chestplate 1
+      - /tell {player} &8💀 You received the Wither King's Chestplate!
+
+  soul_charm:
+    delay: 43200
+    items:
+      - /buffeditems:bi give {player} soul_charm 1
+      - /tell {player} &5👻 You received the Soul Charm!
+
+  shadow_cloak:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} shadow_cloak 1
+      - /tell {player} &8👤 You received the Shadow Cloak!
+
+  berserker_helmet:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} berserker_helmet 1
+      - /tell {player} &c⚔️ You received the Berserker Helmet!
+
+  berserker_chestplate:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} berserker_chestplate 1
+      - /tell {player} &c⚔️ You received the Berserker Chestplate!
+
+  berserker_axe:
+    delay: 43200
+    items:
+      - /buffeditems:bi give {player} berserker_axe 1
+      - /tell {player} &c⚔️ You received the Berserker Axe!
+
+  angelic_wings:
+    delay: 604800  # 7 days
+    items:
+      - /buffeditems:bi give {player} angelic_wings 1
+      - /tell {player} &f👼 You received the Angelic Wings!
+      - /broadcast &f{player} &ehas been blessed with Angelic Wings!
+
+  starbound_helmet:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} starbound_helmet 1
+      - /tell {player} &d✨ You received the Starbound Helmet!
+
+  starbound_chestplate:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} starbound_chestplate 1
+      - /tell {player} &d✨ You received the Starbound Chestplate!
+
+  starbound_leggings:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} starbound_leggings 1
+      - /tell {player} &d✨ You received the Starbound Leggings!
+
+  starbound_boots:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} starbound_boots 1
+      - /tell {player} &d✨ You received the Starbound Boots!
+
+  starbound_wings:
+    delay: 604800
+    items:
+      - /buffeditems:bi give {player} starbound_wings 1
+      - /tell {player} &d✨ You received the Starbound Wings!
+      - /broadcast &d{player} &5has ascended with Starbound Wings!
+
+  starbound_blade:
+    delay: 86400
+    items:
+      - /buffeditems:bi give {player} starbound_blade 1
+      - /tell {player} &d✨ You received the Starbound Blade!
+
+  # ====================================
+  # 🎁 FULL SET BUNDLES (ULTRA RARE - PAID)
+  # ====================================
+
+  set_dragonborn:
+    delay: 604800  # 7 days
+    items:
+      - netherite_pickaxe 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800P&#FFA000i&#FFA700c&#FFAF00k lore:&8❖_&lᴍᴏʟᴛᴇɴ_ᴄʟᴀᴡ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_axe 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800A&#FFA000x&#FFA700e lore:&8❖_&ʟᴅʀᴀɢᴏɴ_ꜰᴀɴɢ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_shovel 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800S&#FFA000p&#FFA700a&#FFAF00d&#FFB600e lore:&8❖_&lᴠᴏʟᴄᴀɴɪᴄ_ꜱᴄᴀʟᴇ efficiency:5 fortune:3 unbreaking:3 mending:1
+      #- mace 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800F&#FFA000u&#FFA700r&#FFAF00y lore:&8❖_&lᴅʀᴀɢᴏɴ'ꜱ_ᴡʀᴀᴛʜ density:5 breach:3 unbreaking:3 mending:1
+      - shield 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800S&#FFA000c&#FFA700u&#FFAF00t&#FFB600e lore:&8❖_&lᴍᴀɢᴍᴀ_ʙᴀʀʀɪᴇʀ unbreaking:3 mending:1
+      - elytra 1 name:&#FF4500D&#FF4D00r&#FF5400a&#FF5C00g&#FF6300o&#FF6B00n&#FF7200b&#FF7A00o&#FF8100r&#FF8900n_&#FF9800W&#FFA000i&#FFA700n&#FFAF00g&#FFB600s lore:&8❖_&lᴡɪɴɢꜱ_ᴏꜰ_ᴛʜᴇ_ᴇɴᴅᴇʀ_ᴅʀᴀɢᴏɴ unbreaking:3 mending:1
+      - firework_rocket 128 name:&#FF4500ᴅ&#FF4D00ʀ&#FF5400ᴀ&#FF5C00ɢ&#FF6300ᴏ&#FF6B00ɴ&#FF7200'&#FF7A00ꜱ_&#FF8100ʙ&#FF8900ʀ&#FF9800ᴇ&#FFA000ᴀ&#FFA700ᴛ&#FFAF00ʜ lore:&8❖_&ʟꜰɪʀᴇ_ꜰʀᴏᴍ_ᴛʜᴇ_ꜱᴋʏ
+      - golden_apple 24 lore:&8❖_&lᴅʀᴀɢᴏɴ'ꜱ_ɢᴏʟᴅ
+      - enchanted_golden_apple 8 lore:&8❖_&lʜᴇᴀʀᴛ_ᴏꜰ_ᴛʜᴇ_ᴅʀᴀɢᴏɴ
+      - totem_of_undying 4 lore:&8❖_&lꜰɪʀᴇ_ᴘʀᴏᴏꜰ_ꜱᴏᴜʟ
+      - diamond 64
+      - netherite_ingot 8
+      - experience_bottle 128 name:&#FF4500ᴅ&#FF4D00ʀ&#FF5400ᴀ&#FF5C00ɢ&#FF6300ᴏ&#FF6B00ɴ&#FF7200'&#FF7A00ꜱ_&#FF8100ᴇ&#FF8900ꜱ&#FF9800ꜱ&#FFA000ᴇ&#FFA700ɴ&#FFAF00ᴄ&#FFB600ᴇ lore:&8❖_&lᴍᴏʟᴛᴇɴ_ᴋɴᴏᴡʟᴇᴅɢᴇ
+      - /buffeditems:bi give {player} dragonborn_helmet 1
+      - /buffeditems:bi give {player} dragonborn_chestplate 1
+      - /buffeditems:bi give {player} dragonborn_leggings 1
+      - /buffeditems:bi give {player} dragonborn_boots 1
+      - /buffeditems:bi give {player} elemental_staff 1
+      - /tell {player} &4🔥 You received the COMPLETE DRAGONBORN SET!
+      - /broadcast &4&l{player} &chas claimed the legendary DRAGONBORN SET!
+
+  set_frostborn:
+    delay: 604800
+    items:
+      - netherite_pickaxe 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAP&#D8F2F8i&#CCEFF6c&#C0ECF4k&#B4E9F2a&#A8E6F0xe lore:&8❖_&lᴘᴇʀᴍᴀꜰʀᴏꜱᴛ_ᴛɪᴘ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_axe 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAA&#D8F2F8x&#CCEFF6e&#C0ECF4 lore:&8❖_&lɢʟᴀᴄɪᴀʟ_ᴄʟᴇᴀᴠᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_shovel 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAS&#D8F2F8p&#CCEFF6a&#C0ECF4d&#B4E9F2e&#A8E6F0 lore:&8❖_&lꜰʀᴏꜱᴛ_ʜᴇᴡᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      #- mace 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAH&#D8F2F8a&#CCEFF6m&#C0ECF4m&#B4E9F2e&#A8E6F0r lore:&8❖_&lᴘᴇʀᴍᴀꜰʀᴏꜱᴛ_ᴛɪᴘ density:5 breach:3 unbreaking:3 mending:1
+      - shield 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAB&#D8F2F8u&#CCEFF6l&#C0ECF4w&#B4E9F2a&#A8E6F0rk lore:&8❖_&lᴇᴛᴇʀɴᴀʟ_ᴡɪɴᴛᴇʀ unbreaking:3 mending:1
+      - elytra 1 name:&#A8E6F0F&#B4E9F2r&#C0ECF4o&#CCEFF6s&#D8F2F8t&#E4F5FAb&#F0F8FCo&#FFFFFFr&#F0F8FCn_&#E4F5FAW&#D8F2F8i&#CCEFF6n&#C0ECF4g&#B4E9F2s&#A8E6F0 lore:&8❖_&lᴡɪɴɢꜱ_ᴏꜰ_ᴛʜᴇ_ᴘᴇʀᴍᴀꜰʀᴏꜱᴛ unbreaking:3 mending:1
+      - firework_rocket 128 name:&#A8E6F0ꜰ&#B4E9F2ʀ&#C0ECF4ᴏ&#CCEFF6ꜱ&#D8F2F8ᴛ&#E4F5FAʙ&#F0F8FCᴏ&#FFFFFFʀ&#F0F8FCɴ&#E4F5FA'&#D8F2F8ꜱ_&#CCEFF6ʙ&#C0ECF4ʀ&#B4E9F2ᴇ&#A8E6F0ᴀ&#B4E9F2ᴛ&#C0ECF4ʜ lore:&8❖_&lᴄʀʏᴏɢᴇɴɪᴄ_ʙʟᴀꜱᴛ
+      - golden_apple 24 lore:&8❖_&lꜰʀᴏꜱᴛᴇᴅ_ɢᴏʟᴅ
+      - enchanted_golden_apple 8 lore:&8❖_&lʜᴇᴀʀᴛ_ᴏꜰ_ᴛʜᴇ_ɢʟᴀᴄɪᴇʀ
+      - totem_of_undying 4 lore:&8❖_&ʟᴇᴛᴇʀɴᴀʟ_ꜰʀᴏꜱᴛ_ᴘʀᴏᴛᴇᴄᴛɪᴏɴ
+      - diamond 64
+      - netherite_ingot 8
+      - experience_bottle 128 name:&#A8E6F0ꜰ&#B4E9F2ʀ&#C0ECF4ᴏ&#CCEFF6ꜱ&#D8F2F8ᴛ&#E4F5FAʏ&#F0F8FC_&#FFFFFFᴇ&#F0F8FCꜱ&#E4F5FAꜱ&#D8F2F8ᴇ&#CCEFF6ɴ&#C0ECF4ᴄ&#B4E9F2ᴇ&#A8E6F0 lore:&8❖_&ʟᴘʀɪꜱᴛɪɴᴇ_ᴋɴᴏᴡʟᴇᴅɢᴇ
+      - /buffeditems:bi give {player} frost_crown_helmet 1
+      - /buffeditems:bi give {player} frost_robe_chestplate 1
+      - /buffeditems:bi give {player} frost_legs_leggings 1
+      - /buffeditems:bi give {player} frost_walker_boots 1
+      - /buffeditems:bi give {player} ice_scepter 1
+      - /tell {player} &b❄️ You received the COMPLETE FROSTBORN SET!
+      - /broadcast &b&l{player} &3has claimed the legendary FROSTBORN SET!
+
+  set_phantom:
+    delay: 604800
+    items:
+      - netherite_pickaxe 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAK&#D19ADCi&#E1A7E0n&#E8B4E2g&#EFC1E4'&#F6CEE6s_&#FDDBE8P&#FFE0EAi&#FFE5ECc&#FFEAEEk&#FFEFF0a&#FFF4F2x&#FFF9F4e lore:&8❖_&lꜱᴏᴜʟ_ʀᴇᴀᴘᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_axe 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAW&#D19ADCr&#E1A7E0e&#E8B4E2a&#EFC1E4p&#F6CEE6o&#FDDBE8n lore:&8❖_&lᴇᴛʜᴇʀᴇᴀʟ_ᴄʟᴇᴀᴠᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_shovel 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAS&#D19ADCh&#E1A7E0o&#E8B4E2v&#EFC1E4e&#F6CEE6l&#FDDBE8 lore:&8❖_&lɢʀᴀᴠᴇ_ᴅɪɢɢᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      #- mace 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAS&#D19ADCu&#E1A7E0l&#E8B4E2f&#EFC1E4u&#F6CEE6r&#FDDBE8 lore:&8❖_&ʟꜱᴏᴜʟ_ᴄʀᴜꜱʜᴇʀ density:5 breach:3 unbreaking:3 mending:1
+      - shield 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAS&#D19ADCh&#E1A7E0i&#E8B4E2e&#EFC1E4l&#F6CEE6d&#FDDBE8 lore:&8❖_&lᴡᴀʟʟ_ᴏꜰ_ꜱᴏᴜʟꜱ unbreaking:3 mending:1
+      - elytra 1 name:&#9932CCP&#A03FCEh&#A74CD0a&#AE59D2n&#B566D4t&#BC73D6o&#C380D8m_&#CA8DDAW&#D19ADCi&#E1A7E0n&#E8B4E2g&#EFC1E4s&#F6CEE6_&#FDDBE8o&#FFE0EAf&#FFE5EC_&#FFEAEET&#FFEFF0h&#FFF4F2e&#FFF9F4_&#FFFEF6V&#FFFFFFo&#FFFEF6i&#FFF9F4d unbreaking:3 mending:1
+      - firework_rocket 128 name:&#9932CCᴘ&#A03FCEʜ&#A74CD0ᴀ&#AE59D2ɴ&#B566D4ᴛ&#BC73D6ᴏ&#C380D8ᴍ_&#CA8DDAᴋ&#D19ADCɪ&#E1A7E0ɴ&#E8B4E2ɢ&#EFC1E4'&#F6CEE6ꜱ_&#FDDBE8ᴡ&#FFE0EAᴀ&#FFE5ECɪ&#FFEAEEʟ&#FFEFF0ɪ&#FFF4F2ɴ&#FFF9F4ɢ lore:&8❖_&ʟꜱᴏᴜʟ_ᴇʀᴜᴘᴛɪᴏɴ
+      - golden_apple 24 lore:&8❖_&ʟꜱᴘᴇᴄᴛʀᴀʟ_ɢᴏʟᴅ
+      - enchanted_golden_apple 8 lore:&8❖_&lᴇᴄʜᴏ_ᴏꜰ_ᴛʜᴇ_ꜰᴀʟʟᴇɴ
+      - totem_of_undying 4 lore:&8❖_&lᴘʜᴀɴᴛᴏᴍ'ꜱ_ᴇᴍʙʀᴀᴄᴇ
+      - diamond 64
+      - netherite_ingot 8
+      - arrow 1
+      - experience_bottle 128 name:&#9932CCᴘ&#A03FCEʜ&#A74CD0ᴀ&#AE59D2ɴ&#B566D4ᴛ&#BC73D6ᴏ&#C380D8ᴍ_&#CA8DDAᴇ&#D19ADCꜱ&#E1A7E0ꜱ&#E8B4E2ᴇ&#EFC1E4ɴ&#F6CEE6ᴄ&#FDDBE8ᴇ lore:&8❖_&ʟꜱᴛᴏʟᴇɴ_ᴍᴇᴍᴏʀɪᴇꜱ
+      - /buffeditems:bi give {player} phantom_kings_breastplate 1
+      - /buffeditems:bi give {player} wither_kings_chestplate 1
+      - /buffeditems:bi give {player} assassins_dagger 1
+      - /buffeditems:bi give {player} soul_charm 1
+      - /buffeditems:bi give {player} shadow_cloak 1
+      - /buffeditems:bi give {player} Phantom_boots 1
+      - /buffeditems:bi give {player} shadow_piercer_spear 1
+      - /buffeditems:bi give {player} shadow_striker_bow 1
+      - /tell {player} &5👻 You received the COMPLETE PHANTOM KING SET!
+      - /broadcast &5&l{player} &dhas claimed the PHANTOM KING SET!
+
+  set_berserker:
+    delay: 604800
+    items:
+      - netherite_pickaxe 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700B&#FF9600l&#FFA500o&#FFB400o&#FFC300d&#FFD200p&#FFE100i&#FFF000c&#FFFF00k lore:&8❖_&ʟʙʟᴏᴏᴅ_ᴏʀᴇ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_axe 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700F&#FF9600u&#FFA500r&#FFB400y lore:&8❖_&ʟʀᴀɢᴇ_ᴄʟᴇᴀᴠᴇʀ efficiency:5 fortune:3 unbreaking:3 mending:1
+      - netherite_shovel 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700S&#FF9600k&#FFA500u&#FFB400l&#FFC300l lore:&8❖_&lʙᴏɴᴇ_ᴅᴜɢ efficiency:5 fortune:3 unbreaking:3 mending:1
+      #- mace 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700C&#FF9600r&#FFA500u&#FFB400s&#FFC300h&#FFD200e&#FFE100r lore:&8❖_&lꜰʟᴇꜱʜ_ʀᴇɴᴅᴇʀ density:5 breach:3 unbreaking:3 mending:1
+      - shield 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700W&#FF9600a&#FFA500l&#FFB400l unbreaking:3 mending:1 lore:&8❖_&lᴡᴀʟʟ_ᴏꜰ_ꜰʟᴇꜱʜ
+      - elytra 1 name:&#FF0000B&#FF0F00e&#FF1E00r&#FF2D00s&#FF3C00e&#FF4B00r&#FF5A00k&#FF6900e&#FF7800r_&#FF8700W&#FF9600i&#FFA500n&#FFB400g&#FFC300s lore:&8❖_&lᴡɪɴɢꜱ_ᴏꜰ_ᴛʜᴇ_ʙᴇʜᴇᴍᴏᴛʜ unbreaking:3 mending:1
+      - firework_rocket 128 name:&#FF0000ʙ&#FF0F00ᴇ&#FF1E00ʀ&#FF2D00ꜱ&#FF3C00ᴇ&#FF4B00ʀ&#FF5A00ᴋ&#FF6900ᴇ&#FF7800ʀ_'&#FF8700ꜱ_&#FF9600ꜰ&#FFA500ᴜ&#FFB400ʀ&#FFC300ʏ&#FFD200_&#FFE100ʀ&#FFF000ᴀ&#FFFF00ɢᴇ lore:&8❖_&lᴜɴʟᴇᴀꜱʜᴇᴅ_ꜰᴜʀʏ
+      - golden_apple 24 lore:&8❖_&lʙʟᴏᴏᴅ_ɢᴏʟᴅ
+      - enchanted_golden_apple 8 lore:&8❖_&lʜᴇᴀʀᴛ_ᴏꜰ_ᴛʜᴇ_ᴡᴀʀʀɪᴏʀ
+      - totem_of_undying 4 lore:&8❖_&lʙᴇʀꜱᴇʀᴋᴇʀ'ꜱ_ꜱᴛᴀɴᴄᴇ
+      - diamond 64
+      - netherite_ingot 8
+      - experience_bottle 128 name:&#FF0000ʙ&#FF0F00ᴀ&#FF1E00ᴛ&#FF2D00ᴛ&#FF3C00ʟ&#FF4B00ᴇ&#FF5A00_&#FF6900ꜰ&#FF7800ᴜ&#FF8700ʀ&#FF9600ʏ&#FFA500_&#FFB400x&#FFC300ᴘ lore:&8❖_&ʟᴛʜᴇ_ᴋɪʟʟ_ᴇᴄʜᴏᴇꜱ
+      - /buffeditems:bi give {player} berserker_helmet 1
+      - /buffeditems:bi give {player} berserker_chestplate 1
+      - /buffeditems:bi give {player} berserkers_greaves 1
+      - /buffeditems:bi give {player} warriors_talisman 1
+      - /buffeditems:bi give {player} berserker_axe 1
+      - /tell {player} &c⚔️ You received the COMPLETE BERSERKER SET!
+      - /broadcast &c&l{player} &4has claimed the BERSERKER SET!
+
+  set_starbound:
+    delay: 604800
+    items:
+      - netherite_pickaxe 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAC&#FF9CF4e&#FF95FEl&#FF8FFFe&#FF99FFs&#FFA3FFt&#FFADFFi&#FFB7FFa&#FFC1FFl_&#FFCBFFP&#FFD5FFi&#FFDFFFc&#FFE9FFk&#FFF3FFa&#FFFDFFx&#FFFFFFe lore:&8❖_&lɢᴀʟᴀᴄᴛɪᴄ_ᴄᴏʀᴇ efficiency:6 fortune:4 unbreaking:4 mending:1
+      - netherite_axe 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAC&#FF9CF4o&#FF95FEs&#FF8FFFm&#FF99FFi&#FFA3FFc_&#FFADFFA&#FFB7FFx&#FFC1FFe lore:&8❖_&lꜱᴛᴇʟʟᴀʀ_ʀᴇᴀᴘᴇʀ efficiency:6 fortune:4 unbreaking:4 mending:1
+      - netherite_shovel 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAS&#FF9CF4p&#FF95FEa&#FF8FFFe&#FF99FFd&#FFA3FF_&#FFADFFC&#FFBFFFr&#FFC1FFe&#FFCBFFs&#FFD5FFc&#FFDFFFe&#FFE9FFn&#FFF3FFt lore:&8❖_&ʟᴍᴏᴏɴ_ᴅᴜꜱᴛ_ꜱʜᴏᴠᴇʟ efficiency:6 fortune:4 unbreaking:4 mending:1
+      #- mace 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAC&#FF9CF4o&#FF95FEs&#FF8FFFm&#FF99FFi&#FFA3FFc_&#FFADFFH&#FFBFFFa&#FFC1FFm&#FFCBFFm&#FFD5FFe&#FFDFFFr lore:&8❖_&lᴘʟᴀɴᴇᴛᴀʀʏ_ɪᴍᴘᴀᴄᴛ density:6 breach:4 unbreaking:4 mending:1
+      - shield 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAA&#FF9CF4e&#FF95FEg&#FF8FFFi&#FF99FFs lore:&8❖_&lᴅᴇꜰʟᴇᴄᴛᴏʀ_ᴏꜰ_ᴄᴏꜱᴍᴏꜱ unbreaking:4 mending:1
+      - elytra 1 name:&#FFD700S&#FFD71At&#FFCF34a&#FFC84Er&#FFC768b&#FFBF82o&#FFB89Cu&#FFB1B6n&#FFAAD0d_&#FFA3EAW&#FF9CF4i&#FF95FEn&#FF8FFFg&#FF99FFs_&#FFADFFo&#FFBFF7f_&#FFC1FFt&#FFCBFFh&#FFD5FFe_&#FFDFFFV&#FFE9FFo&#FFF3FFi&#FFFDFFd&#FFFFFF unbreaking:4 mending:1
+      - firework_rocket 256 name:&#FFD700ꜱ&#FFD71Aᴛ&#FFCF34ᴀ&#FFC84Eʀ&#FFC768ʙ&#FFBF82ᴏ&#FFB89Cᴜ&#FFB1B6ɴ&#FFAAD0ᴅ_'&#FFA3EAꜱ_&#FF9CF4ᴄ&#FF95FEᴏ&#FF8FFꜰ&#FF99FFᴍ&#FFA3FFɪ&#FFADFFᴄ_&#FFB7FFᴇ&#FFC1FFx&#FFCBFFᴘ&#FFD5FFʟ&#FFDFFFᴏ&#FFE9FFꜱ&#FFF3FFɪ&#FFFDFFᴏ&#FFFFFFɴ lore:&8❖_&lʙɪɢ_ʙᴀɴɢ_ʀᴇᴘʟɪᴄᴀ
+      - golden_apple 32 lore:&8❖_&ʟꜱᴛᴀʀ_ꜱᴇᴇᴅ
+      - enchanted_golden_apple 6 lore:&8❖_&lꜰʀᴜɪᴛ_ᴏꜰ_ᴛʜᴇ_ᴄᴏꜱᴍᴏꜱ
+      - totem_of_undying 8 lore:&8❖_&ʟᴄᴇʟᴇꜱᴛɪᴀʟ_ʀᴇꜱᴜʀʀᴇᴄᴛɪᴏɴ
+      - diamond 128
+      - netherite_ingot 16
+      - netherite_block 2
+      - experience_bottle 256 name:&#FFD700ꜱ&#FFD71Aᴛ&#FFCF34ᴀ&#FFC84Eʀ&#FFC768ʙ&#FFBF82ᴏ&#FFB89Cᴜ&#FFB1B6ɴ&#FFAAD0ᴅ_'&#FFA3EAꜱ_&#FF9CF4ᴇ&#FF95FEᴛ&#FF8FFꜰ&#FF99FFᴇ&#FFA3FFʀ&#FFADFFɴ&#FFB7FFᴀ&#FFC1FFʟ_&#FFCBFFᴇ&#FFD5FFꜱ&#FFDFFFꜱ&#FFE9FFᴇ&#FFF3FFɴ&#FFFDFFᴄ&#FFFFFFᴇ lore:&8❖_&lᴇᴛᴇʀɴᴀʟ_ʟɪɢʜᴛ
+      - /buffeditems:bi give {player} starbound_helmet 1
+      - /buffeditems:bi give {player} starbound_chestplate 1
+      - /buffeditems:bi give {player} starbound_leggings 1
+      - /buffeditems:bi give {player} starbound_boots 1
+      - /buffeditems:bi give {player} starbound_wings 1
+      - /buffeditems:bi give {player} starbound_blade 1
+      - /tell {player} &d🌟 You received the COMPLETE STARBOUND LEGENDARY SET!
+      - /broadcast &d&l{player} &5&lHAS CLAIMED THE ULTIMATE STARBOUND SET! ⭐
