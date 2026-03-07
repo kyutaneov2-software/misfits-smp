@@ -108,12 +108,12 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     // Define your images with their actual filenames
     const imageFiles = [
         { file: 'scene_1.webp', label: 'THE GRAND SPAWN' },
-        { file: 'scene_2.webp', label: 'ANCIENT FOREST' },
-        { file: 'scene_3.webp', label: 'CRYSTAL CAVES' },
+        { file: 'scene_2.webp', label: 'CHALLENGE YOURSELF' },
+        { file: 'scene_3.webp', label: 'WHERE YOU START' },
         { file: 'scene_5.webp', label: 'SEASONAL SUNSETS' },
         { file: 'scene_6.webp', label: 'RANK COSMETICS' },
-        { file: 'scene_7.webp', label: 'MYTHIC DUNGEON' },
-        { file: 'scene_8.webp', label: 'DUNGEON BOSSES' }
+        { file: 'scene_7.webp', label: 'MYTHIC BOSSES' },
+        { file: 'scene_8.webp', label: 'DUNGEON EXPLORATION' }
     ];
     
     // Try different extensions if needed
