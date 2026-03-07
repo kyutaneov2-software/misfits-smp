@@ -1,851 +1,893 @@
-// ============================================
-// MISFITS STUDIO - MAIN JAVASCRIPT
-// Fully Responsive Fantasy Minecraft Server Website
-// ============================================
+// main.js - 4-space indentation with real-time API
 
-// ============================================
-// CONFIGURATION
-// ============================================
-const CONFIG = {
-    SERVER_IP: 'misfitsmc.mcsh.io',
-    DISCORD_INVITE: 'https://discord.gg/gDtYVEB3Jr',
-    CONTACT_EMAIL: 'misfitsmcofficial@gmail.com',
-    API_ENDPOINTS: [
-        'https://api.mcsrvstat.us/2/misfitsmc.mcsh.io',
-        'https://api.mcstatus.io/v2/status/java/misfitsmc.mcsh.io'
-    ],
-    CACHE_TIMEOUT: 30000, // 30 seconds
-    AUTO_SLIDE_DELAY: 5000, // 5 seconds
-    RETRY_ATTEMPTS: 3,
-    RETRY_DELAY: 2000, // 2 seconds
-    DEBUG: false,
+// ==================== CONFIGURATION ====================
+const SERVER_IP = 'misfitsmc.mcsh.io';
+const SERVER_PORT = 25565; // default Minecraft port
+const DISCORD_INVITE = 'FsFwEX9f6p'; 
+const UPDATE_INTERVAL = 30000; // 30 seconds
+
+// API endpoints (using public Minecraft server status APIs)
+const MC_API_URL = `https://api.mcsrvstat.us/3/${SERVER_IP}`;
+const MC_API_FALLBACK = `https://mcapi.us/server/status?ip=${SERVER_IP}&port=${SERVER_PORT}`;
+const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?with_counts=true`;
+
+// ==================== STARS CANVAS ====================
+(function initStars() {
+    const c = document.getElementById('stars-canvas');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let stars = [];
     
-    // Mystery heads configuration
-    MYSTERY_HEADS: {
-        COUNT: 20, // Number of different mystery head variations
-        ICONS: [
-            'fa-user-astronaut',
-            'fa-user-ninja',
-            'fa-user-secret',
-            'fa-user-tie',
-            'fa-hat-wizard',
-            'fa-dragon',
-            'fa-crown',
-            'fa-ghost',
-            'fa-skull',
-            'fa-robot',
-            'fa-user-alien',
-            'fa-face-smile',
-            'fa-face-smile-wink',
-            'fa-face-smile-hearts',
-            'fa-face-smile-horns',
-            'fa-cat',
-            'fa-dog',
-            'fa-dove',
-            'fa-fish',
-            'fa-hippo'
-        ],
-        COLORS: [
-            '#9f7aea', // light purple
-            '#b794f4', // softer purple
-            '#d6bcfa', // lavender
-            '#e9d8fd', // light lavender
-            '#c4b5fd', // medium lavender
-            '#f0abfc', // pinkish purple
-            '#e879f9', // magenta
-            '#d8b4fe', // light magenta
-            '#c084fc', // medium magenta
-            '#a78bfa'  // indigo
-        ]
-    }
-};
-
-// ============================================
-// STATE MANAGEMENT
-// ============================================
-const State = {
-    statusCache: {
-        data: null,
-        timestamp: 0
-    },
-    gallery: {
-        currentSlide: 1,
-        autoSlideInterval: null,
-        isPaused: false
-    },
-    isMenuOpen: false,
-    retryCount: 0,
-    isOnline: navigator.onLine,
-    lastPlayerCount: 0
-};
-
-// ============================================
-// UTILITY FUNCTIONS
-// ============================================
-
-/**
- * Console log only in debug mode
- */
-function debugLog(...args) {
-    if (CONFIG.DEBUG) {
-        console.log('[Misfits Studio]', ...args);
-    }
-}
-
-/**
- * Debounce function for performance optimization
- */
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-/**
- * Get random item from array
- */
-function getRandomItem(array) {
-    return array[Math.floor(Math.random() * array.length)];
-}
-
-/**
- * Generate a random mystery head icon
- */
-function getRandomMysteryIcon() {
-    return getRandomItem(CONFIG.MYSTERY_HEADS.ICONS);
-}
-
-/**
- * Generate a random color for mystery head
- */
-function getRandomMysteryColor() {
-    return getRandomItem(CONFIG.MYSTERY_HEADS.COLORS);
-}
-
-/**
- * Generate a unique mystery head class
- */
-function getMysteryHeadClass(index) {
-    const colorIndex = index % CONFIG.MYSTERY_HEADS.COLORS.length;
-    return `mystery-head-${colorIndex + 1}`;
-}
-
-/**
- * Show notification message
- */
-function showNotification(message, type = 'success') {
-    // Remove existing notification
-    const existing = document.querySelector('.notification');
-    if (existing) existing.remove();
-    
-    // Create notification
-    const notification = document.createElement('div');
-    notification.className = 'notification';
-    notification.textContent = message;
-    notification.setAttribute('role', 'alert');
-    
-    // Set color based on type
-    if (type === 'error') {
-        notification.style.background = 'linear-gradient(135deg, #ef4444, #f87171)';
-    } else if (type === 'warning') {
-        notification.style.background = 'linear-gradient(135deg, #f59e0b, #fbbf24)';
+    function resize() {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+        createStars();
     }
     
-    document.body.appendChild(notification);
-    
-    // Auto remove after 3 seconds
-    setTimeout(() => {
-        if (notification.parentNode) {
-            notification.remove();
-        }
-    }, 3000);
-}
-
-// ============================================
-// PAGE NAVIGATION
-// ============================================
-
-/**
- * Show a specific page
- */
-function showPage(pageId) {
-    debugLog('Navigating to:', pageId);
-    
-    // Hide all pages
-    document.querySelectorAll('.page').forEach(page => {
-        page.classList.remove('active');
-    });
-    
-    // Show target page
-    const targetPage = document.getElementById(pageId + '-page');
-    if (targetPage) {
-        targetPage.classList.add('active');
-    } else {
-        console.error('Page not found:', pageId + '-page');
-        return;
-    }
-    
-    // Update active nav link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('data-page') === pageId) {
-            link.classList.add('active');
-        }
-    });
-    
-    // Scroll to top
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-    
-    // Close mobile menu if open
-    if (window.innerWidth <= 768 && State.isMenuOpen) {
-        closeMenu();
-    }
-}
-
-// ============================================
-// MOBILE MENU
-// ============================================
-
-/**
- * Toggle mobile menu
- */
-function toggleMenu() {
-    const burger = document.getElementById('burgerMenu');
-    const navLinks = document.getElementById('navLinks');
-    const overlay = document.getElementById('navOverlay');
-    const body = document.body;
-    
-    if (!burger || !navLinks || !overlay) return;
-    
-    State.isMenuOpen = !State.isMenuOpen;
-    
-    burger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    overlay.classList.toggle('active');
-    body.classList.toggle('menu-open');
-    
-    // Update ARIA attributes
-    burger.setAttribute('aria-expanded', State.isMenuOpen);
-}
-
-/**
- * Close mobile menu
- */
-function closeMenu() {
-    const burger = document.getElementById('burgerMenu');
-    const navLinks = document.getElementById('navLinks');
-    const overlay = document.getElementById('navOverlay');
-    const body = document.body;
-    
-    if (!burger || !navLinks || !overlay) return;
-    
-    State.isMenuOpen = false;
-    
-    burger.classList.remove('active');
-    navLinks.classList.remove('active');
-    overlay.classList.remove('active');
-    body.classList.remove('menu-open');
-    
-    // Update ARIA attributes
-    burger.setAttribute('aria-expanded', 'false');
-}
-
-// ============================================
-// CLIPBOARD FUNCTIONS
-// ============================================
-
-/**
- * Copy server IP to clipboard
- */
-function copyIP() {
-    const textToCopy = CONFIG.SERVER_IP;
-    
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(textToCopy)
-            .then(() => {
-                showNotification('Server IP copied to clipboard! ✨');
-            })
-            .catch(err => {
-                console.error('Clipboard error:', err);
-                fallbackCopy(textToCopy);
+    function createStars() {
+        stars = [];
+        const n = Math.floor(c.width * c.height / 3000);
+        for (let i = 0; i < n; i++) {
+            stars.push({
+                x: Math.random() * c.width,
+                y: Math.random() * c.height,
+                r: Math.random() * 1.2 + 0.1,
+                a: Math.random(),
+                speed: 0.0002 + Math.random() * 0.0004,
+                phase: Math.random() * Math.PI * 2
             });
-    } else {
-        fallbackCopy(textToCopy);
-    }
-}
-
-/**
- * Fallback copy method for older browsers
- */
-function fallbackCopy(text) {
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    textArea.style.position = 'fixed';
-    textArea.style.left = '-9999px';
-    textArea.style.top = '0';
-    document.body.appendChild(textArea);
-    textArea.select();
-    textArea.setSelectionRange(0, 99999);
-    
-    try {
-        const successful = document.execCommand('copy');
-        if (successful) {
-            showNotification('Server IP copied to clipboard!');
-        } else {
-            showNotification('Failed to copy IP. Please copy manually.', 'error');
         }
-    } catch (err) {
-        console.error('Fallback copy error:', err);
-        showNotification('Failed to copy IP. Please copy manually.', 'error');
     }
     
-    document.body.removeChild(textArea);
-}
+    function draw(t) {
+        ctx.clearRect(0, 0, c.width, c.height);
+        stars.forEach(s => {
+            const alpha = s.a * (0.4 + 0.6 * Math.abs(Math.sin(t * s.speed + s.phase)));
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(220,210,255,${alpha})`;
+            ctx.fill();
+        });
+        requestAnimationFrame(draw);
+    }
+    
+    window.addEventListener('resize', resize);
+    resize();
+    requestAnimationFrame(draw);
+})();
 
-// ============================================
-// GALLERY FUNCTIONS
-// ============================================
+// ==================== CURSOR ====================
+(function initCursor() {
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursor-ring');
+    if (!cursor || !ring) return;
+    
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        cursor.style.left = mx + 'px';
+        cursor.style.top = my + 'px';
+    });
+    
+    function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+        requestAnimationFrame(animateRing);
+    }
+    
+    animateRing();
+    
+    const interactive = document.querySelectorAll(
+        'a, button, .btn-primary, .btn-secondary, .gallery-card, .faq-q, .server-ip-val, .nav-cta'
+    );
+    
+    interactive.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            ring.style.width = '54px';
+            ring.style.height = '54px';
+            ring.style.opacity = '0.8';
+        });
+        el.addEventListener('mouseleave', () => {
+            ring.style.width = '36px';
+            ring.style.height = '36px';
+            ring.style.opacity = '0.5';
+        });
+    });
+})();
 
-/**
- * Change gallery slide
- */
-function changeSlide(direction) {
-    const slides = document.querySelectorAll('.gallery-slide');
-    const dots = document.querySelectorAll('.dot');
-    
-    if (slides.length === 0) return;
-    
-    // Remove active class from current slide
-    slides[State.gallery.currentSlide - 1].classList.remove('active');
-    if (dots.length >= State.gallery.currentSlide) {
-        dots[State.gallery.currentSlide - 1].classList.remove('active');
-    }
-    
-    // Update slide index
-    State.gallery.currentSlide += direction;
-    
-    // Loop around
-    if (State.gallery.currentSlide > slides.length) {
-        State.gallery.currentSlide = 1;
-    }
-    if (State.gallery.currentSlide < 1) {
-        State.gallery.currentSlide = slides.length;
-    }
-    
-    // Add active class to new slide
-    slides[State.gallery.currentSlide - 1].classList.add('active');
-    if (dots.length >= State.gallery.currentSlide) {
-        dots[State.gallery.currentSlide - 1].classList.add('active');
-    }
-    
-    // Reset auto-advance timer
-    resetAutoSlide();
-}
 
-/**
- * Go to specific slide
- */
-function goToSlide(n) {
-    const slides = document.querySelectorAll('.gallery-slide');
-    const dots = document.querySelectorAll('.dot');
+// ==================== GALLERY (Auto-detect) ====================
+(function buildGallery() {
+    const track = document.getElementById('galleryTrack');
+    if (!track) return;
     
-    if (slides.length === 0) return;
+    // Define your images with their actual filenames
+    const imageFiles = [
+        { file: 'scene_1.webp', label: 'THE GRAND SPAWN' },
+        { file: 'scene_2.webp', label: 'ANCIENT FOREST' },
+        { file: 'scene_3.webp', label: 'CRYSTAL CAVES' },
+        { file: 'scene_5.webp', label: 'SEASONAL SUNSETS' },
+        { file: 'scene_6.webp', label: 'RANK COSMETICS' },
+        { file: 'scene_7.webp', label: 'MYTHIC DUNGEON' },
+        { file: 'scene_8.webp', label: 'DUNGEON BOSSES' }
+    ];
     
-    // Validate slide number
-    if (n < 1 || n > slides.length) return;
+    // Try different extensions if needed
+    const extensions = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
     
-    // Remove active class from current slide
-    slides[State.gallery.currentSlide - 1].classList.remove('active');
-    if (dots.length >= State.gallery.currentSlide) {
-        dots[State.gallery.currentSlide - 1].classList.remove('active');
-    }
+    // Double for seamless loop
+    const doubled = [...imageFiles, ...imageFiles];
+    track.innerHTML = '';
     
-    // Set new slide
-    State.gallery.currentSlide = n;
-    
-    // Add active class to new slide
-    slides[State.gallery.currentSlide - 1].classList.add('active');
-    if (dots.length >= State.gallery.currentSlide) {
-        dots[State.gallery.currentSlide - 1].classList.add('active');
-    }
-    
-    // Reset auto-advance timer
-    resetAutoSlide();
-}
-
-/**
- * Start auto-advancing slides
- */
-function startAutoSlide() {
-    if (State.gallery.autoSlideInterval) {
-        clearInterval(State.gallery.autoSlideInterval);
-    }
-    
-    State.gallery.autoSlideInterval = setInterval(() => {
-        if (!State.gallery.isPaused) {
-            changeSlide(1);
-        }
-    }, CONFIG.AUTO_SLIDE_DELAY);
-}
-
-/**
- * Reset auto-advance timer
- */
-function resetAutoSlide() {
-    if (State.gallery.autoSlideInterval) {
-        clearInterval(State.gallery.autoSlideInterval);
-        startAutoSlide();
-    }
-}
-
-/**
- * Stop auto-advancing slides
- */
-function stopAutoSlide() {
-    if (State.gallery.autoSlideInterval) {
-        clearInterval(State.gallery.autoSlideInterval);
-        State.gallery.autoSlideInterval = null;
-    }
-}
-
-// ============================================
-// SERVER STATUS API
-// ============================================
-
-/**
- * Fetch server status from multiple APIs
- */
-async function fetchServerStatus() {
-    debugLog('Fetching server status...');
-    
-    const now = Date.now();
-    
-    // Use cache if fresh
-    if (State.statusCache.data && (now - State.statusCache.timestamp) < CONFIG.CACHE_TIMEOUT) {
-        debugLog('Using cached data');
-        updateUIWithStatus(State.statusCache.data);
-        return;
-    }
-    
-    // Try each API endpoint
-    for (const endpoint of CONFIG.API_ENDPOINTS) {
-        try {
-            debugLog('Trying endpoint:', endpoint);
-            
-            const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 5000);
-            
-            const response = await fetch(endpoint, {
-                method: 'GET',
-                mode: 'cors',
-                headers: { 'Accept': 'application/json' },
-                signal: controller.signal
-            });
-            
-            clearTimeout(timeoutId);
-            
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            
-            const data = await response.json();
-            debugLog('API response:', data);
-            
-            const parsedData = parseServerData(data, endpoint);
-            
-            if (parsedData) {
-                debugLog('Successfully parsed data:', parsedData);
-                State.statusCache.data = parsedData;
-                State.statusCache.timestamp = now;
-                State.retryCount = 0;
-                updateUIWithStatus(parsedData);
+    doubled.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        
+        // Try to load image with different extensions
+        const tryLoadImage = (extIndex = 0) => {
+            if (extIndex >= extensions.length) {
+                // All extensions failed, show fallback
+                showFallback();
                 return;
             }
             
-        } catch (error) {
-            if (error.name === 'AbortError') {
-                debugLog('Request timeout for:', endpoint);
-            } else {
-                debugLog('Request failed for:', endpoint, error.message);
-            }
-        }
-    }
-    
-    // If all APIs fail, try to retry
-    if (State.retryCount < CONFIG.RETRY_ATTEMPTS) {
-        State.retryCount++;
-        debugLog(`Retry attempt ${State.retryCount}/${CONFIG.RETRY_ATTEMPTS}`);
-        setTimeout(fetchServerStatus, CONFIG.RETRY_DELAY * State.retryCount);
-    } else {
-        // Show offline
-        debugLog('All APIs failed, showing offline');
-        setServerOffline();
-    }
-}
-
-/**
- * Parse server data based on API type
- */
-function parseServerData(data, endpoint) {
-    try {
-        // mcsrvstat.us API
-        if (endpoint.includes('mcsrvstat.us')) {
-            return {
-                online: data.online === true,
-                players: {
-                    online: data.players?.online || 0,
-                    max: data.players?.max || 0
-                    // We don't use the list since it's often unavailable
-                },
-                version: data.version || '1.21.1',
-                motd: data.motd?.clean || ['Misfits Studio']
-            };
-        }
-        
-        // mcstatus.io API
-        if (endpoint.includes('mcstatus.io')) {
-            return {
-                online: data.online || false,
-                players: {
-                    online: data.players?.online || 0,
-                    max: data.players?.max || 0
-                    // We don't use the list since it's often unavailable
-                },
-                version: data.version?.name || '1.21.1',
-                motd: [data.motd?.clean || 'Misfits Studio']
-            };
-        }
-        
-        return null;
-        
-    } catch (error) {
-        console.error('Parse error:', error);
-        return null;
-    }
-}
-
-/**
- * Update UI with server status data
- */
-function updateUIWithStatus(data) {
-    debugLog('Updating UI with:', data);
-    
-    // Update online count
-    const onlineCount = document.getElementById('online-count');
-    const maxPlayers = document.getElementById('max-players');
-    const playersOnline = document.getElementById('players-online');
-    const playerBar = document.getElementById('player-bar');
-    const serverStatus = document.getElementById('server-status');
-    const serverVersion = document.getElementById('server-version');
-    const serverVersionStatus = document.getElementById('server-version-status');
-    
-    if (onlineCount) onlineCount.textContent = data.players.online;
-    if (maxPlayers) maxPlayers.textContent = data.players.max;
-    if (playersOnline) playersOnline.textContent = `${data.players.online}/${data.players.max}`;
-    if (serverVersion) serverVersion.textContent = data.version;
-    if (serverVersionStatus) serverVersionStatus.textContent = data.version;
-    
-    // Update player bar
-    if (playerBar) {
-        const percent = data.players.max > 0 ? (data.players.online / data.players.max) * 100 : 0;
-        playerBar.style.width = percent + '%';
-    }
-    
-    // Update server status text
-    if (serverStatus) {
-        serverStatus.innerHTML = data.online 
-            ? '<span class="online-indicator"></span> Online'
-            : '<i class="fas fa-circle" style="color: #ef4444; font-size: 0.8rem;"></i> Offline';
-    }
-    
-    // Update mystery player heads based on online count
-    updateMysteryPlayerHeads(data.players.online);
-    
-    // Store last player count for reference
-    State.lastPlayerCount = data.players.online;
-}
-
-/**
- * Set server offline UI
- */
-function setServerOffline() {
-    debugLog('Setting server offline UI');
-    
-    const onlineCount = document.getElementById('online-count');
-    const maxPlayers = document.getElementById('max-players');
-    const playersOnline = document.getElementById('players-online');
-    const playerBar = document.getElementById('player-bar');
-    const serverStatus = document.getElementById('server-status');
-    const serverTps = document.getElementById('server-tps');
-    const tpsBar = document.getElementById('tps-bar');
-    
-    if (onlineCount) onlineCount.textContent = '0';
-    if (maxPlayers) maxPlayers.textContent = '0';
-    if (playersOnline) playersOnline.textContent = '0/0';
-    if (playerBar) playerBar.style.width = '0%';
-    if (serverTps) serverTps.textContent = '0.0';
-    if (tpsBar) tpsBar.style.width = '0%';
-    
-    if (serverStatus) {
-        serverStatus.innerHTML = '<i class="fas fa-circle" style="color: #ef4444; font-size: 0.8rem;"></i> Offline';
-    }
-    
-    // Show no players
-    updateMysteryPlayerHeads(0);
-}
-
-/**
- * Update mystery player heads grid based on online count
- */
-function updateMysteryPlayerHeads(onlineCount) {
-    const headsGrid = document.getElementById('player-heads-grid');
-    const noPlayersMsg = document.getElementById('no-players');
-    
-    if (!headsGrid || !noPlayersMsg) return;
-    
-    if (onlineCount > 0) {
-        headsGrid.style.display = 'grid';
-        noPlayersMsg.style.display = 'none';
-        
-        // Generate mystery heads based on online count
-        // We'll show up to 8 heads maximum for visual appeal
-        const headsToShow = Math.min(onlineCount, 8);
-        const mysteryHeads = [];
-        
-        // Create an array of mystery heads
-        for (let i = 0; i < headsToShow; i++) {
-            // Use deterministic but varied icons based on index
-            const iconIndex = i % CONFIG.MYSTERY_HEADS.ICONS.length;
-            const colorIndex = i % CONFIG.MYSTERY_HEADS.COLORS.length;
-            const icon = CONFIG.MYSTERY_HEADS.ICONS[iconIndex];
-            const color = CONFIG.MYSTERY_HEADS.COLORS[colorIndex];
+            const baseName = item.file.split('.')[0]; // Remove extension if present
+            const testImg = new Image();
+            testImg.src = `images/${baseName}${extensions[extIndex]}`;
             
-            mysteryHeads.push(`
-                <div class="player-head-card mystery-head" style="animation-delay: ${i * 0.1}s">
-                    <div class="mystery-head-${colorIndex + 1}" style="font-size: 2rem; color: ${color};">
-                        <i class="fas ${icon}"></i>
+            testImg.onload = () => {
+                // Image loaded successfully
+                const img = document.createElement('img');
+                img.src = testImg.src;
+                img.alt = item.label;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.transition = 'transform 0.5s, filter 0.5s';
+                img.style.filter = 'brightness(0.7) saturate(0.8)';
+                
+                // Add hover effects
+                card.addEventListener('mouseenter', () => {
+                    img.style.transform = 'scale(1.08)';
+                    img.style.filter = 'brightness(0.9) saturate(1.1)';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    img.style.transform = 'scale(1)';
+                    img.style.filter = 'brightness(0.7) saturate(0.8)';
+                });
+                
+                card.appendChild(img);
+                
+                // Add overlay and label
+                const overlay = document.createElement('div');
+                overlay.className = 'gallery-card-overlay';
+                card.appendChild(overlay);
+                
+                const label = document.createElement('div');
+                label.className = 'gallery-card-label';
+                label.textContent = item.label;
+                card.appendChild(label);
+            };
+            
+            testImg.onerror = () => {
+                // Try next extension
+                tryLoadImage(extIndex + 1);
+            };
+        };
+        
+        function showFallback() {
+            console.warn(`Failed to load image for: ${item.label}`);
+            
+            const fallback = document.createElement('div');
+            fallback.className = 'card-bg';
+            fallback.style.background = 'linear-gradient(135deg, #1a162e, #0d0b1a)';
+            fallback.style.display = 'flex';
+            fallback.style.alignItems = 'center';
+            fallback.style.justifyContent = 'center';
+            fallback.style.flexDirection = 'column';
+            fallback.innerHTML = `
+                <svg class="icon-svg" style="width: 3rem; height: 3rem; margin-bottom: 0.5rem;" viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                    <path d="M3 9h18M9 21V9"/>
+                </svg>
+                <span style="font-size: 0.8rem; opacity: 0.7;">${item.label}</span>
+            `;
+            card.appendChild(fallback);
+            
+            // Add overlay and label
+            const overlay = document.createElement('div');
+            overlay.className = 'gallery-card-overlay';
+            card.appendChild(overlay);
+            
+            const label = document.createElement('div');
+            label.className = 'gallery-card-label';
+            label.textContent = item.label;
+            card.appendChild(label);
+        }
+        
+        // Start trying to load the image
+        tryLoadImage(0);
+        
+        track.appendChild(card);
+    });
+})();
+
+// ==================== FEATURES (icon map) ====================
+(function buildFeatures() {
+    const grid = document.getElementById('featuresGrid');
+    if (!grid) return;
+    
+    const features = [
+        { 
+            title: 'AuraSkills', 
+            desc: 'Master 11 ancient disciplines — Farming, Mining, Archery, Alchemy and more. Each skill branches into unique abilities as you reach higher tiers of mastery.', 
+            tag: '100 Levels Each', 
+            icon: 'star' 
+        },
+        { 
+            title: 'AuraMobs', 
+            desc: 'Every creature pulses with a unique aura. Read signs, adapt strategy, dominate monsters.', 
+            tag: 'Dynamic Encounters', 
+            icon: 'eye' 
+        },
+        { 
+            title: 'Mythical Dungeons', 
+            desc: 'Five tiers of ancient ruins — form parties, descend into darkness, claim treasures.', 
+            tag: '5 Difficulty Tiers', 
+            icon: 'layers' 
+        },
+        { 
+            title: 'Epic Bosses', 
+            desc: 'The Ominous Wither and other legendary beasts stir beneath the realm.', 
+            tag: 'Legendary Encounters', 
+            icon: 'skull' 
+        },
+        { 
+            title: 'Realistic Seasons', 
+            desc: 'Weather turns, crops respond, the world breathes with natural cycles.', 
+            tag: 'Dynamic World', 
+            icon: 'sun' 
+        },
+        { 
+            title: 'Rank Cosmetics', 
+            desc: 'Rise through 7 prestige ranks and unlock exclusive visual rewards.', 
+            tag: '7 Unique Ranks', 
+            icon: 'award' 
+        },
+        { 
+            title: 'Player Economy', 
+            desc: 'A thriving market powered by player hands. Trade, auction, barter.', 
+            tag: 'Auction House', 
+            icon: 'dollar-sign' 
+        },
+        { 
+            title: 'Land Claims', 
+            desc: 'Stake your territory with GriefPrevention. Build your empire safe.', 
+            tag: 'Protected Builds', 
+            icon: 'shield' 
+        },
+        { 
+            title: 'Free Exploration', 
+            desc: 'Warp to community hubs, randomly teleport, carve your own path.', 
+            tag: 'Open World', 
+            icon: 'compass' 
+        }
+    ];
+    
+    const iconMap = {
+        star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+        eye: '<circle cx="12" cy="12" r="3"/><path d="M22 12c-2.667 4.667-6 7-10 7s-7.333-2.333-10-7c2.667-4.667 6-7 10-7s7.333 2.333 10 7z"/>',
+        layers: '<path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>',
+        skull: '<circle cx="12" cy="12" r="10"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="9" r="1"/><path d="M9 16c1 1 2 1 3 1s2 0 3-1"/>',
+        sun: '<circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>',
+        award: '<circle cx="12" cy="8" r="6"/><path d="M8 14l-2 7 6-3 6 3-2-7"/>',
+        'dollar-sign': '<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>',
+        shield: '<path d="M12 2L3 6v6c0 5.5 9 10 9 10s9-4.5 9-10V6l-9-4z"/>',
+        compass: '<circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/>'
+    };
+    
+    features.forEach(f => {
+        const card = document.createElement('div');
+        card.className = 'feature-card reveal';
+        card.innerHTML = `
+            <span class="feature-icon"><svg class="icon-svg icon-large" viewBox="0 0 24 24">${iconMap[f.icon]}</svg></span>
+            <div class="feature-title">${f.title}</div>
+            <p class="feature-desc">${f.desc}</p>
+            <span class="feature-tag">${f.tag}</span>
+        `;
+        grid.appendChild(card);
+    });
+})();
+
+// ==================== RANKS with Mystical Tooltips (Icons Only) ====================
+(function buildRanks() {
+    const path = document.getElementById('ranksPath');
+    if (!path) return;
+    
+    const ranks = [
+        { 
+            name: 'Wanderer', 
+            icon: 'map', 
+            time: 'Start', 
+            locked: false,
+            lore: 'Fresh eyes upon the realm, untested but full of promise. The path ahead is unwritten.',
+            abilities: ['Basic skills access', 'Starter kit', 'No land claims'],
+            requirement: 'Join the server',
+            blessing: 'Curiosity',
+            quote: 'Every legend begins with a single step'
+        },
+        { 
+            name: 'Rooted', 
+            icon: 'anchor', 
+            time: '4 Hours', 
+            locked: false,
+            lore: 'You have found your footing. The realm acknowledges your presence and grants you a place to call home.',
+            abilities: ['Land claims (5 chunks)', '/sethome 1', 'Basic trading'],
+            requirement: '4 hours playtime',
+            blessing: 'Stability',
+            quote: 'Deep roots hold fast against any storm'
+        },
+        { 
+            name: 'Delver', 
+            icon: 'pickaxe', 
+            time: '12 Hours', 
+            locked: true,
+            lore: 'The depths call to you. Ancient ruins whisper your name, and the earth yields its secrets.',
+            abilities: ['Access to tier 1 dungeons', '/back command', 'Better ore drops'],
+            requirement: '12 hours + Complete tutorial dungeon',
+            blessing: 'Treasure sense',
+            quote: 'The deepest shadows hide the brightest gems'
+        },
+        { 
+            name: 'Artisan', 
+            icon: 'hammer', 
+            time: '24 Hours', 
+            locked: true,
+            lore: 'Your hands shape the world. What was once raw material becomes masterwork.',
+            abilities: ['Custom crafting recipes', 'Anvil discounts', 'Auction house access'],
+            requirement: '24 hours + Craft 100 items',
+            blessing: 'Creation',
+            quote: 'From earth and fire, legends are forged'
+        },
+        { 
+            name: 'Seasoned', 
+            icon: 'zap', 
+            time: '7 Days', 
+            locked: true,
+            lore: 'The trials have tempered you. You are no longer a visitor — you are part of the realm\'s fabric.',
+            abilities: ['Dungeon tier 2 access', 'Double skill XP', 'Nickname command'],
+            requirement: '7 days + Kill 50 mobs',
+            blessing: 'Resilience',
+            quote: 'What does not break me only makes me stronger'
+        },
+        { 
+            name: 'Luminous', 
+            icon: 'moon', 
+            time: '30 Days', 
+            locked: true,
+            lore: 'Light radiates from within. Others seek your guidance; you have become a beacon in the darkness.',
+            abilities: ['Glowing effect toggle', 'Dungeon tier 3 access', 'Guild creation'],
+            requirement: '30 days + Complete epic boss',
+            blessing: 'Inspiration',
+            quote: 'A single flame can illuminate the darkest path'
+        },
+        { 
+            name: 'Starbound', 
+            icon: 'star', 
+            time: '45 Days', 
+            locked: true,
+            lore: 'You have transcended mortal limitations. The stars themselves acknowledge your legend.',
+            abilities: ['Custom particle effects', 'Dungeon tier 4-5 access', 'World edit in claims', 'Named in server lore'],
+            requirement: '45 days + Legendary status',
+            blessing: 'Immortality',
+            quote: 'Among the stars, your name is written forever'
+        }
+    ];
+    
+    const iconMap = {
+        map: '<polygon points="3 6 12 2 21 6 12 10 3 6"/><line x1="12" y1="10" x2="12" y2="22"/><path d="M8 12v4"/><path d="M16 12v4"/>',
+        anchor: '<circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/>',
+        pickaxe: '<path d="M14 10l6-6"/><path d="M4 20l6-6"/><path d="M18 4l2 2-8 8-2-2 8-8z"/><path d="M10 10l-4 4 2 2 4-4"/>',
+        hammer: '<path d="M15 12l-6 6"/><path d="M8 8l6 6"/><path d="M21 12a9 9 0 0 0-9-9M6 3l3 3-3 3-3-3 3-3z"/><path d="M12 21a9 9 0 0 0 9-9"/>',
+        zap: '<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>',
+        moon: '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>',
+        star: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+        // Additional icons for tooltips
+        locked: '<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+        unlocked: '<path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>',
+        blessing: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+        time: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+        requirement: '<path d="M12 2v4M12 22v-4M4 12H2M22 12h-2M19.07 4.93l-2.83 2.83M6.9 17.1l-2.82 2.82M17.1 6.9l2.82-2.82M4.93 19.07l2.83-2.83"/>'
+    };
+    
+    ranks.forEach((r, i) => {
+        if (i > 0) {
+            const conn = document.createElement('div');
+            conn.className = 'rank-connector';
+            path.appendChild(conn);
+        }
+        
+        const node = document.createElement('div');
+        node.className = 'rank-node' + (r.locked ? ' locked' : '');
+        
+        // Create abilities list HTML
+        const abilitiesList = r.abilities.map(ability => 
+            `<li>${ability}</li>`
+        ).join('');
+        
+        node.innerHTML = `
+            <div class="rank-gem">
+                <span><svg class="icon-svg" viewBox="0 0 24 24">${iconMap[r.icon]}</svg></span>
+            </div>
+            <div class="rank-name">${r.name}</div>
+            <div class="rank-time">${r.time}</div>
+            
+            <!-- Mystical Tooltip (Icons Only) -->
+            <div class="rank-tooltip">
+                <div class="rank-tooltip-ornament top"></div>
+                
+                <div class="rank-tooltip-title">
+                    <svg class="icon-svg tooltip-title-icon" viewBox="0 0 24 24">
+                        ${r.locked ? iconMap.locked : iconMap.unlocked}
+                    </svg>
+                    ${r.name}
+                </div>
+                
+                <div class="rank-tooltip-quote">"${r.quote}"</div>
+                
+                <div class="rank-tooltip-lore">${r.lore}</div>
+                
+                <div class="rank-tooltip-stats">
+                    <div class="rank-tooltip-stat">
+                        <svg class="icon-svg stat-icon" viewBox="0 0 24 24">${iconMap.time}</svg>
+                        <span class="stat-label">Time</span>
+                        <span class="stat-value">${r.time}</span>
                     </div>
-                    <div style="font-size: 0.7rem; color: var(--soft-lavender); margin-top: 0.3rem;">
-                        <i class="fas fa-circle" style="color: #10b981; font-size: 0.5rem;"></i> Online
+                    <div class="rank-tooltip-stat">
+                        <svg class="icon-svg stat-icon" viewBox="0 0 24 24">${iconMap.blessing}</svg>
+                        <span class="stat-label">Blessing</span>
+                        <span class="stat-value">${r.blessing}</span>
+                    </div>
+                    <div class="rank-tooltip-stat">
+                        <svg class="icon-svg stat-icon" viewBox="0 0 24 24">${r.locked ? iconMap.locked : iconMap.unlocked}</svg>
+                        <span class="stat-label">Status</span>
+                        <span class="stat-value ${r.locked ? 'locked' : 'unlocked'}">${r.locked ? 'Locked' : 'Unlocked'}</span>
                     </div>
                 </div>
-            `);
-        }
+                
+                <div class="rank-tooltip-abilities">
+                    <div class="abilities-title">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                        Abilities
+                    </div>
+                    <ul class="abilities-list">
+                        ${abilitiesList}
+                    </ul>
+                </div>
+                
+                <div class="rank-tooltip-requirement">
+                    <svg class="icon-svg requirement-icon" viewBox="0 0 24 24">${iconMap.requirement}</svg>
+                    <span class="requirement-label">Requirement:</span>
+                    <span class="requirement-text">${r.requirement}</span>
+                </div>
+                
+                <div class="rank-tooltip-ornament bottom"></div>
+            </div>
+        `;
         
-        headsGrid.innerHTML = mysteryHeads.join('');
-        
-        // Add a mystery message if there are more players than shown
-        if (onlineCount > 8) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = 'mystery-message';
-            messageDiv.innerHTML = `<i class="fas fa-user-secret"></i> and ${onlineCount - 8} more adventurers...`;
-            headsGrid.parentNode.appendChild(messageDiv);
-            
-            // Remove previous message if exists
-            const oldMessage = headsGrid.parentNode.querySelector('.mystery-message:not(#no-players)');
-            if (oldMessage && oldMessage !== messageDiv) {
-                oldMessage.remove();
-            }
-        } else {
-            // Remove any existing mystery message
-            const oldMessage = headsGrid.parentNode.querySelector('.mystery-message');
-            if (oldMessage) oldMessage.remove();
-        }
-        
-    } else {
-        headsGrid.style.display = 'none';
-        noPlayersMsg.style.display = 'block';
-        
-        // Remove any existing mystery message
-        const oldMessage = headsGrid.parentNode.querySelector('.mystery-message');
-        if (oldMessage) oldMessage.remove();
-    }
-}
-
-/**
- * Simulate TPS (since we can't get real TPS from public API)
- */
-function simulateTPS() {
-    const tpsElement = document.getElementById('server-tps');
-    const tpsBar = document.getElementById('tps-bar');
-    
-    if (!tpsElement || !tpsBar) return;
-    
-    // Only update if server is online (based on status text)
-    const serverStatus = document.getElementById('server-status');
-    if (serverStatus && serverStatus.textContent.includes('Online')) {
-        const tps = (19.0 + Math.random() * 1.0).toFixed(1);
-        tpsElement.textContent = tps;
-        tpsBar.style.width = (parseFloat(tps) / 20) * 100 + '%';
-    } else {
-        tpsElement.textContent = '0.0';
-        tpsBar.style.width = '0%';
-    }
-}
-
-// ============================================
-// INITIALIZATION
-// ============================================
-
-/**
- * Initialize the application
- */
-function init() {
-    debugLog('Initializing Misfits Studio...');
-    
-    // Show home page by default
-    showPage('home');
-    
-    // Initialize gallery
-    const gallery = document.querySelector('.gallery-carousel');
-    if (gallery) {
-        startAutoSlide();
-        
-        // Pause auto-advance on hover/touch
-        const container = document.querySelector('.gallery-container');
-        if (container) {
-            container.addEventListener('mouseenter', () => {
-                State.gallery.isPaused = true;
-            });
-            container.addEventListener('mouseleave', () => {
-                State.gallery.isPaused = false;
-            });
-            
-            // Touch events for mobile
-            container.addEventListener('touchstart', () => {
-                State.gallery.isPaused = true;
-            });
-            container.addEventListener('touchend', () => {
-                State.gallery.isPaused = false;
-            });
-        }
-    }
-    
-    // Fetch server status
-    fetchServerStatus();
-    setInterval(fetchServerStatus, 30000); // Update every 30 seconds
-    setInterval(simulateTPS, 10000); // Update TPS every 10 seconds
-    
-    // Handle window resize with debounce for performance
-    const debouncedResize = debounce(handleResize, 250);
-    window.addEventListener('resize', debouncedResize);
-    
-    // Handle online/offline events
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    
-    // Add keyboard navigation for gallery
-    document.addEventListener('keydown', handleKeyboard);
-    
-    // Close menu when clicking nav links on mobile
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                closeMenu();
-            }
-        });
+        path.appendChild(node);
     });
     
-    // Initialize all images with lazy loading
-    const images = document.querySelectorAll('img[loading="lazy"]');
-    if ('loading' in HTMLImageElement.prototype) {
-        // Browser supports native lazy loading
-        images.forEach(img => {
-            img.setAttribute('loading', 'lazy');
+    // Add mobile touch support
+    if (window.innerWidth <= 768) {
+        document.querySelectorAll('.rank-node').forEach(node => {
+            node.addEventListener('click', (e) => {
+                e.stopPropagation();
+                
+                // Close other tooltips
+                document.querySelectorAll('.rank-node').forEach(n => {
+                    if (n !== node) {
+                        n.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current tooltip
+                node.classList.toggle('active');
+            });
+        });
+        
+        // Close tooltips when clicking elsewhere
+        document.addEventListener('click', () => {
+            document.querySelectorAll('.rank-node').forEach(node => {
+                node.classList.remove('active');
+            });
         });
     }
-    
-    debugLog('Initialization complete');
-}
+})();
 
-/**
- * Handle window resize
- */
-function handleResize() {
-    if (window.innerWidth > 768 && State.isMenuOpen) {
-        closeMenu();
+// ==================== LORE AUDIO BUTTON ====================
+(function initLoreAudio() {
+    const btn = document.getElementById('loreAudioBtn');
+    const audio = document.getElementById('loreAudio');
+    if (!btn || !audio) return;
+    
+    // Example free track - replace with actual sound file
+    audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+    
+    btn.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play().catch(e => console.log('Audio play failed:', e));
+            btn.innerHTML = `
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <span>Silence the chant</span>
+            `;
+        } else {
+            audio.pause();
+            btn.innerHTML = `
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>Hear the whispers</span>
+            `;
+        }
+    });
+    
+    audio.addEventListener('ended', () => {
+        btn.innerHTML = `
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Hear the whispers</span>
+        `;
+    });
+})();
+
+// ==================== FAQ ====================
+(function buildFaq() {
+    const list = document.getElementById('faqList');
+    if (!list) return;
+    
+    const faqs = [
+        { q: 'How do I join the server?', a: 'Use the IP address: misfitsmc.mcsh.io — supports Java Edition versions 1.8 through 1.21.11' },
+        { q: 'Do I need a premium account?', a: 'No! The server is fully cracked — you can join without a paid Minecraft account.' },
+        { q: 'Is the server always online?', a: 'Yes, 24/7. If it shows offline, just connect and wait a moment — it will respond shortly.' },
+        { q: 'What commands do I need to start?', a: '/register [password] to set up, then /kit wanderer for starter gear. Use /rtp to explore, /shop to trade, and /warp for key locations.' },
+        { q: 'Do supporters get rewards?', a: 'Yes! Dedicated supporters receive exclusive cosmetics, rank perks, and are immortalized on the Champions list.' },
+        { q: 'How do I get help?', a: 'Join the Discord and open a support ticket. Staff are active and will assist you promptly.' },
+        { q: 'Is it available to bedrock players?', a: 'No, the server is currently only available to Java Edition players. As we expand, we may consider adding Bedrock support in the future.' },
+        { q: 'Are there any rules I should know?', a: 'Be respectful to others, no griefing, and follow the Discord guidelines. Full rules are available on the discord.' }
+    ];
+    
+    list.innerHTML = '';
+    
+    faqs.forEach(f => {
+        const item = document.createElement('div');
+        item.className = 'faq-item';
+        item.innerHTML = `
+            <div class="faq-q">${f.q}<div class="faq-arrow"></div></div>
+            <div class="faq-a">${f.a}</div>
+        `;
+        
+        item.querySelector('.faq-q').addEventListener('click', () => {
+            const wasOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!wasOpen) item.classList.add('open');
+        });
+        
+        list.appendChild(item);
+    });
+})();
+
+// ==================== WORLDS GRID (with SVG icons) ====================
+(function buildWorlds() {
+    const grid = document.getElementById('worldsGrid');
+    if (!grid) return;
+    
+    grid.innerHTML = `
+        <div class="world-card unlocked">
+            <div class="world-bg" style="background:linear-gradient(135deg,#0f2a0f,#1a3d1a)">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <path d="M2 12h20"/>
+                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                </svg>
+            </div>
+            <div class="world-overlay"></div>
+            <div class="world-content">
+                <div class="world-name">The Overworld</div>
+                <div class="world-req">✦ Open to All Adventurers</div>
+            </div>
+            <div class="world-lock">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                </svg>
+            </div>
+        </div>
+        <div class="world-card">
+            <div class="world-bg" style="background:linear-gradient(135deg,#2a0a00,#4a1500)">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"/>
+                    <path d="M12 2v4M22 12h-4M12 20v4M4 12H2M20 20l-3-3M20 4l-3 3M4 4l3 3M4 20l3-3"/>
+                </svg>
+            </div>
+            <div class="world-overlay"></div>
+            <div class="world-content">
+                <div class="world-name">The Nether</div>
+                <div class="world-req">⚠ Combined Skill Level 50+</div>
+            </div>
+            <div class="world-lock">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+            </div>
+        </div>
+        <div class="world-card">
+            <div class="world-bg" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3a)">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="2"/>
+                    <path d="M12 2v2M22 12h-2M12 20v2M4 12H2M17.66 6.34l-1.41 1.41M6.34 17.66l1.41-1.41M17.66 17.66l-1.41-1.41M6.34 6.34l1.41 1.41"/>
+                </svg>
+            </div>
+            <div class="world-overlay"></div>
+            <div class="world-content">
+                <div class="world-name">The End</div>
+                <div class="world-req">⚠ Combined Skill Level 75+</div>
+            </div>
+            <div class="world-lock">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+            </div>
+        </div>
+        <div class="world-card">
+            <div class="world-bg" style="background:linear-gradient(135deg,#1a001a,#2d003d)">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 0 9 9M12 3v18"/>
+                    <circle cx="12" cy="12" r="2" fill="none"/>
+                </svg>
+            </div>
+            <div class="world-overlay"></div>
+            <div class="world-content">
+                <div class="world-name">Mystery Realm</div>
+                <div class="world-req">⚠ Find the Hidden Portal</div>
+            </div>
+            <div class="world-lock">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="12"/>
+                    <line x1="12" y1="16" x2="12.01" y2="16"/>
+                </svg>
+            </div>
+        </div>
+    `;
+})();
+
+// ==================== FOUNDERS (static) ====================
+(function buildFounders() {
+    const row = document.getElementById('foundersRow');
+    if (!row) return;
+    
+    row.innerHTML = `
+        <div class="founder-card">
+            <div class="founder-avatar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
+            <div class="founder-name">KyutaOfficial</div>
+            <div class="founder-role">Realm Keeper</div>
+        </div>
+        <div class="founder-card">
+            <div class="founder-avatar"><svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+            <div class="founder-name">GhostKun</div>
+            <div class="founder-role">World Architect</div>
+        </div>
+    `;
+})();
+
+// ==================== SUPPORTERS (dynamic from JSON) ====================
+(async function loadSupporters() {
+    const grid = document.getElementById('supportersGrid');
+    if (!grid) return;
+    
+    try {
+        // In a real project, replace with actual URL e.g. '/data/supporters.json'
+        // For demonstration, we use fetch but provide fallback
+        const response = await fetch('supporters.json').catch(() => null);
+        let supporters = ['Jordiecat08', 'ChannuBeans', 'CLONEX5323', 'Reyma']; // fallback
+        
+        if (response && response.ok) {
+            supporters = await response.json();
+        } else {
+            console.log('Using default supporters (mock)');
+        }
+        
+        grid.innerHTML = '';
+        
+        supporters.forEach(name => {
+            const badge = document.createElement('div');
+            badge.className = 'supporter-badge';
+            badge.innerHTML = `
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ${name}
+            `;
+            grid.appendChild(badge);
+        });
+    } catch (e) {
+        console.warn('Could not load supporters', e);
+    }
+})();
+
+// ==================== REALTIME SERVER STATUS API ====================
+
+// Update server status with real data
+async function updateServerStatus() {
+    try {
+        // Try primary API first
+        let response = await fetch(MC_API_URL);
+        let data = await response.json();
+        
+        if (data && data.online) {
+            updateStatusUI(data);
+        } else {
+            // Try fallback API
+            const fallbackResponse = await fetch(MC_API_FALLBACK);
+            const fallbackData = await fallbackResponse.json();
+            
+            if (fallbackData && fallbackData.online) {
+                // Convert fallback data format to match primary
+                const convertedData = {
+                    online: fallbackData.online,
+                    version: fallbackData.server?.name || '1.21.1',
+                    players: {
+                        online: fallbackData.players?.now || 0,
+                        max: fallbackData.players?.max || 100
+                    },
+                    motd: fallbackData.motd
+                };
+                updateStatusUI(convertedData);
+            } else {
+                setOfflineStatus();
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching server status:', error);
+        setOfflineStatus();
     }
     
-    // Adjust gallery height for better mobile experience
-    const gallery = document.querySelector('.gallery-container');
-    if (gallery) {
-        // Force reflow for responsive images
-        gallery.style.transform = 'translateZ(0)';
+    // Update last updated timestamp
+    const lastUpdated = document.getElementById('last-updated');
+    if (lastUpdated) {
+        const now = new Date();
+        lastUpdated.textContent = now.toLocaleTimeString();
     }
 }
 
-/**
- * Handle online event
- */
-function handleOnline() {
-    State.isOnline = true;
-    debugLog('Internet connection restored');
-    showNotification('Internet connection restored. Refreshing server status...', 'success');
-    State.retryCount = 0;
-    fetchServerStatus();
-}
-
-/**
- * Handle offline event
- */
-function handleOffline() {
-    State.isOnline = false;
-    debugLog('Internet connection lost');
-    showNotification('Internet connection lost. Showing cached data...', 'warning');
-}
-
-/**
- * Handle keyboard navigation
- */
-function handleKeyboard(e) {
-    // Don't handle keyboard events when menu is open
-    if (State.isMenuOpen) return;
+// Update UI with server data
+function updateStatusUI(data) {
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const serverVersion = document.getElementById('server-version');
+    const serverPlayers = document.getElementById('server-players');
+    const serverTPS = document.getElementById('server-tps');
+    const uptimeBar = document.getElementById('uptime-bar');
     
-    // Only handle if gallery is in viewport
-    const gallery = document.querySelector('.gallery-container');
-    if (!gallery) return;
+    if (statusDot) {
+        statusDot.style.background = '#4ade80';
+        statusDot.style.boxShadow = '0 0 8px #4ade80';
+    }
+    if (statusText) statusText.textContent = 'Online';
     
-    const rect = gallery.getBoundingClientRect();
-    const isInViewport = rect.top < window.innerHeight && rect.bottom > 0;
+    if (serverVersion && data.version) {
+        // Extract clean version number
+        const versionMatch = data.version.match(/\d+\.\d+(\.\d+)?/);
+        serverVersion.textContent = versionMatch ? `Java ${versionMatch[0]}` : 'Java 1.21.1';
+    }
     
-    if (isInViewport) {
-        if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            changeSlide(-1);
-        } else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            changeSlide(1);
+    if (serverPlayers && data.players) {
+        const online = data.players.online || 0;
+        const max = data.players.max || 100;
+        serverPlayers.textContent = `${online} / ${max}`;
+        
+        // Update uptime bar based on player count percentage (just for visual)
+        if (uptimeBar && max > 0) {
+            const percentage = Math.min((online / max) * 100, 100);
+            uptimeBar.style.width = `${percentage}%`;
+        }
+    }
+    
+    // Simulate TPS based on player count (in reality you'd need server-side plugin)
+    if (serverTPS && data.players) {
+        const online = data.players.online || 0;
+        if (online > 50) {
+            serverTPS.textContent = '19.8 ✦ Stable';
+        } else if (online > 30) {
+            serverTPS.textContent = '19.9 ✦ Great';
+        } else if (online > 10) {
+            serverTPS.textContent = '20.0 ✦ Smooth';
+        } else {
+            serverTPS.textContent = '20.0 ✦ Perfect';
         }
     }
 }
 
-// ============================================
-// START APPLICATION
-// ============================================
-
-// Wait for DOM to be ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-} else {
-    // DOM is already loaded
-    init();
+// Set offline status
+function setOfflineStatus() {
+    const statusDot = document.getElementById('status-dot');
+    const statusText = document.getElementById('status-text');
+    const serverPlayers = document.getElementById('server-players');
+    const uptimeBar = document.getElementById('uptime-bar');
+    const serverTPS = document.getElementById('server-tps');
+    
+    if (statusDot) {
+        statusDot.style.background = '#ef4444';
+        statusDot.style.boxShadow = '0 0 8px #ef4444';
+    }
+    if (statusText) statusText.textContent = 'Offline';
+    if (serverPlayers) serverPlayers.textContent = '0 / 0';
+    if (uptimeBar) uptimeBar.style.width = '0%';
+    if (serverTPS) serverTPS.textContent = '-- ✦ Waiting';
 }
 
-// ============================================
-// EXPORT GLOBALS
-// ============================================
-window.showPage = showPage;
-window.copyIP = copyIP;
-window.changeSlide = changeSlide;
-window.goToSlide = goToSlide;
-window.toggleMenu = toggleMenu;
-window.closeMenu = closeMenu;
+// ==================== DISCORD API ====================
+async function updateDiscordStats() {
+    try {
+        const response = await fetch(DISCORD_API_URL);
+        const data = await response.json();
+        
+        if (data && data.approximate_member_count) {
+            const discordMembers = document.getElementById('discord-members');
+            if (discordMembers) {
+                const count = data.approximate_member_count;
+                discordMembers.textContent = count > 1000 ? 
+                    `${Math.floor(count/1000)}k+` : 
+                    `${count}+`;
+            }
+        }
+    } catch (error) {
+        console.error('Error fetching Discord stats:', error);
+    }
+}
+
+// ==================== INITIALIZE REAL-TIME UPDATES ====================
+(function initRealTimeUpdates() {
+    // Initial updates
+    updateServerStatus();
+    updateDiscordStats();
+    
+    // Set up interval for regular updates
+    setInterval(() => {
+        updateServerStatus();
+        updateDiscordStats();
+    }, UPDATE_INTERVAL);
+    
+    // Also update when page becomes visible again
+    document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) {
+            updateServerStatus();
+            updateDiscordStats();
+        }
+    });
+})();
+
+// ==================== REVEAL ON SCROLL ====================
+(function observeReveal() {
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+})();
+
+// ==================== COPY IP ====================
+window.copyIP = function() {
+    navigator.clipboard.writeText(SERVER_IP).then(() => {
+        const t = document.getElementById('toast');
+        t.classList.add('show');
+        setTimeout(() => t.classList.remove('show'), 2500);
+    });
+};

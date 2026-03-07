@@ -1,587 +1,257 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <link rel="shortcut icon" href="images/Misfits_favIcon_bgremoved.png" type="image/x-icon">
-    <title>Misfits SMP | Fantasy Minecraft Server</title>
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Custom CSS -->
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Misfits SMP — realm of magic & mystery</title>
+    <!-- preconnect & fonts (keep in html for fast load) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Lato:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+    <link rel="shortcut icon" href="images/Misfits_favIcon.png" type="image/x-icon">
+    <!-- separate CSS file -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a class="logo" href="#" onclick="showPage('home'); return false;">
-                <i class="fas fa-crown"></i>
-                <span>Misfits SMP</span>
-            </a>
-            
-            <button class="burger-menu" id="burgerMenu" onclick="toggleMenu()" aria-label="Toggle navigation">
-                <span class="burger-bar"></span>
-                <span class="burger-bar"></span>
-                <span class="burger-bar"></span>
-            </button>
-            
-            <div class="nav-links" id="navLinks">
-                <a href="#" onclick="showPage('home'); return false;" class="nav-link active" data-page="home">
-                    <i class="fas fa-home"></i> <span>Home</span>
-                </a>
-                <a href="#" onclick="showPage('about'); return false;" class="nav-link" data-page="about">
-                    <i class="fas fa-scroll"></i> <span>Lore</span>
-                </a>
-                <a href="#" onclick="showPage('guides'); return false;" class="nav-link" data-page="guides">
-                    <i class="fas fa-book-open"></i> <span>Guides</span>
-                </a>
-                <a href="#" onclick="showPage('worlds'); return false;" class="nav-link" data-page="worlds">
-                    <i class="fas fa-globe"></i> <span>Worlds</span>
-                </a>
-                <a href="#" onclick="showPage('status'); return false;" class="nav-link" data-page="status">
-                    <i class="fas fa-chart-line"></i> <span>Status</span>
-                </a>
-                <a href="#" onclick="showPage('inquiry'); return false;" class="nav-link" data-page="inquiry">
-                    <i class="fab fa-discord"></i> <span>Inquiry</span>
-                </a>
-            </div>
-        </div>
+
+    <canvas id="stars-canvas"></canvas>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursor-ring"></div>
+    <div id="toast">✦ Copied to clipboard!</div>
+
+    <!-- NAV -->
+    <nav id="navbar">
+        <a class="nav-logo" href="#">
+            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Misfits
+        </a>
+        <ul class="nav-links">
+            <li><a href="#gallery">Realm</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#ranks">Ranks</a></li>
+            <li><a href="#lore">Lore</a></li>
+            <li><a href="#worlds">Worlds</a></li>
+            <li><a href="#status">Status</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+        <a class="nav-cta" href="https://discord.gg/FsFwEX9f6p" target="_blank">Join Discord</a>
     </nav>
-    
-    <div class="nav-overlay" id="navOverlay" onclick="closeMenu()"></div>
 
-    <main class="container">
-        <!-- HOME PAGE -->
-        <div id="home-page" class="page active">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-card glass-card">
-                    <i class="fas fa-crown hero-icon"></i>
-                    <h1>Misfits SMP</h1>
-                    <p class="subtitle">A Realm of Magic & Mystery</p>
-                    
-                    <div class="server-ip" onclick="copyIP()">
-                        <i class="fas fa-copy"></i>
-                        <span>misfitsmc.mcsh.io</span>
-                    </div>
-                    
-                    <div class="platform-badges">
-                        <span class="platform-badge java">
-                            <i class="fab fa-java"></i> Java Edition
-                        </span>
-                    </div>
-                    
-                    <div class="hero-stats">
-                        <span><i class="fas fa-users"></i> <span id="online-count">--</span>/<span id="max-players">--</span></span>
-                        <span><i class="fas fa-microchip"></i> <span id="server-version">1.21.1</span></span>
-                    </div>
-                    
-                    <p class="hero-hook">
-                        <strong>Grind. Progress. Conquer.</strong><br>
-                        A skill-based survival SMP with player-driven economy, custom dungeons, and meaningful progression.
-                    </p>
-
-                    <button class="discord-btn join-btn" onclick="copyIP()">
-                        <i class="fas fa-play"></i> Play Now
-                    </button>
-                </div>
-            </section>
-
-            <!-- Gallery -->
-            <section class="gallery-section">
-                <h2><i class="fas fa-camera"></i> The Realm in Pictures</h2>
-                <div class="gallery-container glass-card">
-                    <div class="gallery-carousel" id="galleryCarousel">
-                        <div class="gallery-slide active">
-                            <img src="images/scene_1.webp" alt="Mystical Spawn">
-                            <div class="gallery-caption">
-                                <h3>The Grand Spawn</h3>
-                                <p>Where every adventure begins</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_2.webp" alt="Ancient Forest">
-                            <div class="gallery-caption">
-                                <h3>Player based Progression</h3>
-                                <p>Grow your character through skill mastery and exploration</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_3.webp" alt="Crystal Caves">
-                            <div class="gallery-caption">
-                                <h3>Community Driven</h3>
-                                <p>Build and shape the realm with fellow players</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_5.webp" alt="Crystal Caves">
-                            <div class="gallery-caption">
-                                <h3>Realistic Seasons</h3>
-                                <p>Experience dynamic weather and seasonal changes that affect gameplay</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_6.webp" alt="Crystal Caves">
-                            <div class="gallery-caption">
-                                <h3>Special Rank Cosmetics</h3>
-                                <p>Unlock unique visual rewards for each rank in the realm</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_8.webp" alt="Crystal Caves">
-                            <div class="gallery-caption">
-                                <h3>Mythic Dungeon</h3>
-                                <p>Explore the deepest and most dangerous areas of the realm</p>
-                            </div>
-                        </div>
-                        <div class="gallery-slide">
-                            <img src="images/scene_7.webp" alt="Crystal Caves">
-                            <div class="gallery-caption">
-                                <h3>Dungeon Bosses</h3>
-                                <p>Defeat powerful bosses in the realm's most challenging dungeons</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    
-                    
-                    <button class="gallery-nav prev" onclick="changeSlide(-1)" aria-label="Previous slide">
-                        <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button class="gallery-nav next" onclick="changeSlide(1)" aria-label="Next slide">
-                        <i class="fas fa-chevron-right"></i>
-                    </button>
-                    
-                    <div class="gallery-dots">
-                        <span class="dot active" onclick="goToSlide(1)" aria-label="Go to slide 1"></span>
-                        <span class="dot" onclick="goToSlide(2)" aria-label="Go to slide 2"></span>
-                        <span class="dot" onclick="goToSlide(3)" aria-label="Go to slide 3"></span>
-                        <span class="dot" onclick="goToSlide(4)" aria-label="Go to slide 4"></span>
-                        <span class="dot" onclick="goToSlide(5)" aria-label="Go to slide 5"></span>
-                        <span class="dot" onclick="goToSlide(6)" aria-label="Go to slide 6"></span>
-                        <span class="dot" onclick="goToSlide(7)" aria-label="Go to slide 7"></span>
-                        <span class="dot" onclick="goToSlide(8)" aria-label="Go to slide 8"></span>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Features -->
-            <section class="features-section">
-                <h2><i class="fas fa-star"></i> Realm Features</h2>
-                <div class="mystical-grid">
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-dragon"></i>
-                        </div>
-                        <h3 class="feature-title">AuraSkills</h3>
-                        <p class="feature-description">Master 11 unique skills as you journey through the realm. Each skill unlocks powerful abilities and traits.</p>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-paw"></i>
-                        </div>
-                        <h3 class="feature-title">AuraMobs</h3>
-                        <p class="feature-description">Each mob in the realm has a unique aura that affects nearby players. Learn to read these auras to survive and thrive.</p>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
-                        <h3 class="feature-title">7 Mystic Ranks</h3>
-                        <p class="feature-description">Progress from Wanderer to Starbound. Each rank brings new powers and prestige.</p>
-                    </div>
-                    
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-shield-halved"></i>
-                        </div>
-                        <h3 class="feature-title">Epic Bosses</h3>
-                        <p class="feature-description">Face the OminousWither and other legendary beasts. Challenge grows with your power.</p>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-dungeon"></i>
-                        </div>
-                        <h3 class="feature-title">Mythical Dungeons</h3>
-                        <p class="feature-description">Explore ancient ruins and hidden chambers. Each dungeon holds unique treasures and challenges.</p>
-                    </div>
-                    
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-wand-magic-sparkles"></i>
-                        </div>
-                        <h3 class="feature-title">Exclusive Cometics</h3>
-                        <p class="feature-description">Exclusive cosmetic items available only to members and supporters of our community.</p>
-                    </div>
-
-                    <div class="feature-card glass-card">
-                        <div class="feature-icon">
-                            <i class="fas fa-map"></i>
-                        </div>
-                        <h3 class="feature-title">Land Claims</h3>
-                        <p class="feature-description">Protect your builds with GriefPrevention. Build without fear in our realm.</p>
-                    </div>
-
-                </div>
-            </section>
+    <!-- HERO -->
+    <section id="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-rune-ring"></div>
+        <div class="hero-tag"><span>✦</span> Java Edition 1.21.1 <span>✦</span> Free to Play <span>✦</span></div>
+        <h1 class="hero-title">Misfits</h1>
+        <div class="hero-title-sub">SMP</div>
+        <p class="hero-desc">A realm of magic, skill, and legend. Master ancient arts, forge alliances, conquer mythical dungeons — and etch your name into the chronicles of the realm.</p>
+        <div class="hero-buttons">
+            <a class="btn-primary" href="#features">Explore the Realm</a>
+            <a class="btn-secondary" href="#lore">Read the Lore</a>
         </div>
+        <div class="hero-ip" onclick="copyIP()">
+            <span>Server IP</span>
+            <span class="ip-badge">misfitsmc.mcsh.io</span>
+            <span>[ Click to Copy ]</span>
+        </div>
+        <div class="scroll-hint" style="bottom:1rem">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
 
-        <!-- ABOUT/LORE PAGE -->
-        <div id="about-page" class="page">
-            <h2><i class="fas fa-scroll"></i> The Lore of Misfits SMP</h2>
-            
-            <div class="glass-card lore-card">
-                <p class="lore-text">
-                    Long ago, in a realm between worlds, a group of misfits discovered an ancient power. 
-                    They built a sanctuary where all are welcome—a place where heroes are forged, legends are born, 
-                    and every player writes their own story.
-                </p>
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="section-header reveal">
+            <span class="section-label">✦ The Realm in Pictures ✦</span>
+            <h2 class="section-title">Behold the Kingdom</h2>
+            <p class="section-subtitle">Hover to pause — each image a window into the world that awaits you.</p>
+        </div>
+        <div class="gallery-track-wrap">
+            <div class="gallery-track" id="galleryTrack"></div>
+        </div>
+    </section>
 
-                <p class="lore-text">
-                    Through dedication and mastery, warriors awaken their potential with AuraSkills, 
-                    facing evolved creatures empowered by AuraMobs that roam the wilds. 
-                    Only the strongest dare to challenge epic bosses like the fearsome Ominous Wither, 
-                    whose return signals chaos across the realm.
-                </p>
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></span></div>
 
-                <p class="lore-text">
-                    Deep beneath the world lie Mythical Dungeons filled with ancient secrets, 
-                    rare loot, and trials designed to test even the most skilled adventurers. 
-                    Power is earned—not given.
-                </p>
+    <!-- FEATURES -->
+    <section id="features">
+        <div class="section-header reveal">
+            <span class="section-label">✦ Realm Features ✦</span>
+            <h2 class="section-title">Powers of the Realm</h2>
+            <p class="section-subtitle">Unique systems woven together into a living, breathing world unlike any other.</p>
+        </div>
+        <div class="features-grid" id="featuresGrid"></div>
+    </section>
 
-                <p class="lore-text">
-                    Beyond battle, MisFits SMP thrives on identity and prestige. 
-                    Unlock exclusive cosmetics, rise through one of seven special ranks, 
-                    and leave your mark on the world. With protected Claimlands, 
-                    your creations remain safe as the community grows stronger together.
-                </p>
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5.5 16L12 22l6.5-6"/></svg></span></div>
 
-                <p class="lore-text">
-                    Today, MisFits SMP stands as a testament to that vision — 
-                    a chill survival experience where progression is meaningful, 
-                    community is king, and every adventure becomes legend.
-                </p>
+    <!-- RANKS -->
+    <section id="ranks">
+        <div class="section-header reveal">
+            <span class="section-label">✦ Path of Ascension ✦</span>
+            <h2 class="section-title">Seven Sacred Ranks</h2>
+            <p class="section-subtitle">Your journey begins as a Wanderer. Dedication and time will carry you to the stars.</p>
+        </div>
+        <div class="ranks-path" id="ranksPath"></div>
+    </section>
+
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M4 8v8l8 4 8-4V8l-8-4-8 4z"/><path d="M4 8l8 4 8-4"/></svg></span></div>
+
+    <!-- LORE (with AUDIO BUTTON) -->
+    <section id="lore">
+        <div class="section-header reveal">
+            <span class="section-label">✦ Chronicles of the Realm ✦</span>
+            <h2 class="section-title">The Legend</h2>
+        </div>
+        <div class="lore-inner reveal">
+            <!-- mystical audio player button (no autoplay, discreet) -->
+            <div class="lore-audio-container">
+                <button id="loreAudioBtn" class="audio-mystic" aria-label="Play mystical chant">
+                    <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                    <span>Hear the whispers</span>
+                </button>
+                <audio id="loreAudio" loop preload="none">
+                    <source src="#" type="audio/mpeg"> <!-- placeholder: replace with actual sound file -->
+                </audio>
             </div>
-
-            <!-- Founders Section -->
-            <h3 class="section-subtitle">The Founders</h3>
-            <div class="founders-grid">
-                <div class="glass-card founder-card">
-                    <i class="fas fa-crown founder-icon"></i>
-                    <h4 class="founder-name">KyutaOfficial</h4>
-                    <p class="founder-role">Realm Keeper</p>
-                </div>
-                
-                <!-- <div class="glass-card founder-card">
-                    <i class="fas fa-hammer founder-icon"></i>
-                    <h4 class="founder-name">Jordiecat08</h4>
-                    <p class="founder-role">Master Builder</p>
-                </div> -->
-                
-                <div class="glass-card founder-card">
-                    <i class="fas fa-feather founder-icon"></i>
-                    <h4 class="founder-name">GhostKun</h4>
-                    <p class="founder-role">World Architect</p>
-                </div>
-            </div>
-
-            <!-- SIMPLE SUPPORTERS SECTION -->
-            <h3 class="section-subtitle">
-                <i class="fas fa-heart" style="color: var(--light-gold);"></i> 
-                Our Amazing Supporters
-            </h3>
-            
-            <div class="glass-card supporters-card">
-                <div class="supporters-intro">
-                    <i class="fas fa-heart supporter-heart"></i>
-                    <p>A heartfelt thank you to everyone who supports the realm! Your generosity helps keep the magic alive.</p>
-                </div>
-                
-                <!-- Simple supporter list - no ranks, just names -->
-                <div class="supporters-simple-grid">
-                    <div class="supporter-simple-item">[&#9733;] Jordiecat08</div>
-                    <div class="supporter-simple-item">[&#9733;] ChannuBeans</div>
-                    <div class="supporter-simple-item">[&#9733;] CLONEX5323</div>
-                    <div class="supporter-simple-item exclusive"> [&#9770;] Reyma</div>
-                </div>
-                
-                <!-- Supporter count -->
-                <div class="supporter-count-badge">
-                    <i class="fas fa-users"></i>
-                    <span>4 Champions of the Realm</span>
-                </div>
-                
-                <!-- Join Supporters CTA -->
-                <div class="supporters-cta-simple">
-                    <i class="fas fa-heart"></i>
-                    <p>Want to see your name here? Support the server and become part of our story!</p>
-                    <p>Exclusive rewards will be given for our most dedicated supporters!</p>
-                    <a href="#" onclick="showPage('inquiry'); return false;" class="discord-btn" style="margin: 1rem auto 0; padding: 0.8rem 2rem; font-size: 1rem;">
-                        <i class="fab fa-discord"></i> Join Discord to Learn More
-                    </a>
-                </div>
+            <div class="lore-text">
+                <p>Long ago, in a realm <strong>between worlds</strong>, a wandering fellowship of misfits discovered a fragment of ancient power — a force that had slept since before memory.</p>
+                <p>They built a <strong>sanctuary</strong> from wilderness and will. A place where every outcast could find purpose. Where heroes were forged in trial and legend was earned through deeds.</p>
+                <p>They called it <strong>Misfits</strong> — and it grew. Through dedication and mastery, warriors awakened their potential. Creatures born of <strong>aura and shadow</strong> rose to test them. And deep beneath the world, sealed ruins waited, full of ancient secrets and peril.</p>
+                <p>Today, the realm <strong>endures</strong>. Protected by its community. Shaped by its adventurers. And waiting — always waiting — for the next legend to begin.</p>
             </div>
         </div>
+    </section>
 
-        <!-- GUIDES PAGE -->
-        <div id="guides-page" class="page">
-            <h2><i class="fas fa-book-open"></i> Path of the Adventurer</h2>
-            
-            <div class="mystical-grid">
-                <div class="glass-card guide-card">
-                    <i class="fas fa-feather guide-icon"></i>
-                    <h3 class="guide-title">Getting Started</h3>
-                    <ul class="guide-list">
-                        <li><i class="fas fa-check"></i> Join with IP above</li>
-                        <li><i class="fas fa-check"></i> /register [password]</li>
-                        <li><i class="fas fa-check"></i> /kit wanderer</li>
-                        <li><i class="fas fa-check"></i> /shop</li>
-                        <li><i class="fas fa-check"></i> /warps</li>
-                        <li><i class="fas fa-check"></i> /rtp</li>
-                        <li><i class="fas fa-check"></i> /ah</li>
-                        <li><i class="fas fa-check"></i> Start your journey!</li>
-                    </ul>
-                </div>
-                
-                <div class="glass-card guide-card">
-                    <i class="fas fa-dragon guide-icon"></i>
-                    <h3 class="guide-title">AuraSkills Guide</h3>
-                    <ul class="guide-list">
-                        <li><i class="fas fa-check"></i>/skill</li>
-                        <li><i class="fas fa-check"></i> /skill top</li>
-                    </ul>
-                    <p class="guide-description"> | Master 11 skills: Farming, Foraging, Mining, Fishing, Excavation, Archery, Defense, Fighting, Agility, Enchanting, Alchemy</p>
-                    <p class="guide-description">| Each skill has 100 levels. The higher your level, the more powerful your abilities become.</p>
-                    <p class="guide-description">| Explore and defeat monsters to gain experience and level up your skills!</p>
-                </div>
-                
-                <div class="glass-card guide-card">
-                    <i class="fas fa-crown guide-icon"></i>
-                    <h3 class="guide-title">Rank Progression</h3>
-                    <ul class="guide-list">
-                        <li>Wanderer → Rooted (4h)</li>
-                        <li>Rooted → Delver (12h)</li>
-                        <li>Delver → Artisan (24h)</li>
-                        <li>Artisan → Seasoned (7d)</li>
-                        <li>Seasoned → Luminous (30d)</li>
-                        <li>Luminous → Starbound (45d)</li>
-                    </ul>
-                </div>
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span></div>
 
-                <div class="glass-card guide-card">
-                    <i class="fas fa-dungeon guide-icon"></i>
-                    <h3 class="guide-title">Mythical Dungeon</h3>
-                    <ul class="guide-list">
-                        <li><i class="fas fa-check"></i>/dungeon leaderboard [tier]</li>
-                        <li><i class="fas fa-check"></i>/dungeon create [tier]</li>
-                        <li><i class="fas fa-check"></i>/dungeon invite [player]</li>
-                        <li><i class="fas fa-check"></i>/dungeon enter [id]</li>
-                        <li><i class="fas fa-check"></i>/dungeon leave</li>
-                        <li><i class="fas fa-check"></i>/dungeon shop</li>
-                    </ul>
-                    <p class="guide-description">| Tier levels for dungeon creation. 
-                        [novice, apprentice, expert, master, legendary]
-                    </p>
-                </div>
+    <!-- WORLDS -->
+    <section id="worlds">
+        <div class="section-header reveal">
+            <span class="section-label">✦ The Four Realms ✦</span>
+            <h2 class="section-title">Planes of Existence</h2>
+            <p class="section-subtitle">Each realm grows more treacherous — and more rewarding — than the last.</p>
+        </div>
+        <div class="worlds-grid reveal" id="worldsGrid"></div>
+    </section>
+
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2v20M2 12h20"/></svg></span></div>
+
+    <!-- STATUS -->
+    <section id="status">
+        <div class="section-header reveal">
+            <span class="section-label">✦ Realm Status ✦</span>
+            <h2 class="section-title">The Realm Lives</h2>
+        </div>
+        <div class="status-panel reveal">
+            <div class="status-row">
+                <span class="status-label">Status</span>
+                <span class="status-value" id="server-status">
+                    <span class="status-dot" id="status-dot"></span>
+                    <span id="status-text">Checking...</span>
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Version</span>
+                <span class="status-value" id="server-version">Java 1.21.1</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Players</span>
+                <span class="status-value" id="server-players">- / -</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Uptime</span>
+                <span class="status-value" id="server-uptime">
+                    <div class="status-bar"><div class="status-bar-fill" id="uptime-bar" style="width:0%"></div></div>
+                </span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">TPS</span>
+                <span class="status-value" id="server-tps">20.0 ✦ Smooth</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Cracked</span>
+                <span class="status-value">✓ No Premium Required</span>
+            </div>
+            <div class="status-row">
+                <span class="status-label">Last Updated</span>
+                <span class="status-value" id="last-updated">Just now</span>
+            </div>
+            <div class="server-ip-box">
+                <span class="server-ip-label">Server Address</span>
+                <div class="server-ip-val" onclick="copyIP()">misfitsmc.mcsh.io</div>
+                <span class="copy-hint">Click to copy</span>
             </div>
         </div>
+    </section>
 
-        <!-- WORLDS PAGE -->
-        <div id="worlds-page" class="page">
-            <h2><i class="fas fa-globe"></i> The Four Realms</h2>
-            
-            <div class="mystical-grid">
-                <div class="glass-card world-card">
-                    <i class="fas fa-tree world-icon"></i>
-                    <h3 class="world-title">The Overworld</h3>
-                    <p class="world-description">The heart of the realm. Build, explore, and begin your journey.</p>
-                </div>
-                
-                <div class="glass-card world-card">
-                    <i class="fas fa-fire world-icon"></i>
-                    <h3 class="world-title">The Nether</h3>
-                    <p class="world-description">Requires combined skill level 50+. Face greater challenges for greater rewards.</p>
-                </div>
-                
-                <div class="glass-card world-card">
-                    <i class="fas fa-dragon world-icon"></i>
-                    <h3 class="world-title">The End</h3>
-                    <p class="world-description">Requires combined skill level 75+. The ultimate challenge awaits.</p>
-                </div>
-                
-                <div class="glass-card world-card">
-                    <i class="fas fa-question world-icon"></i>
-                    <h3 class="world-title">Mystery Realm</h3>
-                    <p class="world-description">A secret dimension for the bravest adventurers. Find the hidden portal.</p>
-                </div>
-            </div>
+    <!-- FAQ -->
+    <section id="faq">
+        <div class="section-header reveal">
+            <span class="section-label">✦ Common Questions ✦</span>
+            <h2 class="section-title">Seeking Answers?</h2>
         </div>
+        <div class="faq-list reveal" id="faqList"></div>
+    </section>
 
-        <!-- STATUS PAGE -->
-        <div id="status-page" class="page">
-            <h2><i class="fas fa-chart-line"></i> Realm Status</h2>
-            
-            <div class="status-grid">
-                <div class="glass-card status-card">
-                    <h3 class="status-card-title">Server Info</h3>
-                    <div class="stat-item">
-                        <span>Status</span>
-                        <span id="server-status">Checking...</span>
-                    </div>
-                    <div class="stat-item">
-                        <span>Players</span>
-                        <span id="players-online">0/0</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div id="player-bar" class="progress-fill" style="width: 0%"></div>
-                    </div>
-                    <div class="stat-item">
-                        <span>Version</span>
-                        <span id="server-version-status">1.21.11</span>
-                    </div>
-                </div>
-                
-                <div class="glass-card status-card">
-                    <h3 class="status-card-title">Performance</h3>
-                    <div class="stat-item">
-                        <span>TPS</span>
-                        <span id="server-tps">20.0</span>
-                    </div>
-                    <div class="progress-bar">
-                        <div id="tps-bar" class="progress-fill" style="width: 100%"></div>
-                    </div>
-                    <div class="stat-item">
-                        <span>Uptime</span>
-                        <span>99.9%</span>
-                    </div>
-                </div>
-            </div>
+    <div class="rune-divider"><span class="rune-divider-icon"><svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 22 7 22 17 12 22 2 17 2 7 12 2"/><line x1="12" y1="22" x2="12" y2="12"/></svg></span></div>
 
-            <h3 class="section-subtitle">Adventurers Online</h3>
-            <div class="glass-card players-card">
-                <div id="player-heads-grid" class="player-heads-grid">
-                    <!-- Player heads will appear here -->
-                </div>
-                <div id="no-players" class="no-players-message">
-                    No adventurers online at the moment
-                </div>
-            </div>
+    <!-- FOUNDERS & SUPPORTERS (dynamic via supporters.json) -->
+    <section id="supporters" style="padding:5rem 3rem">
+        <div class="section-header reveal">
+            <span class="section-label">✦ The Fellowship ✦</span>
+            <h2 class="section-title">Founders & Champions</h2>
         </div>
-
-        <!-- INQUIRY PAGE -->
-        <div id="inquiry-page" class="page">
-            <div class="discord-inquiry">
-                <i class="fab fa-discord discord-large-icon"></i>
-                <h2 class="discord-title">Join Our Discord</h2>
-                <p class="discord-description">
-                    For all inquiries, support, and community discussions, join our Discord server. 
-                    Our staff and community are ready to help!
-                </p>
-                
-                <a href="https://discord.gg/gDtYVEB3Jr" class="discord-btn" target="_blank" rel="noopener noreferrer">
-                    <i class="fab fa-discord"></i> Join Discord Server
-                </a>
-                
-                <div class="inquiry-features">
-                    <span class="inquiry-feature">
-                        <i class="fas fa-headset"></i> 24/7 Support
-                    </span>
-                    <span class="inquiry-feature">
-                        <i class="fas fa-users"></i> 200+ Members
-                    </span>
-                    <span class="inquiry-feature">
-                        <i class="fas fa-bell"></i> Instant Updates
-                    </span>
-                    <span class="inquiry-feature">
-                        <i class="fas fa-ticket"></i> Ticket System
-                    </span>
-                </div>
-                
-                <p class="contact-email">
-                    <i class="fas fa-envelope"></i> misfitsmcofficial@gmail.com
-                </p>
-            </div>
-            
-            <!-- FAQ Section -->
-            <h2 class="faq-title"><i class="fas fa-question-circle"></i> Common Questions</h2>
-            <div class="mystical-grid">
-                <div class="glass-card faq-card">
-                    <h4 class="faq-question">How do I join?</h4>
-                    <p class="faq-answer">Use the IP: misfitsmc.mcsh.io  [1.8 - 1.21.11]</p>
-                </div>
-                <div class="glass-card faq-card">
-                    <h4 class="faq-question">Is the server cracked?</h4>
-                    <p class="faq-answer">Yes, the server is fully cracked and does not require a premium Minecraft account.</p>
-                </div>
-                <div class="glass-card faq-card">
-                    <h4 class="faq-question">Is the server always online?</h4>
-                    <p class="faq-answer">Yes, our server is always online even if it says offline, just join and wait for a few seconds to connect.</p>
-                </div>
-                <div class="glass-card faq-card">
-                    <h4 class="faq-question">Do I receive rewards?</h4>
-                    <p class="faq-answer">Yes, dedicated supporters receive exclusive rewards and recognition![Includes special cosmetic items and in-game privileges]</p>
-                </div>
-                <div class="glass-card faq-card">
-                    <h4 class="faq-question">Need help?</h4>
-                    <p class="faq-answer">Join our Discord and create a ticket! Staff will assist you promptly.</p>
-                </div>
-            </div>
+        <div class="founders-row reveal" id="foundersRow"></div>
+        <div class="section-header reveal" style="margin-bottom:1.5rem">
+            <p class="section-subtitle">A heartfelt thank you to our Champions of the Realm — your generosity keeps the magic alive.</p>
         </div>
-
-        <!-- Quick Links -->
-        <div class="quick-links">
-            <a href="https://discord.gg/gDtYVEB3Jr" class="quick-link" target="_blank" rel="noopener noreferrer">
-                <i class="fab fa-discord"></i> Discord
-            </a>
-            <a href="#" onclick="showPage('inquiry'); return false;" class="quick-link">
-                <i class="fas fa-question-circle"></i> Inquiry
-            </a>
+        <div class="supporters-grid reveal" id="supportersGrid"></div>
+        <div style="text-align:center;margin-top:2rem;opacity:.5;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em">
+            WANT YOUR NAME HERE? SUPPORT THE SERVER VIA INVITES, DONATIONS, OR SPONSORSHIP.
         </div>
-    </main>
+    </section>
 
-    <!-- Footer -->
+    <!-- DISCORD CTA -->
+    <section id="discord">
+        <div class="discord-card reveal">
+            <span class="discord-icon"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div class="discord-title">Join the Fellowship</div>
+            <p class="discord-desc">Connect with adventurers, receive support, stay updated on events, and become part of the ever-growing legend of Misfits SMP.</p>
+            <div class="discord-stats">
+                <div class="discord-stat"><span id="discord-members">200+</span><span>Members</span></div>
+                <div class="discord-stat"><span>24/7</span><span>Support</span></div>
+                <div class="discord-stat"><span>Active</span><span>Community</span></div>
+            </div>
+            <a class="btn-discord" href="https://discord.gg/FsFwEX9f6p" target="_blank">Enter the Discord</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h4>Misfits Studio SMP</h4>
-                <p>A realm of magic, mystery, and community.</p>
-                <p class="footer-email"><i class="fas fa-envelope"></i> misfitsmcofficial@gmail.com</p>
-            </div>
-            <div class="footer-section">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#" onclick="showPage('home'); return false;">Home</a></li>
-                    <li><a href="#" onclick="showPage('about'); return false;">Lore</a></li>
-                    <li><a href="#" onclick="showPage('guides'); return false;">Guides</a></li>
-                    <li><a href="#" onclick="showPage('worlds'); return false;">Worlds</a></li>
-                    <li><a href="#" onclick="showPage('status'); return false;">Status</a></li>
-                    <li><a href="#" onclick="showPage('inquiry'); return false;">Inquiry</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>Resources</h4>
-                <ul>
-                    <li><a href="https://discord.gg/gDtYVEB3Jr" target="_blank" rel="noopener noreferrer">Discord</a></li>
-                    <li><a href="https://www.tiktok.com/@misfitssmp" target="_blank" rel="noopener noreferrer">TikTok</a></li>
-                    <li><a href="#" onclick="copyIP()">Copy IP</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Misfits Studio. Not affiliated with Mojang AB.</p>
+        <div class="footer-inner">
+            <div class="footer-logo"><svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg> Misfits Studio SMP</div>
+            <ul class="footer-links">
+                <li><a href="#gallery">Realm</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#lore">Lore</a></li>
+                <li><a href="#status">Status</a></li>
+                <li><a href="https://discord.gg/FsFwEX9f6p" target="_blank">Discord</a></li>
+                <li><a href="https://www.tiktok.com/@misfitssmp" target="_blank">TikTok</a></li>
+            </ul>
+            <div class="footer-copy">© 2026 Misfits Studio · Not affiliated with Mojang AB</div>
         </div>
     </footer>
 
-    <!-- Custom JavaScript -->
-    <script src="js/main.js"></script>
+	<div class="rank-modal" id="rankModal">
+		<div class="rank-modal-content">
+			<span class="rank-modal-close">&times;</span>
+			<div id="rankModalBody"></div>
+		</div>
+	</div>
+
+    <!-- separate JS file (defer) -->
+    <script src="js/main.js" defer></script>
 </body>
 </html>
