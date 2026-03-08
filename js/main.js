@@ -517,7 +517,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     if (!btn || !audio) return;
     
     // Example free track - replace with actual sound file
-    audio.src = 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3';
+    audio.src = 'audio/MisfitsLoreMusic.mp3';
     
     btn.addEventListener('click', () => {
         if (audio.paused) {
