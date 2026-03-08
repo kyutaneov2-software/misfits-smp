@@ -1,9 +1,9 @@
 // main.js - 4-space indentation with real-time API
 
 // ==================== CONFIGURATION ====================
-const SERVER_IP = 'misfitsmc.falixsrv.me';
+const SERVER_IP = 'misfitsmc.mcsh.io';
 const SERVER_PORT = 25565; // default Minecraft port
-const DISCORD_INVITE = 'FsFwEX9f6p'; 
+const DISCORD_INVITE = 'gDtYVEB3Jr'; 
 const UPDATE_INTERVAL = 30000; // 30 seconds
 
 // API endpoints (using public Minecraft server status APIs)
