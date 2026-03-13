@@ -316,7 +316,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: 'Start', 
             locked: false,
             lore: 'Fresh eyes upon the realm, untested but full of promise. The path ahead is unwritten.',
-            abilities: ['Basic skills access', 'Starter kit', 'No land claims'],
+            abilities: ['Basic skills access', 'Wanderer kit', 'land claims'],
             requirement: 'Join the server',
             blessing: 'Curiosity',
             quote: 'Every legend begins with a single step'
@@ -327,7 +327,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '4 Hours', 
             locked: false,
             lore: 'You have found your footing. The realm acknowledges your presence and grants you a place to call home.',
-            abilities: ['Land claims (5 chunks)', '/sethome 1', 'Basic trading'],
+            abilities: ['Bonus land claims', '/sethome 2', 'Auction house access', 'Wanderer rank perks'],
             requirement: '4 hours playtime',
             blessing: 'Stability',
             quote: 'Deep roots hold fast against any storm'
@@ -338,7 +338,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '12 Hours', 
             locked: true,
             lore: 'The depths call to you. Ancient ruins whisper your name, and the earth yields its secrets.',
-            abilities: ['Access to tier 1 dungeons', '/back command', 'Better ore drops'],
+            abilities: ['Bonus land claims', '/sethome 3', 'Bonus skill XP', 'Rooted rank perks'],
             requirement: '12 hours + Complete tutorial dungeon',
             blessing: 'Treasure sense',
             quote: 'The deepest shadows hide the brightest gems'
@@ -349,7 +349,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '24 Hours', 
             locked: true,
             lore: 'Your hands shape the world. What was once raw material becomes masterwork.',
-            abilities: ['Custom crafting recipes', 'Anvil discounts', 'Auction house access'],
+            abilities: ['1 Exclusive Item', '/Nickname command', 'Delver rank perks'],
             requirement: '24 hours + Craft 100 items',
             blessing: 'Creation',
             quote: 'From earth and fire, legends are forged'
@@ -360,7 +360,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '7 Days', 
             locked: true,
             lore: 'The trials have tempered you. You are no longer a visitor — you are part of the realm\'s fabric.',
-            abilities: ['Dungeon tier 2 access', 'Double skill XP', 'Nickname command'],
+            abilities: ['1 Exclusive Items', 'Special Title', 'Artisan rank perks'],
             requirement: '7 days + Kill 50 mobs',
             blessing: 'Resilience',
             quote: 'What does not break me only makes me stronger'
@@ -371,7 +371,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '30 Days', 
             locked: true,
             lore: 'Light radiates from within. Others seek your guidance; you have become a beacon in the darkness.',
-            abilities: ['Glowing effect toggle', 'Dungeon tier 3 access', 'Guild creation'],
+            abilities: ['1 Exclusive Item', 'Glowing effect toggle', 'Skill level boost', 'Special Role in Discord', 'Seasoned rank perks'],
             requirement: '30 days + Complete epic boss',
             blessing: 'Inspiration',
             quote: 'A single flame can illuminate the darkest path'
@@ -382,9 +382,9 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             time: '45 Days', 
             locked: true,
             lore: 'You have transcended mortal limitations. The stars themselves acknowledge your legend.',
-            abilities: ['Custom particle effects', 'Dungeon tier 4-5 access', 'World edit in claims', 'Named in server lore'],
+            abilities: ['1 Exclusive Item', 'Custom particle effects', 'Hero status', 'Named in server lore', 'Luminous rank perks'],
             requirement: '45 days + Legendary status',
-            blessing: 'Immortality',
+            blessing: 'Heroism',
             quote: 'Among the stars, your name is written forever'
         }
     ];
@@ -693,7 +693,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
         // In a real project, replace with actual URL e.g. '/data/supporters.json'
         // For demonstration, we use fetch but provide fallback
         const response = await fetch('supporters.json').catch(() => null);
-        let supporters = ['Jordiecat08', 'ChannuBeans', 'CLONEX5323', 'Reyma']; // fallback
+        let supporters = ['ChannuBeans', 'CLONEX5323', 'Reyma']; // fallback
         
         if (response && response.ok) {
             supporters = await response.json();

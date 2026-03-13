@@ -84,12 +84,16 @@ items:
       - ''
       - '&#E8D5FFA pulsating charm that channels'
       - '&#D5C2FFthe energy of swift creatures.'
+      - '&#9227f2[Exclusive].'
       - ''
       - '&#98FB98Passive Effects (Off Hand):'
       - '&#C0FFC0• Jump Boost II'
       - '&#C0FFC0• Slow Falling I'
       - '&#C0FFC0• +10% Knockback Resistance'
       glow: true
+    flags:
+      UNBREAKABLE: true
+      HIDE_ENCHANTS: true
     passive_effects:
       slots:
         OFF_HAND:
@@ -100,16 +104,17 @@ items:
           - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.1
   
   swiftness_boots:
-    material: IRON_BOOTS
+    material: DIAMOND_BOOTS
     display:
       name: '&#FFD700B&#FFE500o&#FFF700o&#E5FF00t&#CDFF00s &#B5FF00o&#9DFF00f &#85FF00S&#6DFF00w&#55FF00i&#3DFF00f&#25FF00t&#0DFF00n&#00FF15e&#00FF2Ds&#00FF45s'
       lore:
       - ''
       - '&#87CEFDFeel the wind beneath your feet.'
       - '&#87CEFDA sprinter''s dream.'
+      - '&#9227f2[Exclusive].'
       - ''
       - '&#00FF00Passive Effects:'
-      - '&#00FF00• Speed III (Always Active)'
+      - '&#00FF00• Speed II (Always Active)'
       - '&#00FF00• +15% Movement Speed'
       - '&#00FF00• Jump Boost I'
       glow: true
@@ -119,19 +124,20 @@ items:
     - UNBREAKING;3
     - MENDING;1
     flags:
+      UNBREAKABLE: true
       HIDE_ENCHANTS: true
     passive_effects:
       slots:
         BOOTS:
           potion_effects:
-          - SPEED;3
+          - SPEED;2
           - JUMP_BOOST;1
           attributes:
           - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
       visuals:
         particles:
         - type: CHERRY_LEAVES
-          shape: POINT
+          shape: OFFSET
           count: 1
           speed: 0.1
           offset_x: 0.0
@@ -155,6 +161,7 @@ items:
       - ''
       - '&#DAA520This legendary pickaxe hums with'
       - '&#DAA520the very essence of the earth.'
+      - '&#9227f2[Exclusive].'
       - ''
       - '&#00FF00Passive Effects (Main Hand):'
       - '&#7FFF7F• SPEED II'
@@ -212,6 +219,7 @@ items:
       - ''
       - '&7Blessed wings from the heavens,'
       - '&7granting divine protection.'
+      - '&#9227f2[Exclusive].'
       - ''
       - '&f👼 &lHOLY AURA:'
       - '&7- &fRegeneration II'
@@ -224,6 +232,7 @@ items:
     - UNBREAKING;4
     - MENDING;1
     flags:
+      UNBREAKABLE: true
       HIDE_ENCHANTS: true
     passive_effects:
       slots:
@@ -237,8 +246,8 @@ items:
         particles:
         - type: END_ROD
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
+          shape: OFFSET
+          count: 2
         - type: FIREWORK
           mode: ON_EQUIP
           shape: BURST
@@ -326,8 +335,9 @@ items:
       name: '&#4FC3F7S&#64B5F6t&#7AA9F5o&#8F9EF4r&#A493F3m &#B989F2B&#CD7EF1o&#E274F0w'
       lore:
       - ''
-      - '&7A bow crackling with lightning,'
+      - '&7Legendary bow crackling with lightning,'
       - '&7each shot commands the storm.'
+      - '&#A48111[Legendary].'
       - ''
       - '&b&lPASSIVE:'
       - '&7- &b+25% Arrow Speed'
@@ -344,6 +354,7 @@ items:
     - PUNCH;2
     - INFINITY;1
     flags:
+      UNBREAKABLE: true
       HIDE_ENCHANTS: true
     glow: true
     passive_effects:
@@ -356,8 +367,8 @@ items:
         particles:
         - type: ELECTRIC_SPARK
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
+          shape: OFFSET
+          count: 2
   
   # ==========================================================================
   # ⚔️ SECTION 4: SPEARS / TRIDENTS
@@ -428,8 +439,8 @@ items:
         particles:
         - type: FLAME
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
+          shape: OFFSET
+          count: 3
   
   void_spear:
     material: TRIDENT
@@ -437,13 +448,14 @@ items:
       name: '&#311B92V&#4527A0o&#5A2FB0i&#6E3CC0d &#8249D0S&#965FDFp&#AA79E9e&#BE9FF2a&#D2C4FCr'
       lore:
       - ''
-      - '&7A spear that tears reality,'
-      - '&7pulling enemies toward you.'
+      - '&7Legendary spear that tears reality,'
+      - '&7pulls enemies into the void.'
+      - '&#A48111[Legendary].'
       - ''
       - '&5&lPASSIVE:'
       - '&7- &d+2 Block Reach'
       - '&7- &d+20% Attack Speed'
-      - '&7- &dPulls enemies on hit'
+      - '&7- &dCurse enemies on hit'
       - '&7- &d+15% Damage to slowed'
       - ''
     enchantments:
@@ -454,6 +466,7 @@ items:
     - RIPTIDE;3
     - CHANNELING;1
     flags:
+      UNBREAKABLE: true
       HIDE_ENCHANTS: true
     glow: true
     passive_effects:
@@ -466,8 +479,8 @@ items:
         particles:
         - type: PORTAL
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
+          shape: OFFSET
+          count: 5
   
   # ==========================================================================
   # 🛡️ SECTION 5: SHIELDS
@@ -541,6 +554,7 @@ items:
       - ''
       - '&7Legendary shield of ancient kings,'
       - '&7grants invulnerability when timed right.'
+      - '&#A48111[Legendary].'
       - ''
       - '&e&lPASSIVE:'
       - '&7- &6+30% Block Efficiency'
@@ -552,6 +566,7 @@ items:
     - UNBREAKING;5
     - MENDING;1
     flags:
+      UNBREAKABLE: true
       HIDE_ENCHANTS: true
     glow: true
     passive_effects:
@@ -598,7 +613,7 @@ items:
         particles:
         - type: SPLASH
           mode: CONTINUOUS
-          shape: POINT
+          shape: OFFSET
           count: 1
   
   mage_talisman:
@@ -625,7 +640,7 @@ items:
         particles:
         - type: ENCHANTMENT_TABLE
           mode: CONTINUOUS
-          shape: POINT
+          shape: OFFSET
           count: 1
   
   warriors_seal:
@@ -636,8 +651,9 @@ items:
         &#7B1FA2S&#512DA8e&#303F9Fa&#1976D2l'
       lore:
       - ''
-      - '&7An ancient seal of fallen warriors,'
+      - '&7Legendary ancient seal of fallen warriors,'
       - '&7grants combat mastery.'
+      - '&#A48111[Legendary].'
       - ''
       - '&c&lPASSIVE (Inventory):'
       - '&7- &c+10% Attack Damage'
@@ -657,8 +673,8 @@ items:
         particles:
         - type: SOUL
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
+          shape: OFFSET
+          count: 5
   
   # ==========================================================================
   # 🔥 SECTION 7: DRAGONBORN SET
@@ -2616,7 +2632,7 @@ items:
           - GENERIC_ARMOR;ADD_NUMBER;1.0
   
   artisan_chisel:
-    material: IRON_PICKAXE
+    material: DIAMOND_PICKAXE
     display:
       name: '&6ᴀʀᴛɪꜱᴀɴ_ᴄʜɪꜱᴇʟ'
       lore:
@@ -2638,7 +2654,7 @@ items:
     glow: true
   
   seasoned_cloak:
-    material: IRON_CHESTPLATE
+    material: DIAMOND_CHESTPLATE
     display:
       name: '&aꜱᴇᴀꜱᴏɴᴇᴅ_ᴄʟᴏᴀᴋ'
       lore:
@@ -2670,7 +2686,7 @@ items:
           - SLOW_FALLING;1
   
   seasoned_boots:
-    material: IRON_BOOTS
+    material: DIAMOND_BOOTS
     display:
       name: '&aꜱᴇᴀꜱᴏɴᴇᴅ_ʙᴏᴏᴛꜱ'
       lore:

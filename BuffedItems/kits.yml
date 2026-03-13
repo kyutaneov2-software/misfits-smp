@@ -18,8 +18,7 @@ kits:
     - iron_shovel 1 efficiency:3 unbreaking:2
     - bread 32
     - torch 64
-    - cooked_beef 16
-    - compass 1 name:&7ᴡᴀɴᴅᴇʀᴇʀꜱ_ɢᴜɪᴅᴇ lore:&8❖_&8&lɴᴇᴠᴇʀ_ʟᴏꜱᴛ    
+    - cooked_beef 16 
     # ✨ FREE BUFFEDITEMS - Wanderer's Compass
     - /buffeditems:bi give {player} wanderer_compass 1
     - /tell {player} &7⚡ The path is clear before you...
@@ -32,8 +31,6 @@ kits:
     - iron_chestplate 1 name:&aʀᴏᴏᴛᴇᴅ_ᴄᴏᴀᴛ lore:&8❖_&lɢʀᴏᴡɴ_ᴛᴏ_ʟᴀꜱᴛ protection:4 unbreaking:3
     - iron_leggings 1 name:&aʀᴏᴏᴛᴇᴅ_ʟᴇɢɢɪɴɢꜱ lore:&8❖_&lꜱᴛᴇᴀᴅʏ_ꜱᴛᴀɴᴄᴇ protection:4 unbreaking:3
     - iron_boots 1 name:&aʀᴏᴏᴛᴇᴅ_ʙᴏᴏᴛꜱ lore:&8❖_&lɴᴏ_ꜱʟɪᴘ_ɪɴ_ᴍᴜᴅ feather_falling:4 unbreaking:3 depth_strider:2
-    - iron_pickaxe 1 name:&aʀᴏᴏᴛᴇᴅ_ᴘɪᴄᴋ lore:&8❖_&lᴇᴀʀᴛʜ_ʏɪᴇʟᴅꜱ efficiency:4 fortune:1 unbreaking:3
-    - iron_axe 1 name:&aʀᴏᴏᴛᴇᴅ_ᴀxᴇ lore:&8❖_&lᴄᴜᴛꜱ_ᴡʜᴀᴛ_ɢʀᴏᴡꜱ efficiency:4
     - iron_shovel 1 name:&aʀᴏᴏᴛᴇᴅ_ꜱʜᴏᴠᴇʟ lore:&8❖_&lᴛɪʟʟꜱ_ᴅᴇᴇᴘ efficiency:4
     - oak_log 64 name:&aʀᴏᴏᴛᴇᴅ_ʟᴜᴍʙᴇʀ lore:&8❖_&lꜰʀᴇꜱʜ_ᴄᴜᴛ
     - cobblestone 128 name:&aʀᴏᴏᴛᴇᴅ_ꜱᴛᴏɴᴇ lore:&8❖_&lʀᴀᴡ_ᴀɴᴅ_ꜰɪʀᴍ
@@ -63,7 +60,7 @@ kits:
     - bucket 1
     - lava_bucket 1
     
-    # ✨ FREE BUFFEDITEMS - Delver's Lantern + Helmett
+    # ✨ FREE BUFFEDITEMS - Delver's Lantern + Helmet
     - /buffeditems:bi give {player} delver_lantern 1
     - /buffeditems:bi give {player} delver_helmet 1
     - /tell {player} &e⛏️ The depths hold no fear for you!
