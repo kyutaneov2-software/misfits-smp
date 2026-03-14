@@ -1260,14 +1260,24 @@ h1.hero-title {
 .world-bg {
     position: absolute;
     inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform .4s;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s;
+    display: block; /* was flex, but now it's a background container */
 }
 
 .world-card:hover .world-bg {
     transform: scale(1.05);
+}
+
+/* Optional: darken background image slightly for better text contrast */
+.world-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.2);
+    pointer-events: none;
 }
 
 .world-overlay {
@@ -1554,46 +1564,216 @@ h1.hero-title {
     box-shadow: 0 0 15px rgba(201,168,76,0.15);
 }
 
+/* FOUNDERS - Unique Fantasy Style */
 .founders-row {
     display: flex;
-    gap: 2rem;
+    gap: 2.5rem;
     justify-content: center;
     flex-wrap: wrap;
     margin-bottom: 3rem;
 }
 
-.founder-card {
-    background: rgba(26,22,46,0.5);
-    border: 1px solid rgba(201,168,76,0.15);
-    padding: 2rem 2.5rem;
+.founder-card-fantasy {
+    width: 260px;
+    background: rgba(10, 8, 20, 0.75);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(201, 168, 76, 0.1) inset;
+    clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+    transition: all 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+    position: relative;
+    overflow: visible;
+}
+
+.founder-card-fantasy::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(201, 168, 76, 0.15), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.founder-card-fantasy:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-light);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(201, 168, 76, 0.3);
+}
+
+.founder-card-fantasy:hover::before {
+    opacity: 1;
+}
+
+/* Runic frame around head */
+.founder-head-frame {
+    position: relative;
+    padding: 2rem 1.5rem 1rem 1.5rem;
+    display: flex;
+    justify-content: center;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    background: linear-gradient(180deg, rgba(42, 34, 72, 0.5) 0%, transparent 100%);
+}
+
+.founder-head-frame::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 20%;
+    width: 60%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    opacity: 0.3;
+}
+
+.founder-rune-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140px;
+    height: 140px;
+    border: 1px solid rgba(201, 168, 76, 0.2);
+    border-radius: 50%;
+    animation: slowSpin 30s linear infinite;
+    pointer-events: none;
+}
+
+.founder-rune-ring::before,
+.founder-rune-ring::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    border: 1px dashed rgba(201, 168, 76, 0.15);
+}
+
+.founder-rune-ring::before {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    animation: slowSpinReverse 20s linear infinite;
+}
+
+.founder-rune-ring::after {
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px dotted rgba(201, 168, 76, 0.1);
+}
+
+.founder-head {
+    display: block;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid var(--gold-dark);
+    image-rendering: pixelated;
+    transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.4);
+    position: relative;
+    z-index: 2;
+    background: var(--deep); /* fallback while loading */
+}
+
+.founder-card-fantasy:hover .founder-head {
+    transform: scale(1.05);
+    border-color: var(--gold-light);
+    box-shadow: 0 0 30px var(--gold);
+}
+
+.founder-info {
+    padding: 1.5rem 1.2rem 1.8rem;
     text-align: center;
-    min-width: 200px;
-    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
-    transition: border-color .3s, box-shadow .3s;
+    position: relative;
+    z-index: 2;
 }
 
-.founder-card:hover {
-    border-color: rgba(201,168,76,0.4);
-    box-shadow: 0 0 25px rgba(201,168,76,0.1);
-}
-
-.founder-avatar {
-    margin-bottom: 1rem;
-}
-
-.founder-name {
+.founder-name-large {
     font-family: 'Cinzel Decorative', serif;
-    font-size: .9rem;
+    font-size: 1.4rem;
+    font-weight: 700;
     color: var(--gold-light);
-    margin-bottom: .3rem;
+    text-shadow: 0 0 15px rgba(201, 168, 76, 0.5);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
 }
 
-.founder-role {
-    font-size: .7rem;
-    letter-spacing: .15em;
-    color: rgba(201,168,76,0.5);
-    text-transform: uppercase;
+.founder-badge {
+    display: inline-block;
     font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+    background: rgba(201, 168, 76, 0.1);
+    padding: 0.4rem 1.2rem;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    box-shadow: 0 0 10px rgba(201, 168, 76, 0.2);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
+}
+
+.founder-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding-top: 1rem;
+    border-top: 1px dashed rgba(201, 168, 76, 0.3);
+}
+
+.founder-detail-item {
+    font-size: 0.75rem;
+    color: var(--silver);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.founder-card-fantasy:hover .founder-detail-item {
+    opacity: 1;
+}
+
+.founder-detail-item .icon-svg {
+    width: 1rem;
+    height: 1rem;
+    stroke: var(--gold);
+}
+
+/* Animations */
+@keyframes slowSpin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes slowSpinReverse {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(-360deg); }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .founder-card-fantasy {
+        width: 220px;
+    }
+    .founder-head {
+        width: 90px;
+        height: 90px;
+    }
+    .founder-rune-ring {
+        width: 120px;
+        height: 120px;
+    }
+    .founder-name-large {
+        font-size: 1.2rem;
+    }
 }
 
 /* DISCORD */
@@ -1856,5 +2036,379 @@ footer {
     footer .footer-inner {
         flex-direction: column;
         text-align: center;
+    }
+}
+
+
+/* ===== MYSTICAL PRELOADER ===== */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #0a0818 0%, #03020a 100%);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 1s ease, visibility 1s;
+    pointer-events: none;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    text-align: center;
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    letter-spacing: 0.2em;
+    position: relative;
+}
+
+/* Container for the rune and effects */
+.loader-rune-container {
+    position: relative;
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Central rune */
+.loader-rune {
+    width: 80px;
+    height: 80px;
+    background: transparent;
+    border: 3px solid var(--gold);
+    transform: rotate(45deg);
+    animation: spin 8s linear infinite;
+    position: relative;
+    z-index: 3;
+    box-shadow: 0 0 30px var(--glow-gold), inset 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+.loader-rune::before,
+.loader-rune::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    opacity: 0.4;
+}
+
+.loader-rune::before {
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border: 1px dashed var(--gold);
+    animation: pulseGlow 2s ease-in-out infinite;
+}
+
+.loader-rune::after {
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    transform: translate(-50%, -50%);
+    background: transparent;
+    border: 2px solid var(--gold-light);
+    border-radius: 0;
+    animation: spinReverse 4s linear infinite;
+}
+
+/* Outer ring */
+.loader-ring {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border: 2px solid transparent;
+    border-top: 2px solid var(--gold);
+    border-bottom: 2px solid var(--gold);
+    border-radius: 50%;
+    animation: spin 6s linear infinite;
+    z-index: 2;
+    opacity: 0.5;
+}
+
+.loader-ring::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+    border: 1px dashed var(--gold-dark);
+    border-radius: 50%;
+    animation: spinReverse 10s linear infinite;
+}
+
+/* Floating particles */
+.loader-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: spin 20s linear infinite;
+}
+
+.loader-particles span {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--gold-light);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--gold);
+    opacity: 0.6;
+}
+
+/* Position particles in a circle */
+.loader-particles span:nth-child(1) { top: 10%; left: 50%; }
+.loader-particles span:nth-child(2) { top: 20%; left: 80%; }
+.loader-particles span:nth-child(3) { top: 50%; left: 90%; }
+.loader-particles span:nth-child(4) { top: 80%; left: 70%; }
+.loader-particles span:nth-child(5) { top: 90%; left: 30%; }
+.loader-particles span:nth-child(6) { top: 60%; left: 10%; }
+.loader-particles span:nth-child(7) { top: 30%; left: 20%; }
+.loader-particles span:nth-child(8) { top: 40%; left: 40%; }
+
+/* Animated text */
+.loader-text {
+    display: inline-block;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: var(--gold-light);
+    text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-dark);
+    animation: textPulse 2s ease-in-out infinite;
+    margin-top: 1rem;
+    position: relative;
+}
+
+.loader-text::before,
+.loader-text::after {
+    content: '✦';
+    margin: 0 1rem;
+    opacity: 0.6;
+    animation: sparkle 1.5s ease-in-out infinite;
+}
+
+.loader-text::before {
+    margin-right: 1.5rem;
+}
+.loader-text::after {
+    margin-left: 1.5rem;
+}
+
+/* Keyframes */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(-360deg); }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.2;
+        box-shadow: 0 0 10px var(--gold);
+    }
+    50% {
+        opacity: 0.6;
+        box-shadow: 0 0 30px var(--gold-light), 0 0 60px var(--gold);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% {
+        text-shadow: 0 0 10px var(--gold), 0 0 20px var(--gold-dark);
+        opacity: 0.9;
+    }
+    50% {
+        text-shadow: 0 0 20px var(--gold-light), 0 0 40px var(--gold), 0 0 80px var(--gold-dark);
+        opacity: 1;
+    }
+}
+
+@keyframes sparkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+    .loader-rune-container {
+        width: 120px;
+        height: 120px;
+    }
+    .loader-rune {
+        width: 60px;
+        height: 60px;
+    }
+    .loader-rune::after {
+        width: 30px;
+        height: 30px;
+    }
+    .loader-text {
+        font-size: 1rem;
+    }
+    .loader-particles span {
+        width: 3px;
+        height: 3px;
+    }
+}
+
+/* ===== MYSTICAL MUSIC TOGGLE ===== */
+.music-toggle {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    filter: drop-shadow(0 0 15px rgba(201, 168, 76, 0.3));
+    padding: 0;
+}
+
+.music-toggle:hover {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 25px rgba(201, 168, 76, 0.6));
+}
+
+/* Runic ring container */
+.music-rune-ring {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: rgba(13, 11, 26, 0.9);
+    border: 2px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-shadow: 0 0 20px rgba(201, 168, 76, 0.3), inset 0 0 10px rgba(201, 168, 76, 0.2);
+}
+
+/* Rotating ring effect (only visible when playing) */
+.music-toggle.playing .music-rune-ring::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    right: -4px;
+    bottom: -4px;
+    border-radius: 50%;
+    border: 2px dashed transparent;
+    border-top-color: var(--gold-light);
+    border-bottom-color: var(--gold-light);
+    animation: spin 4s linear infinite;
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+/* Bars container */
+.music-bars {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 4px;
+    width: 28px;
+    height: 28px;
+    z-index: 2;
+}
+
+/* Individual bars with gradient */
+.music-bars span {
+    display: block;
+    width: 5px;
+    background: linear-gradient(to top, var(--gold-dark), var(--gold-light));
+    border-radius: 3px;
+    box-shadow: 0 0 8px var(--gold-light);
+    transition: height 0.2s ease;
+    height: 14px; /* static height when paused */
+}
+
+/* Animated bars when playing */
+.music-toggle.playing .music-bars span {
+    animation: mysticPulse 1.4s ease-in-out infinite;
+}
+
+.music-toggle.playing .music-bars span:nth-child(1) {
+    animation-delay: 0s;
+}
+.music-toggle.playing .music-bars span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+.music-toggle.playing .music-bars span:nth-child(3) {
+    animation-delay: 0.6s;
+}
+
+@keyframes mysticPulse {
+    0%, 100% {
+        height: 10px;
+        opacity: 0.8;
+        box-shadow: 0 0 5px var(--gold);
+    }
+    50% {
+        height: 24px;
+        opacity: 1;
+        box-shadow: 0 0 15px var(--gold-light), 0 0 25px var(--gold);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Extra runic sparkles on hover */
+.music-toggle:hover .music-rune-ring {
+    border-color: var(--gold-light);
+    box-shadow: 0 0 30px var(--gold), inset 0 0 15px var(--gold);
+}
+
+/* Mobile adjustment */
+@media (max-width: 768px) {
+    .music-toggle {
+        width: 50px;
+        height: 50px;
+        bottom: 1rem;
+        right: 1rem;
+    }
+    .music-bars {
+        width: 22px;
+        height: 22px;
+        gap: 3px;
+    }
+    .music-bars span {
+        width: 4px;
+    }
+    @keyframes mysticPulse {
+        0%, 100% { height: 8px; }
+        50% { height: 18px; }
     }
 }

@@ -110,10 +110,10 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
         { file: 'scene_1.webp', label: 'THE GRAND SPAWN' },
         { file: 'scene_2.webp', label: 'CHALLENGE YOURSELF' },
         { file: 'scene_3.webp', label: 'WHERE YOU START' },
-        { file: 'scene_5.webp', label: 'SEASONAL SUNSETS' },
-        { file: 'scene_6.webp', label: 'RANK COSMETICS' },
-        { file: 'scene_7.webp', label: 'MYTHIC BOSSES' },
-        { file: 'scene_8.webp', label: 'DUNGEON EXPLORATION' }
+        { file: 'season.png', label: 'REALISTIC SEASONS' },
+        { file: 'cosmetic.png', label: 'RANK COSMETICS' },
+        { file: 'dungeonBoss.png', label: 'MYTHIC BOSSES' },
+        { file: 'dungeon.png', label: 'DUNGEON EXPLORATION' }
     ];
     
     // Try different extensions if needed
@@ -510,39 +510,6 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     }
 })();
 
-// ==================== LORE AUDIO BUTTON ====================
-(function initLoreAudio() {
-    const btn = document.getElementById('loreAudioBtn');
-    const audio = document.getElementById('loreAudio');
-    if (!btn || !audio) return;
-    
-    // Example free track - replace with actual sound file
-    audio.src = 'audio/MisfitsLoreMusic.mp3';
-    
-    btn.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play().catch(e => console.log('Audio play failed:', e));
-            btn.innerHTML = `
-                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
-                <span>Silence the chant</span>
-            `;
-        } else {
-            audio.pause();
-            btn.innerHTML = `
-                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                <span>Hear the whispers</span>
-            `;
-        }
-    });
-    
-    audio.addEventListener('ended', () => {
-        btn.innerHTML = `
-            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            <span>Hear the whispers</span>
-        `;
-    });
-})();
-
 // ==================== FAQ ====================
 (function buildFaq() {
     const list = document.getElementById('faqList');
@@ -579,110 +546,140 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     });
 })();
 
-// ==================== WORLDS GRID (with SVG icons) ====================
+// ==================== WORLDS GRID (with real images) ====================
 (function buildWorlds() {
     const grid = document.getElementById('worldsGrid');
     if (!grid) return;
-    
-    grid.innerHTML = `
-        <div class="world-card unlocked">
-            <div class="world-bg" style="background:linear-gradient(135deg,#0f2a0f,#1a3d1a)">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/>
-                    <path d="M2 12h20"/>
-                    <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-                </svg>
-            </div>
+
+    const worlds = [
+        {
+            name: 'The Overworld',
+            req: '✦ Open to All Adventurers',
+            image: 'overworld.jpg',
+            unlocked: true,
+            lockColor: '#4ade80' // green for unlocked
+        },
+        {
+            name: 'The Nether',
+            req: '⚠ Combined Skill Level 50+',
+            image: 'nether.png',
+            unlocked: false,
+            lockColor: '#ef4444' // red for locked
+        },
+        {
+            name: 'The End',
+            req: '⚠ Combined Skill Level 75+',
+            image: 'end.png',
+            unlocked: false,
+            lockColor: '#ef4444'
+        },
+        {
+            name: 'Mystery Realm',
+            req: '⚠ Find the Hidden Portal',
+            image: 'images/mystery.webp',
+            unlocked: false,
+            lockColor: '#c9a84c' // gold for mystery
+        }
+    ];
+
+    grid.innerHTML = '';
+
+    worlds.forEach(world => {
+        const card = document.createElement('div');
+        card.className = `world-card ${world.unlocked ? 'unlocked' : ''}`;
+
+        // Try to load image, fallback to gradient if fails
+        const imgUrl = `images/${world.image}`;
+        const bgStyle = `background-image: url('${imgUrl}'); background-size: cover; background-position: center;`;
+
+        // Lock icon SVG (different based on unlocked state)
+        const lockSvg = world.unlocked
+            ? `<svg class="icon-svg" viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>`
+            : `<svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>`;
+
+        card.innerHTML = `
+            <div class="world-bg" style="${bgStyle}"></div>
             <div class="world-overlay"></div>
             <div class="world-content">
-                <div class="world-name">The Overworld</div>
-                <div class="world-req">✦ Open to All Adventurers</div>
+                <div class="world-name">${world.name}</div>
+                <div class="world-req">${world.req}</div>
             </div>
-            <div class="world-lock">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
-                </svg>
-            </div>
-        </div>
-        <div class="world-card">
-            <div class="world-bg" style="background:linear-gradient(135deg,#2a0a00,#4a1500)">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="4"/>
-                    <path d="M12 2v4M22 12h-4M12 20v4M4 12H2M20 20l-3-3M20 4l-3 3M4 4l3 3M4 20l3-3"/>
-                </svg>
-            </div>
-            <div class="world-overlay"></div>
-            <div class="world-content">
-                <div class="world-name">The Nether</div>
-                <div class="world-req">⚠ Combined Skill Level 50+</div>
-            </div>
-            <div class="world-lock">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                </svg>
-            </div>
-        </div>
-        <div class="world-card">
-            <div class="world-bg" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3a)">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="2"/>
-                    <path d="M12 2v2M22 12h-2M12 20v2M4 12H2M17.66 6.34l-1.41 1.41M6.34 17.66l1.41-1.41M17.66 17.66l-1.41-1.41M6.34 6.34l1.41 1.41"/>
-                </svg>
-            </div>
-            <div class="world-overlay"></div>
-            <div class="world-content">
-                <div class="world-name">The End</div>
-                <div class="world-req">⚠ Combined Skill Level 75+</div>
-            </div>
-            <div class="world-lock">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                    <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                </svg>
-            </div>
-        </div>
-        <div class="world-card">
-            <div class="world-bg" style="background:linear-gradient(135deg,#1a001a,#2d003d)">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M21 12a9 9 0 0 0-9-9M3 12a9 9 0 0 0 9 9M12 3v18"/>
-                    <circle cx="12" cy="12" r="2" fill="none"/>
-                </svg>
-            </div>
-            <div class="world-overlay"></div>
-            <div class="world-content">
-                <div class="world-name">Mystery Realm</div>
-                <div class="world-req">⚠ Find the Hidden Portal</div>
-            </div>
-            <div class="world-lock">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"/>
-                    <line x1="12" y1="8" x2="12" y2="12"/>
-                    <line x1="12" y1="16" x2="12.01" y2="16"/>
-                </svg>
-            </div>
-        </div>
-    `;
+            <div class="world-lock" style="color: ${world.lockColor};">${lockSvg}</div>
+        `;
+
+        // Fallback if image fails to load
+        const bgDiv = card.querySelector('.world-bg');
+        const img = new Image();
+        img.onload = () => {}; // success, do nothing
+        img.onerror = () => {
+            // Apply gradient fallback based on world
+            let gradient = '';
+            if (world.name === 'The Overworld') gradient = 'linear-gradient(135deg,#0f2a0f,#1a3d1a)';
+            else if (world.name === 'The Nether') gradient = 'linear-gradient(135deg,#2a0a00,#4a1500)';
+            else if (world.name === 'The End') gradient = 'linear-gradient(135deg,#0a0a1a,#1a1a3a)';
+            else gradient = 'linear-gradient(135deg,#1a001a,#2d003d)';
+            bgDiv.style.background = gradient;
+            bgDiv.style.backgroundSize = 'cover'; // not needed but keep
+        };
+        img.src = imgUrl;
+
+        grid.appendChild(card);
+    });
 })();
 
-// ==================== FOUNDERS (static) ====================
+// ==================== FOUNDERS (Fantasy style) ====================
 (function buildFounders() {
     const row = document.getElementById('foundersRow');
     if (!row) return;
-    
-    row.innerHTML = `
-        <div class="founder-card">
-            <div class="founder-avatar"><svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/></svg></div>
-            <div class="founder-name">KyutaOfficial</div>
-            <div class="founder-role">Realm Keeper</div>
-        </div>
-        <div class="founder-card">
-            <div class="founder-avatar"><svg class="icon-svg" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
-            <div class="founder-name">GhostKun</div>
-            <div class="founder-role">World Architect</div>
-        </div>
-    `;
+
+    const founders = [
+        { 
+            name: 'KyutaOfficial', 
+            role: 'Realm Keeper', 
+            joined: '2025',
+            contribution: 'Founder & Lead Developer'
+        },
+        { 
+            name: 'GhostKun', 
+            role: 'World Architect', 
+            joined: '2025',
+            contribution: 'Lore Mastermind & Builder'
+        }
+    ];
+
+    row.innerHTML = '';
+
+    founders.forEach(founder => {
+        const card = document.createElement('div');
+        card.className = 'founder-card-fantasy';
+
+        const headUrl = `https://mc-heads.net/avatar/${founder.name}/120`;
+
+        card.innerHTML = `
+            <div class="founder-head-frame">
+                <div class="founder-rune-ring"></div>
+                <img src="${headUrl}" alt="${founder.name}" class="founder-head" loading="lazy">
+            </div>
+            <div class="founder-info">
+                <div class="founder-name-large">${founder.name}</div>
+                <div class="founder-badge">${founder.role}</div>
+                <div class="founder-details">
+                    <span class="founder-detail-item">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        Since ${founder.joined}
+                    </span>
+                    <span class="founder-detail-item">
+                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-2.17 2.17a4 4 0 0 1-5.66 0L9 12 3.44 17.56"/><circle cx="12" cy="12" r="10"/></svg>
+                        ${founder.contribution}
+                    </span>
+                </div>
+            </div>
+        `;
+
+        row.appendChild(card);
+    });
 })();
+
 
 // ==================== SUPPORTERS (dynamic from JSON) ====================
 (async function loadSupporters() {
@@ -882,6 +879,149 @@ async function updateDiscordStats() {
     
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 })();
+
+// ==================== GLOBAL VARIABLES FOR AUDIO ====================
+let bgMusicStarted = false;          // whether background music has ever been played
+let bgMusicPlaying = false;          // current playing state
+const bgMusic = document.getElementById('bgMusic');
+const clickSound = document.getElementById('clickSound');
+const musicToggle = document.getElementById('musicToggle');
+const musicIconPlay = document.getElementById('musicIconPlay');
+const musicIconPause = document.getElementById('musicIconPause');
+
+// ==================== PRELOADER ====================
+window.addEventListener('load', () => {
+    // Small delay to ensure everything is ready
+    setTimeout(() => {
+        document.getElementById('preloader').classList.add('hidden');
+    }, 800); // adjust for desired effect
+});
+
+// ==================== BACKGROUND MUSIC CONTROL ====================
+function playBgMusic() {
+    if (!bgMusicStarted) {
+        bgMusicStarted = true;
+    }
+    bgMusic.play().catch(e => console.log('Bg music play failed:', e));
+    bgMusicPlaying = true;
+    updateMusicButtonIcons(true);
+}
+
+function pauseBgMusic() {
+    bgMusic.pause();
+    bgMusicPlaying = false;
+    updateMusicButtonIcons(false);
+}
+
+function toggleBgMusic() {
+    if (bgMusic.paused) {
+        playBgMusic();
+    } else {
+        pauseBgMusic();
+    }
+}
+
+function updateMusicButtonIcons(playing) {
+    if (musicToggle) {
+        if (playing) {
+            musicToggle.classList.add('playing');
+        } else {
+            musicToggle.classList.remove('playing');
+        }
+    }
+}
+
+// ==================== CLICK SOUND ====================
+function playClickSound() {
+    if (!clickSound) return;
+    clickSound.currentTime = 0; // rewind to start
+    clickSound.play().catch(e => {
+        // Autoplay restrictions – ignore silently
+    });
+}
+
+// Define interactive elements (same as cursor ring)
+const interactiveSelectors = [
+    'a', 'button', '.btn-primary', '.btn-secondary', '.gallery-card',
+    '.faq-q', '.server-ip-val', '.nav-cta', '.rank-node', '.world-card',
+    '.supporter-badge', '.founder-card', '.audio-mystic', '.music-toggle'
+];
+
+// Global click listener for first interaction and click sound
+document.addEventListener('click', (e) => {
+    // Start background music on first click anywhere
+    if (!bgMusicStarted) {
+        playBgMusic();
+    }
+
+    // Play click sound only if the clicked element is interactive
+    if (e.target.closest(interactiveSelectors.join(','))) {
+        playClickSound();
+    }
+});
+
+// Music toggle button click
+if (musicToggle) {
+    musicToggle.addEventListener('click', (e) => {
+        e.stopPropagation(); // avoid double-triggering the global click
+        toggleBgMusic();
+        // click sound will be played by the global handler because button is interactive
+    });
+}
+
+// ==================== MODIFIED LORE AUDIO HANDLER ====================
+(function initLoreAudio() {
+    const btn = document.getElementById('loreAudioBtn');
+    const audio = document.getElementById('loreAudio');
+    if (!btn || !audio) return;
+
+    audio.src = 'audio/MisfitsLoreMusic.mp3'; // make sure path is correct
+
+    btn.addEventListener('click', (e) => {
+        e.stopPropagation(); // prevent global click from interfering (click sound still plays)
+
+        if (audio.paused) {
+            // Before playing lore audio, pause background music if playing
+            if (!bgMusic.paused) {
+                pauseBgMusic();
+            }
+            audio.play().catch(e => console.log('Lore audio play failed:', e));
+            btn.innerHTML = `
+                <svg class="icon-svg" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                <span>Silence the chant</span>
+            `;
+        } else {
+            audio.pause();
+            btn.innerHTML = `
+                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <span>Hear the whispers</span>
+            `;
+            // Do NOT resume background music automatically – as per requirement
+        }
+    });
+
+    audio.addEventListener('ended', () => {
+        btn.innerHTML = `
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <span>Hear the whispers</span>
+        `;
+        // Do NOT resume background music automatically
+    });
+})();
+
+// ==================== (Optional) Handle visibility change ====================
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden && bgMusicPlaying) {
+        bgMusic.pause();
+    } else if (!document.hidden && bgMusicStarted && bgMusicPlaying) {
+        // Resume only if it was playing before
+        bgMusic.play().catch(e => {});
+    }
+});
+
+// ==================== ENSURE MUSIC BUTTON STATE ON PAGE LOAD ====================
+// Initially music is not playing, so show play icon
+updateMusicButtonIcons(false);
 
 // ==================== COPY IP ====================
 window.copyIP = function() {

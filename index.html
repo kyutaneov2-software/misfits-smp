@@ -16,10 +16,45 @@
 </head>
 <body>
 
+    <!-- ===== MYSTICAL PRELOADER ===== -->
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="loader-rune-container">
+                <div class="loader-rune"></div>
+                <div class="loader-ring"></div>
+                <div class="loader-particles">
+                    <span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+            <span class="loader-text">The Realm awakens...</span>
+        </div>
+    </div>
+
     <canvas id="stars-canvas"></canvas>
     <div class="cursor" id="cursor"></div>
     <div class="cursor-ring" id="cursor-ring"></div>
     <div id="toast">✦ Copied to clipboard!</div>
+
+    <!-- ===== FLOATING MUSIC TOGGLE (Mystical animated rune) ===== -->
+    <button id="musicToggle" class="music-toggle" aria-label="Toggle background music">
+        <div class="music-rune-ring">
+            <div class="music-bars">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </button>
+
+    <!-- ===== NEW: HIDDEN AUDIO ELEMENTS ===== -->
+    <audio id="bgMusic" loop preload="auto">
+        <source src="audio/background-music.mp3" type="audio/mpeg">
+        <!-- fallback: developer must replace with actual file -->
+    </audio>
+    <audio id="clickSound" preload="auto">
+        <source src="audio/click-sound.mp3" type="audio/mpeg">
+    </audio>
 
     <!-- NAV -->
     <nav id="navbar">
@@ -211,7 +246,7 @@
         </div>
         <div class="supporters-grid reveal" id="supportersGrid"></div>
         <div style="text-align:center;margin-top:2rem;opacity:.5;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em">
-            WANT YOUR NAME HERE? SUPPORT THE SERVER VIA INVITES, DONATIONS, OR SPONSORSHIP.
+            WANT YOUR NAME HERE? SUPPORT THE SERVER VIA INVITES, DONATIONS, VIP's, OR SPONSORSHIP.
         </div>
     </section>
 
