@@ -181,6 +181,8 @@ items:
           - SPEED;2
           attributes:
           - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+      visuals:
+        particles: []
     active_ability:
       enabled: true
       cooldown: 10
@@ -578,7 +580,7 @@ items:
       visuals:
         particles:
         - type: TOTEM_OF_UNDYING
-          mode: ON_EQUIP
+          mode: CONTINUOUS
           shape: BURST
           count: 5
   
@@ -1741,11 +1743,10 @@ items:
       - ''
     enchantments:
     - IMPALING;6
-    - PLUNGEE;3
     - UNBREAKING;5
     - MENDING;1
-    - FIREASPECT;3
     - CHANNELING;1
+    - FIRE_ASPECT;3
     enchants: true
     enchantable: true
     enchantment-table:
@@ -1769,7 +1770,7 @@ items:
           count: 1
           speed: 0.02
           radius: 0.5
-
+  
   
   # ==========================================================================
   # ⚔️ SECTION 10: BERSERKER SET
@@ -2888,173 +2889,510 @@ items:
   # ==========================================================================
 
   referral_reward_tokens_tier1:
-      material: NETHER_STAR
-      permission: buffeditems.referral.5
-      display:
-        name: '&#C0C0C0&lC&#C6C6C6&lo&#CCCCCC&lm&#D2D2D2&lm&#D8D8D8&lu&#DEDEDE&ln&#E4E4E4&li&#EAEAEA&lt&#F0F0F0&ly
-          &#FFFFFF&lS&#FAFAFA&lu&#F5F5F5&lp&#F0F0F0&lp&#EBEBEB&lo&#E6E6E6&lr&#E0E0E0&lt&#DBDBDB&le&#D6D6D6&lr'
-        lore:
-        - ''
-        - '&7A token of appreciation for bringing'
-        - '&75 new players to the Misfits community!'
-        - ''
-        - '&6&lREWARDS:'
-        - '&8  &f❖ &e$5,000 in-game money'
-        - ''
-        - '&8  &f❖ &b+5,000 Mining XP'
-        - '&8  &f❖ &b+5,000 Foraging XP'
-        - '&8  &f❖ &b+5,000 Farming XP'
-        - '&8  &f❖ &b+5,000 Fishing XP'
-        - '&8  &f❖ &b+5,000 Excavation XP'
-        - '&8  &f❖ &b+5,000 Archery XP'
-        - '&8  &f❖ &b+5,000 Defense XP'
-        - '&8  &f❖ &b+5,000 Fighting XP'
-        - '&8  &f❖ &b+5,000 Endurance XP'
-        - '&8  &f❖ &b+5,000 Agility XP'
-        - '&8  &f❖ &b+5,000 Alchemy XP'
-        - '&8  &f❖ &b+5,000 Enchanting XP'
-        - '&8  &f❖ &b+5,000 Sorcery XP'
-        - '&8  &f❖ &b+5,000 Healing XP'
-        - '&8  &f❖ &b+5,000 Forging XP'
-        - ''
-        - '&7&oFirst step to becoming a legend!'
-      glow: true
-      active_ability:
-      enabled: true
-      cooldown: 0
-      actions:
-        commands:
-        - '[console] eco give %player% 5000'
-        - '[console] sk skill add %player% 5000 mining'
-        - '[console] sk skill add %player% 5000 foraging'
-        - '[console] sk skill add %player% 5000 farming'
-        - '[console] sk skill add %player% 5000 fishing'
-        - '[console] sk skill add %player% 5000 excavation'
-        - '[console] sk skill add %player% 5000 archery'
-        - '[console] sk skill add %player% 5000 defense'
-        - '[console] sk skill add %player% 5000 fighting'
-        - '[console] sk skill add %player% 5000 endurance'
-        - '[console] sk skill add %player% 5000 agility'
-        - '[console] sk skill add %player% 5000 alchemy'
-        - '[console] sk skill add %player% 5000 enchanting'
-        - '[console] sk skill add %player% 5000 sorcery'
-        - '[console] sk skill add %player% 5000 healing'
-        - '[console] sk skill add %player% 5000 forging'
-        - '[console] give %player% paper 1 name:&7&lTIER1_CLAIMED remove:true'
-        - '[broadcast] &7{player} &fhas claimed their &e5-invite &freferral reward!'
-        - '[console] execute at %player% run particle villager_happy ~ ~2 ~ 2 2 2 0.1 30'
-        - '[console] execute at %player% run particle end_rod ~ ~1 ~ 2 1 2 0.05 20'
-        - '[console] execute at %player% run playsound entity_experience_orb_pickup master @a ~ ~ ~ 0.5 1.2'
-      usage:
-        depletion_sound: ENTITY_PLAYER_LEVELUP
-        limit: 1
-        action: DESTROY
-      sounds:
-        success: ENTITY_PLAYER_LEVELUP;0.8;1.2
-      visuals:
-        cast:
-          particles:
-          - type: VILLAGER_HAPPY
-            shape: SPHERE
-            count: 30
-            speed: 0.1
-            mode: CONTINUOUS
-          - type: END_ROD
-            shape: RING
-            count: 20
-            speed: 0.05
-            mode: CONTINUOUS
-          title:
-            enabled: true
-            header: '&7&l5 INVITES!'
-            subtitle: '&fWelcome to the community!'
-            fade_in: 10
-            stay: 40
-            fade_out: 10
-
+    material: NETHER_STAR
+    permission: buffeditems.referral.5
+    display:
+      name: '&#C0C0C0&lC&#C6C6C6&lo&#CCCCCC&lm&#D2D2D2&lm&#D8D8D8&lu&#DEDEDE&ln&#E4E4E4&li&#EAEAEA&lt&#F0F0F0&ly
+        &#FFFFFF&lS&#FAFAFA&lu&#F5F5F5&lp&#F0F0F0&lp&#EBEBEB&lo&#E6E6E6&lr&#E0E0E0&lt&#DBDBDB&le&#D6D6D6&lr'
+      lore:
+      - ''
+      - '&7A token of appreciation for bringing'
+      - '&75 new players to the Misfits community!'
+      - ''
+      - '&6&lREWARDS:'
+      - '&8  &f❖ &e$5,000 in-game money'
+      - ''
+      - '&8  &f❖ &b+5,000 Mining XP'
+      - '&8  &f❖ &b+5,000 Foraging XP'
+      - '&8  &f❖ &b+5,000 Farming XP'
+      - '&8  &f❖ &b+5,000 Fishing XP'
+      - '&8  &f❖ &b+5,000 Excavation XP'
+      - '&8  &f❖ &b+5,000 Archery XP'
+      - '&8  &f❖ &b+5,000 Defense XP'
+      - '&8  &f❖ &b+5,000 Fighting XP'
+      - '&8  &f❖ &b+5,000 Endurance XP'
+      - '&8  &f❖ &b+5,000 Agility XP'
+      - '&8  &f❖ &b+5,000 Alchemy XP'
+      - '&8  &f❖ &b+5,000 Enchanting XP'
+      - '&8  &f❖ &b+5,000 Sorcery XP'
+      - '&8  &f❖ &b+5,000 Healing XP'
+      - '&8  &f❖ &b+5,000 Forging XP'
+      - ''
+      - '&7&oFirst step to becoming a legend!'
+    glow: true
+    enabled: true
+    cooldown: 0
+    actions:
+      commands:
+      - '[console] eco give %player% 5000'
+      - '[console] sk skill add %player% 5000 mining'
+      - '[console] sk skill add %player% 5000 foraging'
+      - '[console] sk skill add %player% 5000 farming'
+      - '[console] sk skill add %player% 5000 fishing'
+      - '[console] sk skill add %player% 5000 excavation'
+      - '[console] sk skill add %player% 5000 archery'
+      - '[console] sk skill add %player% 5000 defense'
+      - '[console] sk skill add %player% 5000 fighting'
+      - '[console] sk skill add %player% 5000 endurance'
+      - '[console] sk skill add %player% 5000 agility'
+      - '[console] sk skill add %player% 5000 alchemy'
+      - '[console] sk skill add %player% 5000 enchanting'
+      - '[console] sk skill add %player% 5000 sorcery'
+      - '[console] sk skill add %player% 5000 healing'
+      - '[console] sk skill add %player% 5000 forging'
+      - '[console] give %player% paper 1 name:&7&lTIER1_CLAIMED remove:true'
+      - '[broadcast] &7{player} &fhas claimed their &e5-invite &freferral reward!'
+      - '[console] execute at %player% run particle villager_happy ~ ~2 ~ 2 2 2 0.1
+        30'
+      - '[console] execute at %player% run particle end_rod ~ ~1 ~ 2 1 2 0.05 20'
+      - '[console] execute at %player% run playsound entity_experience_orb_pickup
+        master @a ~ ~ ~ 0.5 1.2'
+    usage:
+      depletion_sound: ENTITY_PLAYER_LEVELUP
+      limit: 1
+      action: DESTROY
+    sounds:
+      success: ENTITY_PLAYER_LEVELUP;0.8;1.2
+    visuals:
+      cast:
+        particles:
+        - type: VILLAGER_HAPPY
+          shape: SPHERE
+          count: 30
+          speed: 0.1
+          mode: CONTINUOUS
+        - type: END_ROD
+          shape: RING
+          count: 20
+          speed: 0.05
+          mode: CONTINUOUS
+        title:
+          enabled: true
+          header: '&7&l5 INVITES!'
+          subtitle: '&fWelcome to the community!'
+          fade_in: 10
+          stay: 40
+          fade_out: 10
+  
   referral_reward_tokens_tier2:
-      material: NETHER_STAR
-      permission: buffeditems.referral.10
-      display:
-        name: '&#FFD700&lR&#FFD914&le&#FFDA28&lf&#FFDB3C&le&#FFDC50&lr&#FFDD64&lr&#FFDE78&la&#FFDF8C&ll
-          &#FFE1B4&lR&#FFE2C8&le&#FFE3DC&lw&#FFE4F0&la&#FFE5FF&lr&#FFE6FF&ld'
-        lore:
-        - ''
-        - '&7A token of gratitude for bringing'
-        - '&710 players to the Misfits community!'
-        - ''
-        - '&6&lREWARDS:'
-        - '&8  &f❖ &e$5,000 in-game money'
-        - ''
-        - '&8  &f❖ &b+10000 Mining XP'
-        - '&8  &f❖ &b+10000 Foraging XP'
-        - '&8  &f❖ &b+10000 Farming XP'
-        - '&8  &f❖ &b+10000 Fishing XP'
-        - '&8  &f❖ &b+10000 Excavation XP'
-        - '&8  &f❖ &b+10000 Archery XP'
-        - '&8  &f❖ &b+10000 Defense XP'
-        - '&8  &f❖ &b+10000 Fighting XP'
-        - '&8  &f❖ &b+10000 Endurance XP'
-        - '&8  &f❖ &b+10000 Agility XP'
-        - '&8  &f❖ &b+10000 Alchemy XP'
-        - '&8  &f❖ &b+10000 Enchanting XP'
-        - '&8  &f❖ &b+10000 Sorcery XP'
-        - '&8  &f❖ &b+10000 Healing XP'
-        - '&8  &f❖ &b+10000 Forging XP'
-        - ''
-      glow: true
-      active_ability:
-      enabled: true
-      cooldown: 0
-      actions:
-        commands:
-        - '[console] eco give %player% 10000'
-        - '[console] sk skill add %player% 10000 mining'
-        - '[console] sk skill add %player% 10000 foraging'
-        - '[console] sk skill add %player% 10000 farming'
-        - '[console] sk skill add %player% 10000 fishing'
-        - '[console] sk skill add %player% 10000 excavation'
-        - '[console] sk skill add %player% 10000 archery'
-        - '[console] sk skill add %player% 10000 defense'
-        - '[console] sk skill add %player% 10000 fighting'
-        - '[console] sk skill add %player% 10000 endurance'
-        - '[console] sk skill add %player% 10000 agility'
-        - '[console] sk skill add %player% 10000 alchemy'
-        - '[console] sk skill add %player% 10000 enchanting'
-        - '[console] sk skill add %player% 10000 sorcery'
-        - '[console] sk skill add %player% 10000 healing'
-        - '[console] sk skill add %player% 10000 forging'
-        - '[console] give %player% paper 1 name:&e&lREFERRAL_TOKEN_CLAIMED_FLAG remove:true'
-        - '[broadcast] &6&l{player} &ehas claimed their 10-invite referral reward!'
-        - '[console] execute at %player% run particle firework ~ ~2 ~ 2 2 2 0.3 50'
-        - '[console] execute at %player% run particle end_rod ~ ~2 ~ 3 2 3 0.1 50'
-        - '[console] execute at %player% run playsound entity_firework_rocket_blast
-          master @a ~ ~ ~ 0.8 1.0'
-      usage:
-        depletion_sound: ENTITY_PLAYER_LEVELUP
-        limit: 1
-        action: DESTROY
-      sounds:
-        success: ENTITY_PLAYER_LEVELUP;1.0;1.5
+    material: NETHER_STAR
+    permission: buffeditems.referral.10
+    display:
+      name: '&#FFD700&lR&#FFD914&le&#FFDA28&lf&#FFDB3C&le&#FFDC50&lr&#FFDD64&lr&#FFDE78&la&#FFDF8C&ll
+        &#FFE1B4&lR&#FFE2C8&le&#FFE3DC&lw&#FFE4F0&la&#FFE5FF&lr&#FFE6FF&ld'
+      lore:
+      - ''
+      - '&7A token of gratitude for bringing'
+      - '&710 players to the Misfits community!'
+      - ''
+      - '&6&lREWARDS:'
+      - '&8  &f❖ &e$5,000 in-game money'
+      - ''
+      - '&8  &f❖ &b+10000 Mining XP'
+      - '&8  &f❖ &b+10000 Foraging XP'
+      - '&8  &f❖ &b+10000 Farming XP'
+      - '&8  &f❖ &b+10000 Fishing XP'
+      - '&8  &f❖ &b+10000 Excavation XP'
+      - '&8  &f❖ &b+10000 Archery XP'
+      - '&8  &f❖ &b+10000 Defense XP'
+      - '&8  &f❖ &b+10000 Fighting XP'
+      - '&8  &f❖ &b+10000 Endurance XP'
+      - '&8  &f❖ &b+10000 Agility XP'
+      - '&8  &f❖ &b+10000 Alchemy XP'
+      - '&8  &f❖ &b+10000 Enchanting XP'
+      - '&8  &f❖ &b+10000 Sorcery XP'
+      - '&8  &f❖ &b+10000 Healing XP'
+      - '&8  &f❖ &b+10000 Forging XP'
+      - ''
+    glow: true
+    enabled: true
+    cooldown: 0
+    actions:
+      commands:
+      - '[console] eco give %player% 10000'
+      - '[console] sk skill add %player% 10000 mining'
+      - '[console] sk skill add %player% 10000 foraging'
+      - '[console] sk skill add %player% 10000 farming'
+      - '[console] sk skill add %player% 10000 fishing'
+      - '[console] sk skill add %player% 10000 excavation'
+      - '[console] sk skill add %player% 10000 archery'
+      - '[console] sk skill add %player% 10000 defense'
+      - '[console] sk skill add %player% 10000 fighting'
+      - '[console] sk skill add %player% 10000 endurance'
+      - '[console] sk skill add %player% 10000 agility'
+      - '[console] sk skill add %player% 10000 alchemy'
+      - '[console] sk skill add %player% 10000 enchanting'
+      - '[console] sk skill add %player% 10000 sorcery'
+      - '[console] sk skill add %player% 10000 healing'
+      - '[console] sk skill add %player% 10000 forging'
+      - '[console] give %player% paper 1 name:&e&lREFERRAL_TOKEN_CLAIMED_FLAG remove:true'
+      - '[broadcast] &6&l{player} &ehas claimed their 10-invite referral reward!'
+      - '[console] execute at %player% run particle firework ~ ~2 ~ 2 2 2 0.3 50'
+      - '[console] execute at %player% run particle end_rod ~ ~2 ~ 3 2 3 0.1 50'
+      - '[console] execute at %player% run playsound entity_firework_rocket_blast
+        master @a ~ ~ ~ 0.8 1.0'
+    usage:
+      depletion_sound: ENTITY_PLAYER_LEVELUP
+      limit: 1
+      action: DESTROY
+    sounds:
+      success: ENTITY_PLAYER_LEVELUP;1.0;1.5
+    visuals:
+      cast:
+        particles:
+        - type: FIREWORK
+          shape: BURST
+          count: 50
+          speed: 0.2
+          mode: CONTINUOUS
+        - type: END_ROD
+          shape: SPHERE
+          count: 40
+          speed: 0.15
+          mode: CONTINUOUS
+        title:
+          enabled: true
+          header: '&6&l10 INVITES!'
+          subtitle: '&eYou''ve earned your reward!'
+          fade_in: 10
+          stay: 40
+          fade_out: 10
+  aura:
+    material: WITHER_ROSE
+    display:
+      name: '&faura'
+      lore:
+      - ''
+      - '&7A new BuffedItem.'
+    passive_effects:
       visuals:
-        cast:
-          particles:
-          - type: FIREWORK
-            shape: BURST
-            count: 50
-            speed: 0.2
-            mode: CONTINUOUS
-          - type: END_ROD
-            shape: SPHERE
-            count: 40
-            speed: 0.15
-            mode: CONTINUOUS
-          title:
-            enabled: true
-            header: '&6&l10 INVITES!'
-            subtitle: '&eYou''ve earned your reward!'
-            fade_in: 10
-            stay: 40
-            fade_out: 10
+        particles:
+        - type: CHERRY_LEAVES
+          shape: HELIX
+          count: 3
+          speed: 0.05
+          radius: 0.7
+          period: 40.0
+          offset_x: 0.0
+          offset_y: 0.0
+          offset_z: 0.0
+          mode: CONTINUOUS
+      attribute_mode: DYNAMIC
+  mistcrown:
+    material: ELYTRA
+    display:
+      name: '&fMistWings'
+      lore:
+      - ''
+      - '&7A new BuffedItem.'
+      color: '#553345'
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#4B0082'
+          mode: CONTINUOUS
+  angel_wings:
+    material: ELYTRA
+    display:
+      name: '&#FFB347S&#FFB953e&#FFBC5Fr&#FFBF6Ba&#FFC272p&#FFC57Bh&#FFC884s&#FFCB8D &#FFCE96H&#FFD19Fa&#FFD4A8l&#FFD7B1o'
+      lore:
+      - ''
+      - '&#FFD966✧&#FFD765 &#FFD663W&#FFD462i&#FFD260n&#FFD05Fg&#FFCF5Es&#FFCD5C &#FFCB5Bo&#FFC959f&#FFC858 &#FFC657t&#FFC455h&#FFC354e&#FFC152 &#FFBF51S&#FFBD4Fe&#FFBC4Er&#FFBA4Da&#FFB84Bp&#FFB64Ah&#FFB548 &#FFB347✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#FFD966'
+          mode: CONTINUOUS
 
+  void_wings:
+    material: ELYTRA
+    display:
+      name: '&#29004CE&#2E0652c&#340C58l&#3A125Ei&#401064p&#461A6Es&#4C2074 &#52267AC&#54287Fr&#562A83o&#582C85w&#5A2E87n'
+      lore:
+      - ''
+      - '&#2E0652✧&#340C58 &#3A125E&#401064c&#461A6El&#4C2074i&#52267Ap&#54287Fs&#562A83e&#582C85 &#5A2E87C&#5C3089r&#5E328Bo&#60348Dw&#62368Fn✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#4B0082'
+          mode: CONTINUOUS
+
+  draconic_wings:
+    material: ELYTRA
+    display:
+      name: '&#E04500W&#E14B06y&#E3510Cr&#E45712m&#E55D18g&#E6631Eu&#E7692Aa&#E86F30r&#E97536d'
+      lore:
+      - ''
+      - '&#E04500✧&#E14B06 &#E3510C&#E45712y&#E55D18r&#E6631Em&#E7692Ag&#E86F30u&#E97536a&#EA7B3Cr&#EB813Ed✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#FF4D00'
+          mode: CONTINUOUS
+
+  fae_wings:
+    material: ELYTRA
+    display:
+      name: '&#E5A3B0T&#E6A9B7h&#E7AFBEo&#E8B5C5r&#E9BBCCn&#EAC1D3e&#EDC7DAd&#EFCDE1 &#F1D3E8D&#F3D9EFi&#F5DFF6a&#F6E5FEd&#F8EBFFe&#FAF1FFm'
+      lore:
+      - ''
+      - '&#E5A3B0✧&#E6A9B7 &#E7AFBE&#E8B5C5T&#E9BBCCh&#EAC1D3o&#EDC7DAr&#EFCDE1n&#F1D3E8e&#F3D9EFd&#F5DFF6 &#F6E5FED&#F8EBFFi&#FAF1FFa&#FCF7FFd&#FFFEFFe&#FFFEFFm✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#FFB7C5'
+          mode: CONTINUOUS
+
+  arcane_wings:
+    material: ELYTRA
+    display:
+      name: '&#00B8E6A&#00BEEEr&#00C4F6c&#00CAFEh&#00D0FFm&#00D6FFa&#00DCFFg&#00E2FFe&#00E8FF &#00EEFFH&#00F4FFa&#00FAFFl&#00FFFFo'
+      lore:
+      - ''
+      - '&#00B8E6✧&#00BEEE &#00C4F6&#00CAFEA&#00D0FFr&#00D6FFc&#00DCFFh&#00E2FFm&#00E8FFa&#00EEFFg&#00F4FFe&#00FAFF &#00FFFFH&#00FFFFa&#00FFFFl&#00FFFFo✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+  passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#00CCFF'
+          mode: CONTINUOUS
+
+  crystalline_wings:
+    material: ELYTRA
+    display:
+      name: '&#2F6AE6P&#3370ECr&#3476F2i&#347CF8s&#3482FFm&#3688FF &#3890FFS&#3A98FFo&#3AA0FFv&#3AA8FFe&#3AB0FFr&#3AB8FFe&#3AC0FFi&#3AC8FFg&#3AD0FFn'
+      lore:
+      - ''
+      - '&#2F6AE6✧&#3370EC &#3476F2&#347CF8P&#3482FFr&#3688FFi&#3890FFs&#3A98FFm&#3AA0FF &#3AA8FFS&#3AB0FFo&#3AB8FFv&#3AC0FFe&#3AC8FFr&#3AD0FFe&#3AD8FFi&#3AE0FFg&#3AE0FFn✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#3A86FF'
+          mode: CONTINUOUS
+
+  infernal_wings:
+    material: ELYTRA
+    display:
+      name: '&#E3352AC&#E63B2Fi&#E94134n&#EC4739d&#ED4D3Ee&#EF533Er&#F15948 &#F35F4DD&#F66552i&#F76B57a&#F8715Cd&#F97761e&#FA7D66m'
+      lore:
+      - ''
+      - '&#E3352A✧&#E63B2F &#E94134&#EC4739C&#ED4D3Ei&#EF533En&#F15948d&#F35F4De&#F66552r&#F76B57 &#F8715CD&#F97761i&#FA7D66a&#FB836Bd&#FC8970e&#FC8970m✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#FF3A2F'
+          mode: CONTINUOUS
+
+  starbound_wings:
+    material: ELYTRA
+    display:
+      name: '&#E6E6E6C&#E8E8E8e&#EAEAEAl&#ECECECe&#EEEEEEs&#F0F0F0t&#F2F2F2i&#F4F4F4a&#F6F6F6l&#F8F8F8 &#FAFAFAA&#FCFCFCe&#FEFEFEg&#FFFFFFi&#FFFFFFs'
+      lore:
+      - ''
+      - '&#E6E6E6✧&#E8E8E8 &#EAEAEA&#ECECECC&#EEEEEEe&#F0F0F0l&#F2F2F2e&#F4F4F4s&#F6F6F6t&#F8F8F8i&#FAFAFAa&#FCFCFCl&#FEFEFE &#FFFFFFA&#FFFFFFe&#FFFFFFg&#FFFFFFi&#FFFFFFs✧'
+      - ''
+      - '&7Wings woven from starlight,'
+      - '&7granting the grace of a seraph.'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - ''
+      - '&7- &fUnbreakable'
+      - '&7- &fTrail of Stardust'
+      - ''
+      - '&8&m---------------------'
+      - ''
+      - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
+      - ''
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#FFFFFF'
+          mode: CONTINUOUS
+          
 version: 2

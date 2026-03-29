@@ -49,7 +49,7 @@ rank-progression:
     12months: "title_starbound_immortal"
 
 # ========================================
-#          Milestone Rewards - BALANCED EDITION
+#          Milestone Rewards - TITLES + MONEY
 # ========================================
 
 milestones:
@@ -58,392 +58,61 @@ milestones:
     time: 60
     display-name: "1 Minute - WANDERER"
     rewards:
-      - "give %player% bread 8"
-      - "give %player% oak_log 8"
-      - "give %player% stone_pickaxe 1"
-      - "give %player% stone_sword 1"
-      - "give %player% torch 16"
-      - "bi give %player% identify_scroll 1"
       - "lp user %player% parent set title_wanderer"
-      - "sk modifier add %player% speed wanderer_speed 0.5"
-      - "sk modifier add %player% luck wanderer_luck 0.5"
-      - "sk xp add %player% foraging 250"
-      - "sk xp add %player% excavation 250"
-      - "mana add %player% 5"
-      - "msg %player% &5&l✨ &dYou are now a &5WANDERER&d! &5&l✨"
-  
-  30min:
-    time: 1800
-    display-name: "30 Minutes"
-    rewards:
-      - "give %player% iron_pickaxe 1"
-      - "give %player% iron_sword 1"
-      - "give %player% iron_axe 1"
-      - "give %player% cooked_beef 16"
-      - "sk xp add %player% mining 250"
-      - "sk xp add %player% fighting 250"
+      - "eco give %player% 100"
 
   # === EARLY GAME ===
   4hours:
     time: 14400
     display-name: "4 Hours - ROOTED"
     rewards:
-      - "give %player% iron_block 4"
-      - "give %player% gold_ingot 8"
-      - "give %player% diamond 2"
-      - "give %player% enchanted_golden_apple 1"
-      - "give %player% shield 1"
       - "lp user %player% parent set title_rooted"
-      - "sk modifier remove %player% wanderer_speed"
-      - "sk modifier remove %player% wanderer_luck"
-      - "sk modifier add %player% health rooted_health 2"
-      - "sk modifier add %player% defense rooted_defense 1"
-      - "sk xp add %player% farming 500"
-      - "sk xp add %player% foraging 500"
-      - "mana add %player% 10"
-      - "broadcast &6&l[PlayTime+] &e%player% &ais now &2ROOTED&a! &6&l(4 Hours)"
-      - "msg %player% &5&l🌱 &dYou are now &2ROOTED&d! &5&l🌱"
-  
-  8hours:
-    time: 28800
-    display-name: "8 Hours"
-    rewards:
-      - "give %player% diamond_block 3"
-      - "give %player% emerald_block 2"
-      - "give %player% diamond_chestplate 1"
-      - "sk xp add %player% mining 500"
-      - "sk xp add %player% fighting 500"
-  
+      - "eco give %player% 500"
+
   12hours:
     time: 43200
     display-name: "12 Hours - DELVER"
     rewards:
-      - "give %player% diamond_sword 1"
-      - "give %player% diamond_helmet 1"
-      - "give %player% diamond_block 2"
-      - "give %player% obsidian 16"
-      - "give %player% ender_chest 1"
       - "lp user %player% parent set title_delver"
-      - "sk modifier remove %player% rooted_health"
-      - "sk modifier remove %player% rooted_defense"
-      - "sk modifier add %player% strength delver_strength 1"
-      - "sk modifier add %player% luck delver_luck 1"
-      - "sk xp add %player% mining 1000"
-      - "sk xp add %player% excavation 1000"
-      - "mana add %player% 15"
-      - "broadcast &6&l[PlayTime+] &e%player% &ais now &bDELVER&a! &6&l(12 Hours)"
-      - "msg %player% &5&l⛏️ &dYou are now &bDELVER&d! &5&l⛏️"
-  
+      - "eco give %player% 1000"
+
   24hours:
     time: 86400
     display-name: "24 Hours - ARTISAN"
     rewards:
-      - "give %player% netherite_scrap 4"
-      - "give %player% blaze_rod 8"
-      - "give %player% ancient_debris 2"
-      - "give %player% shulker_shell 1"
-      - "give %player% ender_pearl 16"
-      - "bi give %player% bunny_charm 1" 
       - "lp user %player% parent set title_artisan"
-      - "sk modifier remove %player% delver_strength"
-      - "sk modifier remove %player% delver_luck"
-      - "sk modifier add %player% crit_chance artisan_crit 2"
-      - "sk modifier add %player% crit_damage artisan_crit_dmg 1.5"
-      - "sk xp add %player% enchanting 1500"
-      - "sk xp add %player% alchemy 1500"
-      - "mana add %player% 50"
-      - "broadcast &6&l[PlayTime+] &e%player% &a24 HOURS! &6&l(ARTISAN)"
-      - "msg %player% &5&l🔨 &dYou are now &eARTISAN&d! &5&l🔨"
-
-48hours:
-  time: 172800
-  display-name: "48 Hours - SKYWARD"
-  rewards:
-    - "give %player% netherite_block 3"
-    - "give %player% firework_rocket 64"
-    - "give %player% heart_of_the_sea 1"
-    - "give %player% phantom_membrane 4"  # For elytra repair later
-    - "give %player% slow_falling_potion 3"
-    - "sk xp add %player% all 500"
-    - "msg %player% &b✨ The skies call to you... (Elytra at 7 Days!)"
-    - "msg %player% &7Prepare for flight - you're halfway there!"
+      - "eco give %player% 2000"
 
   # === WEEKLY MILESTONES ===
-7days:
-  time: 604800
-  display-name: "7 Days - SEASONED"
-  rewards:
-    # Core progression items
-    - "give %player% elytra 1"  # MOVED FROM 48H - FLIGHT UNLOCKED!
-    - "give %player% netherite_ingot 8"  # 8 ingots (almost a block)
-    - "give %player% shulker_shell 2"  # 2 FULL shulker boxes
-    - "give %player% enchanted_golden_apple 4"
-    - "give %player% beacon 1"
-    - "give %player% firework_rocket 128"  # For elytra flight
-    - "bi give %player% swiftness_boots 1"  
-  
-    
-    # Flight preparation items
-    - "give %player% phantom_membrane 8"  # For elytra repair
-    - "give %player% slow_falling_potion 3"  # Safe landing practice
-    
-    # Rank progression
-    - "lp user %player% parent set title_seasoned"
-    
-    # Remove previous rank modifiers
-    - "sk modifier remove %player% artisan_crit"
-    - "sk modifier remove %player% artisan_crit_dmg"
-    
-    # AuraSkills Traits - SEASONED
-    - "sk modifier add %player% health seasoned_health 4"
-    - "sk modifier add %player% defense seasoned_defense 2"
-    - "sk modifier add %player% strength seasoned_strength 2"
-    
-    # Skill XP
-    - "sk xp add %player% fighting 2500"
-    - "sk xp add %player% archery 2500"
-    - "sk xp add %player% agility 2500"  # Added for flight control
-    
-    # Mana
-    - "mana add %player% 50"
-    
-    # Broadcast & Messages
-    - "broadcast &6&l[PlayTime+] &a&l★ &e%player% &a7 DAYS! &a&l★ &6&l(SEASONED)"
-    - "broadcast &b&l🦅 &e%player% &b&lCAN NOW FLY! &e&l(ELYTRA UNLOCKED)"
-    - "msg %player% &5&l🌿 &dYou are now &aSEASONED&d! &5&l🌿"
-    - "msg %player% &b✨ You received an &fElytra&b! The skies are yours!"
-    - "msg %player% &7Stats gained: &f+4 Health &7| &f+2 Defense &7| &f+2 Strength"
-  
-  14days:
-    time: 1209600
-    display-name: "14 Days"
+  7days:
+    time: 604800
+    display-name: "7 Days - SEASONED"
     rewards:
-      - "give %player% netherite_block 16"
-      - "give %player% nether_star 4"
-      - "give %player% recovery_compass 1"
-      - "sk xp add %player% all 10000"
-      - "mana add %player% 100"
-      - "broadcast &6&l[PlayTime+] &a&l🌿 &e%player% &a&l2 WEEKS! &a&l🌿"
+      - "lp user %player% parent set title_seasoned"
+      - "eco give %player% 5000"
 
   # === MONTHLY MILESTONES ===
   1month:
     time: 2592000
     display-name: "1 Month - LUMINOUS"
     rewards:
-      - "give %player% netherite_block 50"
-      - "give %player% nether_star 8"
-      - "give %player% nether_star_block 1"
-      - "bi give %player% miners_dream 1"
       - "lp user %player% parent set title_luminous"
-      - "sk modifier remove %player% seasoned_health"
-      - "sk modifier remove %player% seasoned_defense"
-      - "sk modifier remove %player% seasoned_strength"
-      - "sk modifier add %player% health luminous_health 8"
-      - "sk modifier add %player% strength luminous_strength 4"
-      - "sk modifier add %player% defense luminous_defense 4"
-      - "sk modifier add %player% speed luminous_speed 1.5"
-      - "sk modifier add %player% crit_chance luminous_crit 4"
-      - "sk modifier add %player% crit_damage luminous_crit_dmg 3"
-      - "sk modifier add %player% luck luminous_luck 2"
-      - "sk xp add %player% all 15000"
-      - "mana add %player% 150"
-      - "broadcast &5&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-      - "broadcast &d&l✨ &5&l1 MONTH - LUMINOUS &d&l✨"
-      - "broadcast &5&l💜 &d%player% &5&lHAS ASCENDED! &d&l💜"
-      - "broadcast &5&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-      - "msg %player% &5&l✨ &dYou are now &5LUMINOUS&d! &5&l✨"
+      - "eco give %player% 10000"
 
   1.5months:
     time: 3888000
     display-name: "1.5 Months - STARBOUND"
     rewards:
-      - "give %player% netherite_block 80"
-      - "give %player% nether_star 16"
-      - "give %player% nether_star_block 3"
-      - "give %player% bedrock 1"
-      - "bi give %player% angelic_wings 1"
-      - "give %player% elytra 1"  # FREE PLAYERS GET ELYTRA NOW
-      - "give %player% shulker_box 5"  # FREE PLAYERS GET SHULKERS
-      - "give %player% totem_of_undying 2"  # FREE PLAYERS GET TOTEMS
       - "lp user %player% parent set title_starbound"
-      - "sk modifier remove %player% luminous_health"
-      - "sk modifier remove %player% luminous_strength"
-      - "sk modifier remove %player% luminous_defense"
-      - "sk modifier remove %player% luminous_speed"
-      - "sk modifier remove %player% luminous_crit"
-      - "sk modifier remove %player% luminous_crit_dmg"
-      - "sk modifier remove %player% luminous_luck"
-      - "sk modifier add %player% health starbound_health 12"
-      - "sk modifier add %player% strength starbound_strength 6"
-      - "sk modifier add %player% defense starbound_defense 6"
-      - "sk modifier add %player% speed starbound_speed 2.5"
-      - "sk modifier add %player% crit_chance starbound_crit 6"
-      - "sk modifier add %player% crit_damage starbound_crit_dmg 5"
-      - "sk modifier add %player% luck starbound_luck 3"
-      - "sk xp add %player% all 25000"
-      - "mana add %player% 300"
-      - "broadcast &5&l══════════════════════════════════════════════"
-      - "broadcast &d&l🌟 &5&l1.5 MONTHS - STARBOUND &d&l🌟"
-      - "broadcast &5&l👑 &d%player% &5&lFINAL FREE RANK! &d&l👑"
-      - "broadcast &d&l⚡ &5&lLEGENDARY STATUS UNLOCKED &d&l⚡"
-      - "broadcast &5&l══════════════════════════════════════════════"
-      - "msg %player% &5&l🌟 &dYou are now &5STARBOUND&d! &5&l🌟"
+      - "eco give %player% 20000"
 
-  # === SUPPORTER RANK: EVERBOUND (BALANCED - 5% Advantage, Requires 1 Month Playtime) ===
+  # === SUPPORTER RANK: EVERBOUND (Requires 1 Month Playtime) ===
   everbound:
-    time: 2592000  # REQUIRES 1 MONTH PLAYTIME MINIMUM
+    time: 2592000
     display-name: "✨ SUPPORTER - EVERBOUND ✨"
     rewards:
-      # Supporter Items - Similar to Starbound with small bonuses
-      - "give %player% netherite_block 40"   # Starbound: 80 (less raw mats)
-      - "give %player% nether_star 20"       # Starbound: 16 (+4)
-      - "give %player% nether_star_block 4"  # Starbound: 3 (+1)
-      - "give %player% bedrock 2"             # Starbound: 1 (+1)
-      - "give %player% elytra 1"              # Same as Starbound now
-      - "give %player% shulker_box 6"         # Starbound: 5 (+1)
-      - "give %player% totem_of_undying 3"    # Starbound: 2 (+1)
-      - "give %player% enchanted_golden_apple 12"  # Starbound: 0 (+12)
-      
-      # LuckPerms Rank
       - "lp user %player% parent set title_everbound"
-      
-      # Remove previous rank modifiers
-      - "sk modifier remove %player% starbound_health"
-      - "sk modifier remove %player% starbound_strength"
-      - "sk modifier remove %player% starbound_defense"
-      - "sk modifier remove %player% starbound_speed"
-      - "sk modifier remove %player% starbound_crit"
-      - "sk modifier remove %player% starbound_crit_dmg"
-      - "sk modifier remove %player% starbound_luck"
-      
-      # AuraSkills Traits - EVERBOUND (BALANCED - ~5% better than Starbound)
-      # Stat Modifiers - Small advantage only
-      - "sk modifier add %player% health everbound_health 13"     # Starbound: 12 (+1)
-      - "sk modifier add %player% strength everbound_strength 7"  # Starbound: 6 (+1)
-      - "sk modifier add %player% defense everbound_defense 7"    # Starbound: 6 (+1)
-      - "sk modifier add %player% speed everbound_speed 3"        # Starbound: 2.5 (+0.5)
-      - "sk modifier add %player% crit_chance everbound_crit 7"   # Starbound: 6 (+1)
-      - "sk modifier add %player% crit_damage everbound_crit_dmg 6" # Starbound: 5 (+1)
-      - "sk modifier add %player% luck everbound_luck 4"          # Starbound: 3 (+1)
-      - "sk modifier add %player% regeneration everbound_regen 1" # New (small)
-      - "sk modifier add %player% xp_bonus everbound_xp 5"       # +5% XP (was 10%)
-      
-      # Skill Levels - Same as Starbound (FAIR)
-      - "sk skill setlevel %player% farming 40"   # Balanced
-      - "sk skill setlevel %player% foraging 40"  
-      - "sk skill setlevel %player% mining 45"    
-      - "sk skill setlevel %player% fishing 40"   
-      - "sk skill setlevel %player% excavation 40" 
-      - "sk skill setlevel %player% archery 45"   
-      - "sk skill setlevel %player% defense 45"   
-      - "sk skill setlevel %player% fighting 50"  
-      - "sk skill setlevel %player% enchanting 45" 
-      - "sk skill setlevel %player% alchemy 45"   
-      - "sk skill setlevel %player% agility 45"   
-      
-      # Skill XP - Moderate boost
-      - "sk xp add %player% all 10000"  # Reduced from 5000-10000 per skill
-      
-      # Mana - Same as Starbound
-      - "mana add %player% 300"  # Same as Starbound
-      
-      # Broadcast & Messages - Balanced
-      - "broadcast &5&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-      - "broadcast &d&l👑 &5&lSUPPORTER RANK - EVERBOUND &d&l👑"
-      - "broadcast &5&l💜 &d%player% &5&lHAS BECOME EVERBOUND! &d&l💜"
-      - "broadcast &d&l⚡ &5&lTHANK YOU FOR SUPPORTING THE SERVER! &d&l⚡"
-      - "broadcast &5&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-      - "msg %player% &5&l👑 &dYou are now &5EVERBOUND&d! &5&l👑"
-      - "msg %player% &d&lTHANK YOU FOR SUPPORTING MISFITS STUDIO!"
-      - "msg %player% &7You gained Supporter perks:"
-      - "msg %player% &8  &f+13 Health &7| &f+7 Strength &7| &f+7 Defense &7| &f+3 Speed"
-      - "msg %player% &8  &f+7% Crit Chance &7| &f+6 Crit Damage &7| &f+4 Luck"
-      - "msg %player% &8  &f+1 Regen &7| &f+5% XP Bonus"
-      - "msg %player% &8  &fSkills: 40-50 | &fItems: God Apples, extra Totems"
-      - "msg %player% &5&lThank you for your support!"
-
-  # === POST-STARBOUND LEGENDARY PROGRESSION ===
-  2months:
-    time: 5184000
-    display-name: "2 Months - STARBOUND ELDER"
-    rewards:
-      - "give %player% netherite_block 100"
-      - "give %player% nether_star 20"
-      - "give %player% nether_star_block 5"
-      - "sk xp add %player% all 30000"
-      - "mana add %player% 100"
-      - "sk modifier add %player% health starbound_elder_health 1"
-      - "sk modifier add %player% strength starbound_elder_strength 1"
-      - "broadcast &6&l[PlayTime+] &d&l🌟 &e%player% &d&l2 MONTHS - STARBOUND ELDER! &d&l🌟"
-
-  3months:
-    time: 7776000
-    display-name: "3 Months - STARBOUND ANCIENT"
-    rewards:
-      - "give %player% netherite_block 150"
-      - "give %player% nether_star 30"
-      - "give %player% nether_star_block 8"
-      - "give %player% bedrock 2"
-      - "sk xp add %player% all 50000"
-      - "mana add %player% 150"
-      - "sk modifier add %player% health starbound_ancient_health 2"
-      - "sk modifier add %player% strength starbound_ancient_strength 1"
-      - "sk modifier add %player% defense starbound_ancient_defense 1"
-      - "broadcast &6&l[PlayTime+] &5&l⚡ &e%player% &5&l3 MONTHS - STARBOUND ANCIENT! &5&l⚡"
-
-  6months:
-    time: 15552000
-    display-name: "6 Months - STARBOUND MYTHIC"
-    rewards:
-      - "give %player% netherite_block 250"
-      - "give %player% nether_star 50"
-      - "give %player% nether_star_block 15"
-      - "give %player% bedrock 4"
-      - "sk xp add %player% all 100000"
-      - "mana add %player% 250"
-      - "sk modifier add %player% health starbound_mythic_health 3"
-      - "sk modifier add %player% strength starbound_mythic_strength 2"
-      - "sk modifier add %player% defense starbound_mythic_defense 2"
-      - "sk modifier add %player% speed starbound_mythic_speed 1"
-      - "broadcast &6&l[PlayTime+] &b&l∞ &e%player% &b&l6 MONTHS - STARBOUND MYTHIC! &b&l∞"
-
-  9months:
-    time: 23328000
-    display-name: "9 Months - STARBOUND LEGEND"
-    rewards:
-      - "give %player% netherite_block 400"
-      - "give %player% nether_star 75"
-      - "give %player% nether_star_block 25"
-      - "give %player% bedrock 6"
-      - "sk xp add %player% all 150000"
-      - "mana add %player% 350"
-      - "sk modifier add %player% health starbound_legend_health 4"
-      - "sk modifier add %player% strength starbound_legend_strength 3"
-      - "sk modifier add %player% defense starbound_legend_defense 3"
-      - "sk modifier add %player% crit_chance starbound_legend_crit 2"
-      - "broadcast &6&l[PlayTime+] &d&l✨ &e%player% &d&l9 MONTHS - STARBOUND LEGEND! &d&l✨"
-
-  12months:
-    time: 31104000
-    display-name: "1 Year - STARBOUND IMMORTAL"
-    rewards:
-      - "give %player% netherite_block 500"
-      - "give %player% nether_star 100"
-      - "give %player% nether_star_block 30"
-      - "give %player% bedrock 8"
-      - "sk xp add %player% all 200000"
-      - "mana add %player% 500"
-      - "sk modifier add %player% health starbound_immortal_health 5"
-      - "sk modifier add %player% strength starbound_immortal_strength 4"
-      - "sk modifier add %player% defense starbound_immortal_defense 4"
-      - "sk modifier add %player% speed starbound_immortal_speed 1"
-      - "sk modifier add %player% crit_chance starbound_immortal_crit 3"
-      - "sk modifier add %player% crit_damage starbound_immortal_crit_dmg 2"
-      - "broadcast &6&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-      - "broadcast &2&l👑 &6&l1 YEAR - STARBOUND IMMORTAL &2&l👑"
-      - "broadcast &6&l🌟 &e%player% &6&l1 YEAR ANNIVERSARY! &6&l🌟"
-      - "broadcast &2&l💎 &aMISFITS STUDIO HALL OF FAME &2&l💎"
-      - "broadcast &6&l━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+      - "eco give %player% 25000"   # Bonus for supporters
 
 # ========================================
 #              GUI Settings
@@ -468,4 +137,4 @@ messages:
   player-only: "&cThis command can only be used by players!"
   player-not-found: "&cPlayer not found!"
   playtime-reset: "&aSuccessfully reset playtime for &e%player%&a!"
-  config-reloaded: "&aConfiguration reloaded successfully!"  
+  config-reloaded: "&aConfiguration reloaded successfully!"

@@ -1995,16 +1995,18 @@ footer {
     }
 }
 
-/* REVEAL ON SCROLL */
+/* REVEAL ON SCROLL – enhanced */
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: opacity .7s, transform .7s;
+    transform: translateY(30px) scale(0.95);
+    transition: opacity 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1),
+                transform 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    will-change: opacity, transform;
 }
 
 .reveal.visible {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
 }
 
 /* RESPONSIVE */

@@ -110,7 +110,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
         { file: 'scene_1.webp', label: 'THE GRAND SPAWN' },
         { file: 'scene_2.webp', label: 'CHALLENGE YOURSELF' },
         { file: 'scene_3.webp', label: 'WHERE YOU START' },
-        { file: 'season.png', label: 'REALISTIC SEASONS' },
+        // { file: 'season.png', label: 'REALISTIC SEASONS' },
         { file: 'cosmetic.png', label: 'RANK COSMETICS' },
         { file: 'dungeonBoss.png', label: 'MYTHIC BOSSES' },
         { file: 'dungeon.png', label: 'DUNGEON EXPLORATION' }
@@ -247,12 +247,12 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             tag: 'Legendary Encounters', 
             icon: 'skull' 
         },
-        { 
-            title: 'Realistic Seasons', 
-            desc: 'Weather turns, crops respond, the world breathes with natural cycles.', 
-            tag: 'Dynamic World', 
-            icon: 'sun' 
-        },
+        // { 
+        //     title: 'Realistic Seasons', 
+        //     desc: 'Weather turns, crops respond, the world breathes with natural cycles.', 
+        //     tag: 'Dynamic World', 
+        //     icon: 'sun' 
+        // },
         { 
             title: 'Rank Cosmetics', 
             desc: 'Rise through 7 prestige ranks and unlock exclusive visual rewards.', 
@@ -516,13 +516,13 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     if (!list) return;
     
     const faqs = [
-        { q: 'How do I join the server?', a: 'Use the IP address: misfitsmc.mcsh.io — supports Java Edition versions 1.8 through 1.21.11' },
+        { q: 'How do I join the server?', a: 'Use the IP address: misfitsmc.mcsh.io — Use port 19132 for Bedrock Edition players.' },
         { q: 'Do I need a premium account?', a: 'No! The server is fully cracked — you can join without a paid Minecraft account.' },
         { q: 'Is the server always online?', a: 'Yes, 24/7. If it shows offline, just connect and wait a moment — it will respond shortly.' },
         { q: 'What commands do I need to start?', a: '/register [password] to set up, then /kit wanderer for starter gear. Use /rtp to explore, /shop to trade, and /warp for key locations.' },
         { q: 'Do supporters get rewards?', a: 'Yes! Dedicated supporters receive exclusive cosmetics, rank perks, and are immortalized on the Champions list.' },
         { q: 'How do I get help?', a: 'Join the Discord and open a support ticket. Staff are active and will assist you promptly.' },
-        { q: 'Is it available to bedrock players?', a: 'No, the server is currently only available to Java Edition players. As we expand, we may consider adding Bedrock support in the future.' },
+        { q: 'Is it available to bedrock players?', a: 'Yes, the server is available to Bedrock Edition players as well.' },
         { q: 'Are there any rules I should know?', a: 'Be respectful to others, no griefing, and follow the Discord guidelines. Full rules are available on the discord.' }
     ];
     
@@ -690,7 +690,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
         // In a real project, replace with actual URL e.g. '/data/supporters.json'
         // For demonstration, we use fetch but provide fallback
         const response = await fetch('supporters.json').catch(() => null);
-        let supporters = ['ChannuBeans', 'CLONEX5323', 'Reyma']; // fallback
+        let supporters = ['ChannuBeans', 'CLONEX5323', 'Reyma', 'jordiecat08']; // fallback
         
         if (response && response.ok) {
             supporters = await response.json();
