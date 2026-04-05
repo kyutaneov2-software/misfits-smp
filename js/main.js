@@ -107,9 +107,9 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     
     // Define your images with their actual filenames
     const imageFiles = [
-        { file: 'scene_1.webp', label: 'THE GRAND SPAWN' },
+        { file: 'scene1.PNG', label: 'THE GRAND SPAWN' },
         { file: 'scene_2.webp', label: 'CHALLENGE YOURSELF' },
-        { file: 'scene_3.webp', label: 'WHERE YOU START' },
+        { file: 'scene3.PNG', label: 'WHERE YOU START' },
         // { file: 'season.png', label: 'REALISTIC SEASONS' },
         { file: 'cosmetic.png', label: 'RANK COSMETICS' },
         { file: 'dungeonBoss.png', label: 'MYTHIC BOSSES' },
@@ -638,13 +638,13 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
             role: 'Realm Keeper', 
             joined: '2025',
             contribution: 'Founder & Lead Developer'
-        },
-        { 
-            name: 'GhostKun', 
-            role: 'World Architect', 
-            joined: '2025',
-            contribution: 'Lore Mastermind & Builder'
         }
+        // { 
+        //     name: 'GhostKun', 
+        //     role: 'World Architect', 
+        //     joined: '2025',
+        //     contribution: 'Lore Mastermind & Builder'
+        // }
     ];
 
     row.innerHTML = '';
@@ -653,7 +653,7 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
         const card = document.createElement('div');
         card.className = 'founder-card-fantasy';
 
-        const headUrl = `https://mc-heads.net/avatar/${founder.name}/120`;
+        const headUrl = `https://s.namemc.com/2d/skin/face.png?id=8ad6b8200231a061&scale=4`;
 
         card.innerHTML = `
             <div class="founder-head-frame">
