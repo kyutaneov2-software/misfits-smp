@@ -14,7 +14,7 @@ const PRODUCTS = [
             "Unbreakable Dragon scale armor set",
             "Fire resistance potions (infinite)",
             "Dragon breath weapon",
-            "[LIGHTNING] Dragon Blade: Summon lightning on your target (15s cooldown)",
+            "[LIGHTNING] Dragon Blade: Summon lightning on your target (20 mana cost)",
             "Bonus: +20,000 in-game money",
             "Bonus: +10,000 land claims"
         ], 
@@ -34,7 +34,7 @@ const PRODUCTS = [
             "Unbreakable Berserker armor set",
             "Axe of the Wastes (unbreakable)",
             "Strength totem (reusable)",
-            "[RAGE] Rage Mode: Temporary strength + speed buff (30s, 2min cooldown)",
+            "[RAGE] Rage Mode: Temporary strength + speed buff (25 mana cost)",
             "Bonus: +20,000 in-game money",
             "Bonus: +10,000 land claims"
         ], 
@@ -55,7 +55,7 @@ const PRODUCTS = [
             "Unbreakable Starlight cloak",
             "Voidstep boots (unbreakable)",
             "Nebula crystal (cosmic aura)",
-            "[STARFALL] Summon lightning + TNT rain on target (30s cooldown)",
+            "[STARFALL] Summon lightning + TNT rain on target (30 mana cost)",
             "Hero of the Village effect (permanent + reputation)",
             "Bonus: +20,000 in-game money",
             "Bonus: +10,000 land claims"
