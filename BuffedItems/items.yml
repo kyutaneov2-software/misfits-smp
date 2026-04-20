@@ -483,6 +483,7 @@ items:
           mode: CONTINUOUS
           shape: OFFSET
           count: 5
+
   
   # ==========================================================================
   # 🛡️ SECTION 5: SHIELDS
@@ -710,6 +711,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         HEAD:
@@ -770,6 +772,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         CHEST:
@@ -813,6 +816,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         LEGS:
@@ -858,6 +862,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         FEET:
@@ -877,10 +882,10 @@ items:
     material: NETHERITE_SWORD
     permission: buffeditems.set.dragonborn
     display:
-      name: '&#FFA500Elemental Staff'
+      name: '&#FFA500Dragonfang Staff'
       lore:
       - ''
-      - '&7Channels chaotic elemental energy.'
+      - '&7Channels draconic elemental chaos.'
       - ''
       - '&eActive (Right-Click):'
       - '&7Casts a lightning spell:'
@@ -904,6 +909,7 @@ items:
       allow-custom-enchants: true
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     active_ability:
       enabled: true
       actions:
@@ -933,6 +939,17 @@ items:
             offset_y: 0.0
             offset_z: 0.0
             mode: CONTINUOUS
+    passive_effects:
+      visuals:
+        particles:
+        - type: FLAME
+          shape: BURST
+          count: 10
+          speed: 0.15
+          offset_x: 0.0
+          offset_y: 0.0
+          offset_z: 0.0
+          mode: CONTINUOUS
   
   # ==========================================================================
   # ❄️ SECTION 8: FROSTBORN SET
@@ -972,8 +989,8 @@ items:
       slots:
         BOOTS:
           potion_effects:
-          - SPEED;2
           - DOLPHINS_GRACE;1
+          - SPEED;1
           attributes:
           - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
       visuals:
@@ -1083,10 +1100,10 @@ items:
           - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;2.0
         CHESTPLATE:
           potion_effects:
-          - HEALTH_BOOST;2
-          - INCREASE_DAMAGE;2
           - GLOWING;1
-          - HEAL;2
+          - HEAL;1
+          - HEALTH_BOOST;1
+          - INCREASE_DAMAGE;1
       visuals:
         particles:
         - type: SNOWFLAKE
@@ -1833,6 +1850,7 @@ items:
       glow: true
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         BOOTS:
@@ -1885,6 +1903,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         HEAD:
@@ -1923,6 +1942,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         CHEST:
@@ -1975,7 +1995,7 @@ items:
   
   berserker_axe:
     material: NETHERITE_AXE
-    permission: buffeditems.set.berserker
+    permission: buffeditems.berserker
     display:
       name: '&cBerserker Axe'
       lore:
@@ -1991,10 +2011,9 @@ items:
       - ''
       - '&c&lBLOOD RAGE:'
       - '&7Right-Click: &cUnleash your fury'
-      - '&7- &cStrength II for 5s'
+      - '&7- &cStrength III for 5s'
       - '&7- &cResistance I for 5s'
       - '&7- &cDamages nearby enemies'
-      - '&7Cooldown: &c25 seconds'
       - ''
       - '&8Mana Cost: &b25'
       - ''
@@ -2014,6 +2033,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     glow: true
     passive_effects:
       slots:
@@ -2041,6 +2061,7 @@ items:
           shape: POINT
           count: 1
           condition: health_percent < 30
+    
     active_ability:
       enabled: true
       cooldown:
@@ -2063,9 +2084,9 @@ items:
           instant_damage 1 0'
         effects:
           potion_effects:
-          - INCREASE_DAMAGE;2;100
-          - DAMAGE_RESISTANCE;1;100
-          - FIRE_RESISTANCE;1;100
+          - INCREASE_DAMAGE;3;100
+          - DAMAGE_RESISTANCE;2;100
+          - FIRE_RESISTANCE;2;100
           - SPEED;1;100
       costs:
       - type: AURASKILLS_MANA
@@ -2096,15 +2117,14 @@ items:
         cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
   
   # ==========================================================================
-  # ⭐ SECTION 11: STARBOUND SET
+  # ⭐ SECTION 11: STARBOUND SET (Small Caps)
   # ==========================================================================
 
   starbound_helmet:
     material: NETHERITE_HELMET
     permission: buffeditems.set.starbound
     display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4H&#FFE2C8e&#FFE3DCl&#FFE4F0m&#FFE5FFe&#FFE6FFt'
+      name: '&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ &#FFE1B4ʜ&#FFE2C8ᴇ&#FFE3DCʟ&#FFE4F0ᴍ&#FFE5FFᴇ&#FFE6FFᴛ'
       lore:
       - ''
       - '&7A helmet forged from fallen stars,'
@@ -2129,6 +2149,7 @@ items:
     - THORNS;3
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         HEAD:
@@ -2141,8 +2162,7 @@ items:
         boss-bar:
           enabled: true
           mode: ON_EQUIP
-          title: '&#FFD700S&#FFDC33t&#FFE166a&#FFE699r&#FFEBCCb&#FFF0FFo&#FFF5FFu&#FFFAFFn&#FFFFFFd
-            &#FFF5FFH&#FFEBFFe&#FFE0FFl&#FFD6FFm&#FFCCFFe&#FFC2FFt'
+          title: '&#FFD700s&#FFDC33ᴛ&#FFE166ᴀ&#FFE699ʀ&#FFEBCCʙ&#FFF0FFᴏ&#FFF5FFᴜ&#FFFAFFɴ&#FFFFFFᴅ&#FFF5FFʜ&#FFEBFFᴇ&#FFE0FFʟ&#FFD6FFᴍ&#FFCCFFᴇ&#FFC2FFᴛ'
           color: YELLOW
           style: SOLID
         particles:
@@ -2155,8 +2175,7 @@ items:
     material: NETHERITE_CHESTPLATE
     permission: buffeditems.set.starbound
     display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4C&#FFE2C8h&#FFE3DCe&#FFE4F0s&#FFE5FFt'
+      name: '&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ᴄ&#FFE2C8ʜ&#FFE3DCᴇ&#FFE4F0s&#FFE5FFᴛ'
       lore:
       - ''
       - '&7Chestplate that holds the light'
@@ -2179,6 +2198,7 @@ items:
     - THORNS;3
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         CHEST:
@@ -2189,7 +2209,7 @@ items:
           - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;3.0
         CHESTPLATE:
           potion_effects:
-          - HEALTH_BOOST;3
+          - HEALTH_BOOST;2
           - INCREASE_DAMAGE;2
           - HERO_OF_THE_VILLAGE;1
           - GLOWING;1
@@ -2211,8 +2231,7 @@ items:
     material: NETHERITE_LEGGINGS
     permission: buffeditems.set.starbound
     display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4L&#FFE2C8e&#FFE3DCg&#FFE4F0s'
+      name: '&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ &#FFE1B4ʟ&#FFE2C8ᴇ&#FFE3DCɢ&#FFE4F0s'
       lore:
       - ''
       - '&7Leggings that move with'
@@ -2235,6 +2254,7 @@ items:
     - THORNS;3
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         LEGS:
@@ -2254,8 +2274,7 @@ items:
     material: NETHERITE_BOOTS
     permission: buffeditems.set.starbound
     display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4B&#FFE2C8o&#FFE3DCo&#FFE4F0t&#FFE5FFs'
+      name: '&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ʙ&#FFE2C8ᴏ&#FFE3DCᴏ&#FFE4F0ᴛ&#FFE5FFs'
       lore:
       - ''
       - '&7Boots that leave trails of stardust,'
@@ -2281,6 +2300,7 @@ items:
     - THORNS;3
     flags:
       HIDE_ENCHANTS: true
+      UNBREAKABLE: true
     passive_effects:
       slots:
         FEET:
@@ -2294,56 +2314,11 @@ items:
           shape: POINT
           count: 1
   
-  starbound_wings:
-    material: ELYTRA
-    permission: buffeditems.set.starbound
-    display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4W&#FFE2C8i&#FFE3DCn&#FFE4F0g&#FFE5FFs'
-      lore:
-      - ''
-      - '&7Wings that carry you'
-      - '&7across the cosmos.'
-      - ''
-      - '&6&lPASSIVE AURA:'
-      - '&7- &eSlow Falling'
-      - '&7- &e+10% Movement Speed'
-      - '&7- &eGlow when flying'
-      - ''
-      - '&8&oSet Bonus: (2/6) &f+1 Armor Toughness'
-      - '&8&oSet Bonus: (4/6) &f+10% Damage'
-      - '&8&oSet Bonus: (6/6) &fCosmic Aura'
-      color: '#FFD700'
-      glow: true
-    enchantments:
-    - UNBREAKING;4
-    - MENDING;1
-    flags:
-      HIDE_ENCHANTS: true
-    passive_effects:
-      slots:
-        CHEST:
-          potion_effects:
-          - SLOW_FALLING;1
-          attributes:
-          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
-      visuals:
-        particles:
-        - type: FIREWORK
-          mode: ON_EQUIP
-          shape: BURST
-          count: 5
-        - type: END_ROD
-          mode: CONTINUOUS
-          shape: POINT
-          count: 1
-  
   starbound_blade:
     material: NETHERITE_SWORD
     permission: buffeditems.set.starbound
     display:
-      name: '&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-        &#FFE1B4B&#FFE2C8l&#FFE3DCa&#FFE4F0d&#FFE5FFe'
+      name: '&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ʙ&#FFE2C8ʟ&#FFE3DCᴀ&#FFE4F0ᴅ&#FFE5FFᴇ'
       lore:
       - ''
       - '&7A blade that cuts through'
@@ -2357,11 +2332,9 @@ items:
       - '&7- &eGlowing aura around wielder'
       - ''
       - '&6&l☄️ STARFALL:'
-      - '&7Right-Click: &eSummon meteors from the sky'
-      - '&7- &eSummons 3 meteors in an area'
-      - '&7- &eEach meteor explodes'
+      - '&7Right-Click: &eSummon lightning from the sky'
+      - '&7- &eSummons 3 lightning in an area'
       - '&7- &eMobs are &elevitated &eon impact'
-      - '&7Cooldown: &e25 seconds'
       - ''
       - '&8Mana Cost: &b30'
       - ''
@@ -2385,6 +2358,7 @@ items:
     flags:
       HIDE_ENCHANTS: true
       HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
     glow: true
     passive_effects:
       slots:
@@ -2398,8 +2372,7 @@ items:
         boss-bar:
           enabled: true
           mode: ON_EQUIP
-          title: '&#FFD700S&#FFDD33t&#FFE166a&#FFE599r&#FFE9CCb&#FFEDFFo&#FFF2FFu&#FFF6FFn&#FFFFFFd
-            &#FFF6FFC&#FFF2FFo&#FFEDFFs&#FFE9CCm&#FFE599i&#FFE166c'
+          title: '&#FFD700s&#FFDD33ᴛ&#FFE166ᴀ&#FFE599ʀ&#FFE9CCʙ&#FFEDFFᴏ&#FFF2FFᴜ&#FFF6FFɴ&#FFFFFFᴅ &#FFF6FFᴄ&#FFF2FFᴏ&#FFEDFFs&#FFE9CCᴍ&#FFE599ɪ&#FFE166ᴄ'
           color: YELLOW
           style: SOLID
         action-bar:
@@ -2410,9 +2383,15 @@ items:
           duration: 40
         particles:
         - type: END_ROD
+          shape: SPHERE
+          count: 15
+          speed: 0.0
+          radius: 1.5
+          period: 10.0
+          offset_x: 0.0
+          offset_y: 0.0
+          offset_z: 0.0
           mode: CONTINUOUS
-          shape: POINT
-          count: 1
         sound:
           sound: ENTITY_FIREWORK_ROCKET_TWINKLE;0.2;1.5
           enabled: true
@@ -2437,23 +2416,21 @@ items:
         - '[console] execute as %player% run title %player% title {"text":"STARFALL","color":"gold","bold":true}'
         - '[console] execute as %player% run title %player% subtitle {"text":"Meteors
           rain from the sky!","color":"yellow"}'
-        - '[delay:5] [console] summon tnt ~ ~10 ~ {Fuse:30,Motion:[0.0,-0.5,0.0]}'
-        - '[delay:5] [console] summon tnt ~3 ~12 ~1 {Fuse:30,Motion:[0.0,-0.5,0.0]}'
-        - '[delay:5] [console] summon tnt ~-3 ~13 ~-1 {Fuse:30,Motion:[0.0,-0.5,0.0]}'
+        - '[chance:60] [console] execute at %player% run summon lightning_bolt ^ ^
+          ^8 ;; [message] &e&l⚡ THUNDER! &7Lightning strikes your target!'
+        - '[else] [delay:3] [console] execute at %player% run summon tnt_minecart
+          ^ ^ ^5 {Motion:[0.0,-0.5,0.0]}'
+        - '[else] [delay:4] [console] execute at %player% run summon tnt_minecart
+          ^1 ^ ^4 {Motion:[0.0,-0.5,0.0]}'
         - '[delay:15] [console] execute as %player% at %player% run effect give @e[distance=..8,type=!player]
           levitation 1 2'
         - '[delay:15] [console] execute as %player% at %player% run particle end_rod
           ~ ~2 ~ 6 3 6 0.1 150'
-        - '[condition] inventory_has_item material:NETHERITE_HELMET name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-          &#FFE1B4H&#FFE2C8e&#FFE3DCl&#FFE4F0m&#FFE5FFe&#FFE6FFt"'
-        - '[condition] inventory_has_item material:NETHERITE_CHESTPLATE name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-          &#FFE1B4C&#FFE2C8h&#FFE3DCe&#FFE4F0s&#FFE5FFt"'
-        - '[condition] inventory_has_item material:NETHERITE_LEGGINGS name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-          &#FFE1B4L&#FFE2C8e&#FFE3DCg&#FFE4F0s"'
-        - '[condition] inventory_has_item material:NETHERITE_BOOTS name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-          &#FFE1B4B&#FFE2C8o&#FFE3DCo&#FFE4F0t&#FFE5FFs"'
-        - '[condition] inventory_has_item material:ELYTRA name:"&#FFD700S&#FFD914t&#FFDA28a&#FFDB3Cr&#FFDC50b&#FFDD64o&#FFDE78u&#FFDF8Cn&#FFE0A0d
-          &#FFE1B4W&#FFE2C8i&#FFE3DCn&#FFE4F0g&#FFE5FFs"'
+        - '[condition] inventory_has_item material:NETHERITE_HELMET name:"&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ &#FFE1B4ʜ&#FFE2C8ᴇ&#FFE3DCʟ&#FFE4F0ᴍ&#FFE5FFᴇ&#FFE6FFᴛ"'
+        - '[condition] inventory_has_item material:NETHERITE_CHESTPLATE name:"&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ᴄ&#FFE2C8ʜ&#FFE3DCᴇ&#FFE4F0s&#FFE5FFᴛ"'
+        - '[condition] inventory_has_item material:NETHERITE_LEGGINGS name:"&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ &#FFE1B4ʟ&#FFE2C8ᴇ&#FFE3DCɢ&#FFE4F0s"'
+        - '[condition] inventory_has_item material:NETHERITE_BOOTS name:"&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ʙ&#FFE2C8ᴏ&#FFE3DCᴏ&#FFE4F0ᴛ&#FFE5FFs"'
+        - '[condition] inventory_has_item material:ELYTRA name:"&#FFD700s&#FFD914ᴛ&#FFDA28ᴀ&#FFDB3Cʀ&#FFDC50ʙ&#FFDD64ᴏ&#FFDE78ᴜ&#FFDF8Cɴ&#FFE0A0ᴅ&#FFE1B4ᴡ&#FFE2C8ɪ&#FFE3DCɴ&#FFE4F0ɢ&#FFE5FFs"'
         effects:
           potion_effects:
           - INCREASE_DAMAGE;2;100
@@ -3058,7 +3035,7 @@ items:
           stay: 40
           fade_out: 10
   aura:
-    material: WITHER_ROSE
+    material: PINK_TULIP
     display:
       name: '&faura'
       lore:
@@ -3081,7 +3058,7 @@ items:
   mistcrown:
     material: ELYTRA
     display:
-      name: '&fMistWings'
+      name: '&fmistcrown'
       lore:
       - ''
       - '&7A new BuffedItem.'
@@ -3103,17 +3080,21 @@ items:
   angel_wings:
     material: ELYTRA
     display:
-      name: '&#FFB347S&#FFB953e&#FFBC5Fr&#FFBF6Ba&#FFC272p&#FFC57Bh&#FFC884s&#FFCB8D &#FFCE96H&#FFD19Fa&#FFD4A8l&#FFD7B1o'
+      name: '&#FFB347S&#FFB953e&#FFBC5Fr&#FFBF6Ba&#FFC272p&#FFC57Bh&#FFC884s&#FFCB8D
+        &#FFCE96H&#FFD19Fa&#FFD4A8l&#FFD7B1o'
       lore:
       - ''
-      - '&#FFD966✧&#FFD765 &#FFD663W&#FFD462i&#FFD260n&#FFD05Fg&#FFCF5Es&#FFCD5C &#FFCB5Bo&#FFC959f&#FFC858 &#FFC657t&#FFC455h&#FFC354e&#FFC152 &#FFBF51S&#FFBD4Fe&#FFBC4Er&#FFBA4Da&#FFB84Bp&#FFB64Ah&#FFB548 &#FFB347✧'
+      - '&#FFD966✧&#FFD765 &#FFD663W&#FFD462i&#FFD260n&#FFD05Fg&#FFCF5Es&#FFCD5C &#FFCB5Bo&#FFC959f&#FFC858
+        &#FFC657t&#FFC455h&#FFC354e&#FFC152 &#FFBF51S&#FFBD4Fe&#FFBC4Er&#FFBA4Da&#FFB84Bp&#FFB64Ah&#FFB548
+        &#FFB347✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3136,21 +3117,28 @@ items:
           offset_z: 0.0
           color: '#FFD966'
           mode: CONTINUOUS
-
+    active_ability:
+      usage:
+        limit: -1
+    flags:
+      UNBREAKABLE: true
+  
   void_wings:
     material: ELYTRA
     display:
       name: '&#29004CE&#2E0652c&#340C58l&#3A125Ei&#401064p&#461A6Es&#4C2074 &#52267AC&#54287Fr&#562A83o&#582C85w&#5A2E87n'
       lore:
       - ''
-      - '&#2E0652✧&#340C58 &#3A125E&#401064c&#461A6El&#4C2074i&#52267Ap&#54287Fs&#562A83e&#582C85 &#5A2E87C&#5C3089r&#5E328Bo&#60348Dw&#62368Fn✧'
+      - '&#2E0652✧&#340C58 &#3A125E&#401064c&#461A6El&#4C2074i&#52267Ap&#54287Fs&#562A83e&#582C85
+        &#5A2E87C&#5C3089r&#5E328Bo&#60348Dw&#62368Fn✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3172,7 +3160,23 @@ items:
           offset_z: 0.0
           color: '#4B0082'
           mode: CONTINUOUS
-
+    passive_effects:
+      visuals:
+        particles:
+        - type: DUST
+          shape: CIRCLE
+          count: 10
+          speed: 0.0
+          radius: 0.4
+          height: 0.0
+          offset_x: 0.0
+          offset_y: 1.0
+          offset_z: 0.0
+          color: '#000000'
+          mode: CONTINUOUS
+    flags:
+      UNBREAKABLE: true
+  
   draconic_wings:
     material: ELYTRA
     display:
@@ -3186,7 +3190,8 @@ items:
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3209,21 +3214,26 @@ items:
           offset_z: 0.0
           color: '#FF4D00'
           mode: CONTINUOUS
-
+    flags:
+      UNBREAKABLE: true
+  
   fae_wings:
     material: ELYTRA
     display:
-      name: '&#E5A3B0T&#E6A9B7h&#E7AFBEo&#E8B5C5r&#E9BBCCn&#EAC1D3e&#EDC7DAd&#EFCDE1 &#F1D3E8D&#F3D9EFi&#F5DFF6a&#F6E5FEd&#F8EBFFe&#FAF1FFm'
+      name: '&#E5A3B0T&#E6A9B7h&#E7AFBEo&#E8B5C5r&#E9BBCCn&#EAC1D3e&#EDC7DAd&#EFCDE1
+        &#F1D3E8D&#F3D9EFi&#F5DFF6a&#F6E5FEd&#F8EBFFe&#FAF1FFm'
       lore:
       - ''
-      - '&#E5A3B0✧&#E6A9B7 &#E7AFBE&#E8B5C5T&#E9BBCCh&#EAC1D3o&#EDC7DAr&#EFCDE1n&#F1D3E8e&#F3D9EFd&#F5DFF6 &#F6E5FED&#F8EBFFi&#FAF1FFa&#FCF7FFd&#FFFEFFe&#FFFEFFm✧'
+      - '&#E5A3B0✧&#E6A9B7 &#E7AFBE&#E8B5C5T&#E9BBCCh&#EAC1D3o&#EDC7DAr&#EFCDE1n&#F1D3E8e&#F3D9EFd&#F5DFF6
+        &#F6E5FED&#F8EBFFi&#FAF1FFa&#FCF7FFd&#FFFEFFe&#FFFEFFm✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3246,21 +3256,29 @@ items:
           offset_z: 0.0
           color: '#FFB7C5'
           mode: CONTINUOUS
-
+    active_ability:
+      usage:
+        limit: -1
+    flags:
+      UNBREAKABLE: true
+  
   arcane_wings:
     material: ELYTRA
     display:
-      name: '&#00B8E6A&#00BEEEr&#00C4F6c&#00CAFEh&#00D0FFm&#00D6FFa&#00DCFFg&#00E2FFe&#00E8FF &#00EEFFH&#00F4FFa&#00FAFFl&#00FFFFo'
+      name: '&#00B8E6A&#00BEEEr&#00C4F6c&#00CAFEh&#00D0FFm&#00D6FFa&#00DCFFg&#00E2FFe&#00E8FF
+        &#00EEFFH&#00F4FFa&#00FAFFl&#00FFFFo'
       lore:
       - ''
-      - '&#00B8E6✧&#00BEEE &#00C4F6&#00CAFEA&#00D0FFr&#00D6FFc&#00DCFFh&#00E2FFm&#00E8FFa&#00EEFFg&#00F4FFe&#00FAFF &#00FFFFH&#00FFFFa&#00FFFFl&#00FFFFo✧'
+      - '&#00B8E6✧&#00BEEE &#00C4F6&#00CAFEA&#00D0FFr&#00D6FFc&#00DCFFh&#00E2FFm&#00E8FFa&#00EEFFg&#00F4FFe&#00FAFF
+        &#00FFFFH&#00FFFFa&#00FFFFl&#00FFFFo✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3269,7 +3287,7 @@ items:
       - ''
       - '&#4B0B79[&#541581E&#5E1F89x&#672891c&#713299l&#7A3CA1u&#8446A9s&#8D4FB1i&#9759B9v&#A063C1e&#AA6DC9]'
       - ''
-  passive_effects:
+    passive_effects:
       visuals:
         particles:
         - type: DUST
@@ -3283,21 +3301,25 @@ items:
           offset_z: 0.0
           color: '#00CCFF'
           mode: CONTINUOUS
-
+    flags:
+      UNBREAKABLE: true
+  
   crystalline_wings:
     material: ELYTRA
     display:
       name: '&#2F6AE6P&#3370ECr&#3476F2i&#347CF8s&#3482FFm&#3688FF &#3890FFS&#3A98FFo&#3AA0FFv&#3AA8FFe&#3AB0FFr&#3AB8FFe&#3AC0FFi&#3AC8FFg&#3AD0FFn'
       lore:
       - ''
-      - '&#2F6AE6✧&#3370EC &#3476F2&#347CF8P&#3482FFr&#3688FFi&#3890FFs&#3A98FFm&#3AA0FF &#3AA8FFS&#3AB0FFo&#3AB8FFv&#3AC0FFe&#3AC8FFr&#3AD0FFe&#3AD8FFi&#3AE0FFg&#3AE0FFn✧'
+      - '&#2F6AE6✧&#3370EC &#3476F2&#347CF8P&#3482FFr&#3688FFi&#3890FFs&#3A98FFm&#3AA0FF
+        &#3AA8FFS&#3AB0FFo&#3AB8FFv&#3AC0FFe&#3AC8FFr&#3AD0FFe&#3AD8FFi&#3AE0FFg&#3AE0FFn✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3320,21 +3342,23 @@ items:
           offset_z: 0.0
           color: '#3A86FF'
           mode: CONTINUOUS
-
+  
   infernal_wings:
     material: ELYTRA
     display:
       name: '&#E3352AC&#E63B2Fi&#E94134n&#EC4739d&#ED4D3Ee&#EF533Er&#F15948 &#F35F4DD&#F66552i&#F76B57a&#F8715Cd&#F97761e&#FA7D66m'
       lore:
       - ''
-      - '&#E3352A✧&#E63B2F &#E94134&#EC4739C&#ED4D3Ei&#EF533En&#F15948d&#F35F4De&#F66552r&#F76B57 &#F8715CD&#F97761i&#FA7D66a&#FB836Bd&#FC8970e&#FC8970m✧'
+      - '&#E3352A✧&#E63B2F &#E94134&#EC4739C&#ED4D3Ei&#EF533En&#F15948d&#F35F4De&#F66552r&#F76B57
+        &#F8715CD&#F97761i&#FA7D66a&#FB836Bd&#FC8970e&#FC8970m✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3357,21 +3381,26 @@ items:
           offset_z: 0.0
           color: '#FF3A2F'
           mode: CONTINUOUS
-
+    flags:
+      UNBREAKABLE: true
+  
   starbound_wings:
     material: ELYTRA
     display:
-      name: '&#E6E6E6C&#E8E8E8e&#EAEAEAl&#ECECECe&#EEEEEEs&#F0F0F0t&#F2F2F2i&#F4F4F4a&#F6F6F6l&#F8F8F8 &#FAFAFAA&#FCFCFCe&#FEFEFEg&#FFFFFFi&#FFFFFFs'
+      name: '&#E6E6E6C&#E8E8E8e&#EAEAEAl&#ECECECe&#EEEEEEs&#F0F0F0t&#F2F2F2i&#F4F4F4a&#F6F6F6l&#F8F8F8
+        &#FAFAFAA&#FCFCFCe&#FEFEFEg&#FFFFFFi&#FFFFFFs'
       lore:
       - ''
-      - '&#E6E6E6✧&#E8E8E8 &#EAEAEA&#ECECECC&#EEEEEEe&#F0F0F0l&#F2F2F2e&#F4F4F4s&#F6F6F6t&#F8F8F8i&#FAFAFAa&#FCFCFCl&#FEFEFE &#FFFFFFA&#FFFFFFe&#FFFFFFg&#FFFFFFi&#FFFFFFs✧'
+      - '&#E6E6E6✧&#E8E8E8 &#EAEAEA&#ECECECC&#EEEEEEe&#F0F0F0l&#F2F2F2e&#F4F4F4s&#F6F6F6t&#F8F8F8i&#FAFAFAa&#FCFCFCl&#FEFEFE
+        &#FFFFFFA&#FFFFFFe&#FFFFFFg&#FFFFFFi&#FFFFFFs✧'
       - ''
       - '&7Wings woven from starlight,'
       - '&7granting the grace of a seraph.'
       - ''
       - '&8&m---------------------'
       - ''
-      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569 &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
+      - '&#FFE0A0✧&#FFDD99 &#FFDA93P&#FFD78DA&#FFD487S&#FFD181S&#FFCE7BI&#FFCB75V&#FFC86FE&#FFC569
+        &#FFC263A&#FFBF5DB&#FFBC57I&#FFB951L&#FFB64BI&#FFB545T&#FFB23FI&#FFAF39E&#FFAC33S✧'
       - ''
       - '&7- &fUnbreakable'
       - '&7- &fTrail of Stardust'
@@ -3394,5 +3423,376 @@ items:
           offset_z: 0.0
           color: '#FFFFFF'
           mode: CONTINUOUS
-          
+    flags:
+      UNBREAKABLE: true
+
+  # ==========================================================================
+  # ✦ SECTION: STARFORGE SET (Cosmic Purple Theme - Small Caps)
+  # ==========================================================================
+
+  starforge_helmet:
+    material: NETHERITE_HELMET
+    permission: buffeditems.set.starforge
+    display:
+      name: '&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʜ&#C084FCᴇ&#D8B4FEʟ&#E0C0FFᴍ&#E8CCFFᴇ&#F0D8FFᴛ'
+      lore:
+      - ''
+      - '&7A circlet forged in the heart of a quasar,'
+      - '&7granting vision beyond mortal sight.'
+      - ''
+      - '&d&lCOSMIC SENSES:'
+      - '&7- &dNight Vision'
+      - '&7- &dGlowing (See entities through walls)'
+      - '&7- &d+3 Armor'
+      - '&7- &d+2 Armor Toughness'
+      - '&7- &d+10% Movement Speed'
+      - ''
+      - '&8&oSet Bonus: (2/5) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/5) &f+10% Damage'
+      - '&8&oSet Bonus: (5/5) &fCosmic Overload'
+      color: '#C084FC'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - AQUA_AFFINITY;1
+    - RESPIRATION;3
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      UNBREAKABLE: true
+    passive_effects:
+      slots:
+        HEAD:
+          potion_effects:
+          - NIGHT_VISION;1
+          - GLOWING;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;3.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.1
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#C084FCs&#D1A0Ffᴛ&#D8B8FFᴀ&#E0CCFFʀ&#E8E0FFғ&#F0F4FFᴏ&#FFFFFFʀ&#F0F4FFɢ&#E8E0FFᴇ&#E0CCFFᴅ&#D8B8FF'
+          color: PURPLE
+          style: SOLID
+        particles:
+        - type: ELECTRIC_SPARK
+          mode: CONTINUOUS
+          shape: POINT
+          count: 2
+          offset-y: 1.8
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          offset-y: 1.8
+
+  starforge_chestplate:
+    material: NETHERITE_CHESTPLATE
+    permission: buffeditems.set.starforge
+    display:
+      name: '&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ&#E8CCFFᴅ &#C084FCᴄ&#D8B4FEʜ&#E0C0FFᴇ&#E8CCFFs&#F0D8FFᴛ&#F8E4FFᴘ&#FFFFFFʟ&#F8E4FFᴀ&#F0D8FFᴛ&#E8CCFFᴇ'
+      lore:
+      - ''
+      - '&7Armor woven from the fabric of spacetime,'
+      - '&7deflecting harm like a collapsing star.'
+      - ''
+      - '&d&lSTARFORGED BULWARK:'
+      - '&7- &dDamage Reduction I (Resistance)'
+      - '&7- &d+6 Armor'
+      - '&7- &d+4 Armor Toughness'
+      - '&7- &d+4 Max Health'
+      - '&7- &dRegeneration I'
+      - ''
+      - '&8&oSet Bonus: (2/5) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/5) &f+10% Damage'
+      - '&8&oSet Bonus: (5/5) &fCosmic Overload'
+      color: '#C084FC'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      UNBREAKABLE: true
+    passive_effects:
+      slots:
+        CHEST:
+          potion_effects:
+          - DAMAGE_RESISTANCE;0
+          - REGENERATION;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;6.0
+          - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;4.0
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+      visuals:
+        particles:
+        - type: ELECTRIC_SPARK
+          mode: CONTINUOUS
+          shape: OFFSET
+          count: 4
+          speed: 0.1
+          offset-y: 1.2
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: SPHERE
+          count: 8
+          speed: 0.0
+          radius: 1.2
+          period: 10.0
+
+  starforge_leggings:
+    material: NETHERITE_LEGGINGS
+    permission: buffeditems.set.starforge
+    display:
+      name: '&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʟ&#C084FCᴇ&#D8B4FEɢ&#E0C0FFɢ&#E8CCFFɪ&#F0D8FFɴ&#F8E4FFɢ&#FFFFFFs'
+      lore:
+      - ''
+      - '&7Leggings that ripple with unstable energy,'
+      - '&7granting swiftness and protection.'
+      - ''
+      - '&d&lGRAVITY DEFIANCE:'
+      - '&7- &d+4 Armor'
+      - '&7- &d+15% Movement Speed'
+      - '&7- &dJump Boost II'
+      - '&7- &d+2 Knockback Resistance'
+      - ''
+      - '&8&oSet Bonus: (2/5) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/5) &f+10% Damage'
+      - '&8&oSet Bonus: (5/5) &fCosmic Overload'
+      color: '#C084FC'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      UNBREAKABLE: true
+    passive_effects:
+      slots:
+        LEGS:
+          potion_effects:
+          - JUMP_BOOST;2
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;4.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.15
+          - GENERIC_KNOCKBACK_RESISTANCE;ADD_NUMBER;0.2
+      visuals:
+        particles:
+        - type: ELECTRIC_SPARK
+          mode: CONTINUOUS
+          shape: POINT
+          count: 2
+          offset-y: 0.8
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          offset-y: 0.8
+
+  starforge_boots:
+    material: NETHERITE_BOOTS
+    permission: buffeditems.set.starforge
+    display:
+      name: '&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʙ&#C084FCᴏ&#D8B4FEᴏ&#E0C0FFᴛ&#E8CCFFs'
+      lore:
+      - ''
+      - '&7Boots infused with the essence of a dying star,'
+      - '&7each step echoes across the void.'
+      - ''
+      - '&d&lSTELLAR STRIDE:'
+      - '&7- &d+2 Armor'
+      - '&7- &d+20% Movement Speed'
+      - '&7- &dSpeed II'
+      - '&7- &dFrost Walker II (Cosmic Frost)'
+      - ''
+      - '&8&oSet Bonus: (2/5) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/5) &f+10% Damage'
+      - '&8&oSet Bonus: (5/5) &fCosmic Overload'
+      color: '#C084FC'
+      glow: true
+    enchantments:
+    - PROTECTION;4
+    - UNBREAKING;4
+    - MENDING;1
+    - FEATHER_FALLING;4
+    - DEPTH_STRIDER;3
+    - FROST_WALKER;2
+    - THORNS;3
+    flags:
+      HIDE_ENCHANTS: true
+      UNBREAKABLE: true
+    passive_effects:
+      slots:
+        FEET:
+          potion_effects:
+          - SPEED;1
+          attributes:
+          - GENERIC_ARMOR;ADD_NUMBER;2.0
+          - GENERIC_MOVEMENT_SPEED;MULTIPLY_SCALAR_1;0.2
+      visuals:
+        particles:
+        - type: ELECTRIC_SPARK
+          mode: CONTINUOUS
+          shape: POINT
+          count: 2
+          offset-y: 0.2
+        - type: END_ROD
+          mode: CONTINUOUS
+          shape: POINT
+          count: 1
+          offset-y: 0.2
+
+  starforge_blade:
+    material: NETHERITE_SWORD
+    permission: buffeditems.set.starforge
+    display:
+      name: '&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFʙ&#F8E4FFᴏ&#FFFFFFᴜ&#F8E4FFɴ&#F0D8FFᴅ &#E8CCFFʙ&#C084FCʟ&#D8B4FEᴀ&#E0C0FFᴅ&#E8CCFFᴇ'
+      lore:
+      - ''
+      - '&7A blade pulled from a collapsing star,'
+      - '&7its edge hums with cosmic fury.'
+      - ''
+      - '&d&l✨ COSMIC AURA:'
+      - '&7- &d+20% Attack Damage'
+      - '&7- &d+20% Attack Speed'
+      - '&7- &d+5% Lifesteal'
+      - '&7- &d+5% Critical Strike Chance'
+      - '&7- &dGlowing aura around wielder'
+      - ''
+      - '&d&l☄️ STARFALL:'
+      - '&7Right-Click: &dSummon cosmic lightning'
+      - '&7- &dSummons lightning in an area'
+      - '&7- &dMobs are levitated on impact'
+      - ''
+      - '&8Mana Cost: &d30'
+      - ''
+      - '&8&oSet Bonus: (2/5) &f+1 Armor Toughness'
+      - '&8&oSet Bonus: (4/5) &f+10% Damage'
+      - '&8&oSet Bonus: (5/5) &fCosmic Overload - &dFlight for 5s after Starfall'
+      - ''
+    enchantments:
+    - SHARPNESS;6
+    - UNBREAKING;4
+    - MENDING;1
+    - FIRE_ASPECT;2
+    - LOOTING;4
+    - SWEEPING_EDGE;3
+    - KNOCKBACK;2
+    enchants: true
+    enchantable: true
+    enchantment-table:
+      enchantability: 20
+      allow-custom-enchants: true
+    flags:
+      HIDE_ENCHANTS: true
+      HIDE_ATTRIBUTES: true
+      UNBREAKABLE: true
+    glow: true
+    passive_effects:
+      slots:
+        MAIN_HAND:
+          attributes:
+          - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.2
+          - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+          - GENERIC_LUCK;ADD_NUMBER;1.0
+      visuals:
+        boss-bar:
+          enabled: true
+          mode: ON_EQUIP
+          title: '&#C084FCs&#D1A0FFᴛ&#D8B8FFᴀ&#E0CCFFʀ&#E8E0FFғ&#F0F4FFᴏ&#FFFFFFʀ&#F0F4FFɢ&#E8E0FFᴇ&#E0CCFFᴅ'
+          color: PURPLE
+          style: SOLID
+        action-bar:
+          enabled: true
+          mode: CONTINUOUS
+          message: '&d✦ &fCosmic energy flows through you... &d✦'
+          delay: 200
+          duration: 40
+        particles:
+        - type: ELECTRIC_SPARK
+          shape: SPHERE
+          count: 12
+          speed: 0.0
+          radius: 1.5
+          period: 10.0
+          mode: CONTINUOUS
+        - type: END_ROD
+          shape: SPHERE
+          count: 8
+          speed: 0.0
+          radius: 1.5
+          period: 10.0
+          mode: CONTINUOUS
+        sound:
+          sound: ENTITY_FIREWORK_ROCKET_TWINKLE;0.2;1.5
+          enabled: true
+          period: 200
+    active_ability:
+      enabled: true
+      cooldown:
+        length: 25
+        message: '&d&l⚠ &7Starfall recharging: &d%cooldown%s'
+      actions:
+        commands:
+        - '[actionbar] &d☄️ &lSTARFALL! &7Cosmic meteors rain from above!'
+        - '[console] execute as %player% at %player% run particle electric_spark ~ ~3 ~ 5 3 5 0.2 150'
+        - '[console] execute as %player% at %player% run particle end_rod ~ ~2 ~ 4 2 4 0.1 100'
+        - '[console] execute as %player% at %player% run playsound entity_firework_rocket_blast master @a ~ ~ ~ 0.8 1.0'
+        - '[console] execute as %player% at %player% run playsound entity_lightning_bolt_thunder master @a ~ ~ ~ 0.5 1.5'
+        - '[console] execute as %player% run title %player% times 0 40 20'
+        - '[console] execute as %player% run title %player% title {"text":"STARFALL","color":"light_purple","bold":true}'
+        - '[console] execute as %player% run title %player% subtitle {"text":"Meteors rain from the cosmos!","color":"dark_purple"}'
+        - '[chance:60] [console] execute at %player% run summon lightning_bolt ^ ^ ^8 ;; [message] &d⚡ COSMIC THUNDER! &7Lightning strikes your foes!'
+        - '[else] [delay:3] [console] execute at %player% run summon tnt_minecart ^ ^ ^5 {Motion:[0.0,-0.5,0.0]}'
+        - '[else] [delay:4] [console] execute at %player% run summon tnt_minecart ^1 ^ ^4 {Motion:[0.0,-0.5,0.0]}'
+        - '[delay:15] [console] execute as %player% at %player% run effect give @e[distance=..8,type=!player] levitation 1 2'
+        - '[delay:15] [console] execute as %player% at %player% run particle electric_spark ~ ~2 ~ 6 3 6 0.2 150'
+        - '[condition] inventory_has_item material:NETHERITE_HELMET name:"&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʜ&#C084FCᴇ&#D8B4FEʟ&#E0C0FFᴍ&#E8CCFFᴇ&#F0D8FFᴛ"'
+        - '[condition] inventory_has_item material:NETHERITE_CHESTPLATE name:"&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ&#E8CCFFᴅ &#C084FCᴄ&#D8B4FEʜ&#E0C0FFᴇ&#E8CCFFs&#F0D8FFᴛ&#F8E4FFᴘ&#FFFFFFʟ&#F8E4FFᴀ&#F0D8FFᴛ&#E8CCFFᴇ"'
+        - '[condition] inventory_has_item material:NETHERITE_LEGGINGS name:"&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʟ&#C084FCᴇ&#D8B4FEɢ&#E0C0FFɢ&#E8CCFFɪ&#F0D8FFɴ&#F8E4FFɢ&#FFFFFFs"'
+        - '[condition] inventory_has_item material:NETHERITE_BOOTS name:"&#C084FCs&#D8B4FEᴛ&#E0C0FFᴀ&#E8CCFFʀ&#F0D8FFғ&#F8E4FFᴏ&#FFFFFFʀ&#F8E4FFɢ&#F0D8FFᴇ &#E8CCFFʙ&#C084FCᴏ&#D8B4FEᴏ&#E0C0FFᴛ&#E8CCFFs"'
+        effects:
+          potion_effects:
+          - INCREASE_DAMAGE;2;100
+          - DAMAGE_RESISTANCE;1;100
+          - SPEED;2;100
+      costs:
+      - type: AURASKILLS_MANA
+        amount: 30
+        message: '&d&l⚠ &7Not enough mana! &d(30 &7required)'
+      visuals:
+        cast:
+          particles:
+          - type: ELECTRIC_SPARK
+            shape: SPHERE
+            count: 50
+            speed: 0.25
+            radius: 4.0
+            mode: CONTINUOUS
+          - type: END_ROD
+            shape: BURST
+            count: 30
+            speed: 0.2
+            radius: 3.5
+            mode: CONTINUOUS
+          sound:
+            sound: ENTITY_FIREWORK_ROCKET_LAUNCH;0.8;0.8
+            enabled: true
+      usage:
+        depletion_sound: ENTITY_FIREWORK_ROCKET_BLAST;1.0;0.5
+        depleted_try_sound: BLOCK_DISPENSER_FAIL;1.0;1.2
+      sounds:
+        success: ENTITY_FIREWORK_ROCKET_BLAST;0.8;1.0
+        cost-fail: ENTITY_VILLAGER_NO;1.0;1.0
+        cooldown: BLOCK_NOTE_BLOCK_PLING;2.0;2.0
 version: 2

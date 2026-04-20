@@ -553,29 +553,29 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
 
     const worlds = [
         {
-            name: 'The Overworld',
-            req: '✦ Open to All Adventurers',
+            name: 'The Mythoria Overworld',
+            req: '✦ Open to All Adventurers ✦',
             image: 'overworld.jpg',
             unlocked: true,
             lockColor: '#4ade80' // green for unlocked
         },
         {
             name: 'The Nether',
-            req: '⚠ Combined Skill Level 50+',
+            req: '⚠ Seasoned Rank Above ⚠',
             image: 'nether.png',
             unlocked: false,
             lockColor: '#ef4444' // red for locked
         },
         {
             name: 'The End',
-            req: '⚠ Combined Skill Level 75+',
+            req: '⚠ Luminous Rank Above ⚠',
             image: 'end.png',
             unlocked: false,
             lockColor: '#ef4444'
         },
         {
             name: 'Mystery Realm',
-            req: '⚠ Find the Hidden Portal',
+            req: '⚠ Find the Hidden Portal ⚠',
             image: 'images/mystery.webp',
             unlocked: false,
             lockColor: '#c9a84c' // gold for mystery
@@ -627,90 +627,150 @@ const DISCORD_API_URL = `https://discord.com/api/v9/invites/${DISCORD_INVITE}?wi
     });
 })();
 
-// ==================== FOUNDERS (Fantasy style) ====================
-(function buildFounders() {
+// ==================== FANCY CARD RENDERER (Used for Founders & Staff) ====================
+function renderFancyCard(person, container) {
+    const card = document.createElement('div');
+    card.className = 'founder-card-fantasy';
+    const headUrl = `https://s.namemc.com/2d/skin/face.png?id=${person.headId}&scale=4`;
+
+    // Build detail items based on available fields
+    const detailItems = [];
+    if (person.joined) {
+        detailItems.push(`
+            <span class="founder-detail-item">
+                <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                Since ${person.joined}
+            </span>
+        `);
+    }
+    if (person.contribution) {
+        detailItems.push(`
+            <span class="founder-detail-item">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-2.17 2.17a4 4 0 0 1-5.66 0L9 12 3.44 17.56"/><circle cx="12" cy="12" r="10"/></svg>
+                ${person.contribution}
+            </span>
+        `);
+    }
+    // Fallback for staff without extra details
+    if (detailItems.length === 0) {
+        detailItems.push(`
+            <span class="founder-detail-item">
+                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                Guardian of the Realm
+            </span>
+        `);
+    }
+
+    card.innerHTML = `
+        <div class="founder-head-frame">
+            <div class="founder-rune-ring"></div>
+            <img src="${headUrl}" alt="${person.name}" class="founder-head" loading="lazy">
+        </div>
+        <div class="founder-info">
+            <div class="founder-name-large">${person.name}</div>
+            <div class="founder-badge">${person.role}</div>
+            <div class="founder-details">
+                ${detailItems.join('')}
+            </div>
+        </div>
+    `;
+    container.appendChild(card);
+}
+
+// ==================== BUILD FOUNDERS ====================
+function buildFounders(foundersData) {
     const row = document.getElementById('foundersRow');
     if (!row) return;
-
-    const founders = [
-        { 
-            name: 'KyutaOfficial', 
-            role: 'Realm Keeper', 
-            joined: '2025',
-            contribution: 'Founder & Lead Developer'
-        }
-        // { 
-        //     name: 'GhostKun', 
-        //     role: 'World Architect', 
-        //     joined: '2025',
-        //     contribution: 'Lore Mastermind & Builder'
-        // }
-    ];
-
     row.innerHTML = '';
+    foundersData.forEach(founder => renderFancyCard(founder, row));
+}
 
-    founders.forEach(founder => {
-        const card = document.createElement('div');
-        card.className = 'founder-card-fantasy';
+// ==================== BUILD STAFF (Same fancy style) ====================
+function buildStaff(staffData) {
+    const row = document.getElementById('staffRow');
+    if (!row) return;
+    row.innerHTML = '';
+    staffData.forEach(staff => renderFancyCard(staff, row));
+}
 
-        const headUrl = `https://s.namemc.com/2d/skin/face.png?id=8ad6b8200231a061&scale=4`;
-
-        card.innerHTML = `
-            <div class="founder-head-frame">
-                <div class="founder-rune-ring"></div>
-                <img src="${headUrl}" alt="${founder.name}" class="founder-head" loading="lazy">
-            </div>
-            <div class="founder-info">
-                <div class="founder-name-large">${founder.name}</div>
-                <div class="founder-badge">${founder.role}</div>
-                <div class="founder-details">
-                    <span class="founder-detail-item">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                        Since ${founder.joined}
-                    </span>
-                    <span class="founder-detail-item">
-                        <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20.59 13.41l-2.17 2.17a4 4 0 0 1-5.66 0L9 12 3.44 17.56"/><circle cx="12" cy="12" r="10"/></svg>
-                        ${founder.contribution}
-                    </span>
-                </div>
-            </div>
+// ==================== BUILD TOP SUPPORTERS ====================
+function buildTopSupporters(topSupportersData) {
+    const grid = document.getElementById('topSupportersGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    topSupportersData.forEach(name => {
+        const badge = document.createElement('div');
+        badge.className = 'top-supporter-badge';
+        badge.innerHTML = `
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ${name}
         `;
-
-        row.appendChild(card);
+        grid.appendChild(badge);
     });
-})();
+}
 
-
-// ==================== SUPPORTERS (dynamic from JSON) ====================
-(async function loadSupporters() {
+// ==================== BUILD REGULAR SUPPORTERS ====================
+function buildSupporters(supportersData) {
     const grid = document.getElementById('supportersGrid');
     if (!grid) return;
-    
+    grid.innerHTML = '';
+    supportersData.forEach(name => {
+        const badge = document.createElement('div');
+        badge.className = 'supporter-badge';
+        badge.innerHTML = `
+            <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ${name}
+        `;
+        grid.appendChild(badge);
+    });
+}
+
+// ==================== LOAD ALL DATA FROM JSON OR FALLBACK ====================
+(async function loadAllSupportData() {
+    // Default fallback data – replace headIds with actual UUIDs
+    const defaultData = {
+        founders: [
+            {
+                name: 'KyutaOfficial',
+                role: 'Realm Keeper',
+                joined: '2025',
+                contribution: 'Founder & Lead Developer',
+                headId: '8ad6b8200231a061'
+            }
+        ],
+        staff: [
+            {
+                name: 'Jordiecat08',
+                role: 'Master | Builder',
+                headId: 'fb8a3f8cdfa16f66' // Replace with real UUID
+            },
+            {
+                name: 'TianaFrog',
+                role: 'Master | Builder',
+                headId: '8afc0c501a459c1f'
+            }
+        ],
+        topSupporters: ['HARU40413', 'notcleoooo', 'Reyma'],
+        supporters: ['_Dgfam111', 'CLONEX3929', '_Bloopei']
+    };
+
     try {
-        // In a real project, replace with actual URL e.g. '/data/supporters.json'
-        // For demonstration, we use fetch but provide fallback
-        const response = await fetch('supporters.json').catch(() => null);
-        let supporters = ['ChannuBeans', 'CLONEX5323', 'Reyma', 'jordiecat08']; // fallback
-        
-        if (response && response.ok) {
-            supporters = await response.json();
+        const response = await fetch('supporters.json');
+        if (response.ok) {
+            const data = await response.json();
+            buildFounders(data.founders || defaultData.founders);
+            buildStaff(data.staff || defaultData.staff);
+            buildTopSupporters(data.topSupporters || defaultData.topSupporters);
+            buildSupporters(data.supporters || defaultData.supporters);
         } else {
-            console.log('Using default supporters (mock)');
+            throw new Error('Failed to fetch JSON, using defaults');
         }
-        
-        grid.innerHTML = '';
-        
-        supporters.forEach(name => {
-            const badge = document.createElement('div');
-            badge.className = 'supporter-badge';
-            badge.innerHTML = `
-                <svg class="icon-svg" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-                ${name}
-            `;
-            grid.appendChild(badge);
-        });
     } catch (e) {
-        console.warn('Could not load supporters', e);
+        console.warn('Using default supporter data', e);
+        buildFounders(defaultData.founders);
+        buildStaff(defaultData.staff);
+        buildTopSupporters(defaultData.topSupporters);
+        buildSupporters(defaultData.supporters);
     }
 })();
 

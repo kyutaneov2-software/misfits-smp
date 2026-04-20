@@ -1747,6 +1747,54 @@ h1.hero-title {
     stroke: var(--gold);
 }
 
+/* ===== STAFF ROW (same card style as founders) ===== */
+.staff-row {
+    display: flex;
+    gap: 2.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0 auto 3rem;
+}
+
+/* ===== TOP SUPPORTER BADGES ===== */
+.top-supporters-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.top-supporter-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    color: var(--gold-light);
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.15), rgba(201, 168, 76, 0.05));
+    border: 1px solid var(--gold);
+    padding: 0.8rem 1.8rem;
+    clip-path: polygon(6px 0%, 100% 0%, calc(100% - 6px) 100%, 0% 100%);
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    box-shadow: 0 0 15px rgba(201, 168, 76, 0.1);
+}
+
+.top-supporter-badge:hover {
+    background: linear-gradient(135deg, rgba(201, 168, 76, 0.25), rgba(201, 168, 76, 0.1));
+    box-shadow: 0 0 25px var(--glow-gold);
+    transform: translateY(-2px);
+}
+
+.top-supporter-badge .icon-svg {
+    width: 1.2rem;
+    height: 1.2rem;
+    stroke: var(--gold-light);
+    filter: drop-shadow(0 0 6px var(--gold));
+}
+
 /* Animations */
 @keyframes slowSpin {
     from { transform: translate(-50%, -50%) rotate(0deg); }

@@ -1,0 +1,310 @@
+# -------------------------------------------------------------------------------------------
+# Buffed Items v1.9.0 by Altkat(StreetMelodeez)
+# Discord: https://discord.gg/nxY3fc7xz9
+# Website: https://altkat.github.io
+# Wiki: https://github.com/AltKat/BuffedItems/wiki
+# -------------------------------------------------------------------------------------------
+#
+# ===================================================================
+#                       BUFFED ITEMS - SETS.YML
+# ===================================================================
+#
+# This file allows you to create "Item Sets" to grant special bonuses
+# to players who wear or hold multiple items from the same collection.
+#
+# We RECOMMEND using the in-game editor (/bi menu -> Item Sets)
+# to make changes easily without editing this file manually.
+#
+# If you edit this file manually, use /bi reload to apply changes.
+# This file contains limited information. Please see wiki for more info.
+# ===================================================================
+#
+# --- CONFIGURATION GUIDE ---
+#
+# sets:
+#   unique_set_id:        <-- Unique identifier for the set.
+#     display_name: "&6Set Name"  <-- Name used in GUI menus.
+#
+#     items:              <-- List of BuffedItem IDs that belong to this set.
+#       - item_id_1
+#       - item_id_2
+#
+#     bonuses:            <-- Define effects based on active piece count.
+#       2:                <-- When player has 2 items from this set:
+#         potion_effects:
+#           - SPEED;1
+#         attributes:
+#           - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+#       3:                <-- When player has 3 items:
+#         ...
+#
+# --- LOGIC & RULES ---
+# 1. Cumulative Bonuses:
+#    If a player has 3 pieces, they receive BOTH the '2-piece' and '3-piece' bonuses.
+#    Bonuses stack on top of each other.
+#
+# 2. Equipment Slots:
+#    - Armor (Helmets, Chestplates, Leggings, Boots) ONLY counts if equipped
+#      in their respective armor slots. Holding armor in hand does NOT count.
+#    - Weapons/Tools/Other items count if held in Main Hand or Off-Hand.
+#    - Items just sitting in the inventory (not held/worn) do NOT count.
+#
+# 3. Permissions:
+#    If an item requires a specific permission to use (defined in items.yml),
+#    and the player lacks it, that item will NOT count towards the set bonus.
+# ===================================================================
+
+settings:
+  enabled: true
+
+sets:
+  # ====================================
+  # SET 1: DRAGONBORN LEGACY (Fire/Lava Theme)
+  # ====================================
+  dragonborn_set:
+    display_name: '&4&lDRAGONBORN LEGACY'
+    items:
+    - dragonborn_helmet
+    - dragonborn_chestplate
+    - dragonborn_leggings
+    - dragonborn_boots
+    - elemental_staff
+    bonuses:
+      '2':
+        potion_effects:
+        - FIRE_RESISTANCE;1
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;2.0
+        action-bar: '&c🔥 &lDragon''s Ember (2/5)'
+      '3':
+        potion_effects:
+        - STRENGTH;1
+        attributes:
+        - GENERIC_ATTACK_DAMAGE;ADD_NUMBER;1.0
+        action-bar: '&6🔥 &lDragon''s Flame (3/5)'
+      '4':
+        potion_effects:
+        - FIRE_RESISTANCE;2
+        - SPEED;1
+        action-bar: '&e🔥 &lDragon''s Fury (4/5)'
+      '5':
+        potion_effects:
+        - STRENGTH;2
+        - REGENERATION;1
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+        action-bar: '&6&l🐉 DRAGONBORN ASCENDANT! (5/5)'
+        boss-bar:
+          title: '&4&lDRAGONBORN LEGACY - COMPLETE!'
+          color: RED
+          style: SOLID
+  
+  # ====================================
+  # SET 2: PHANTOM KING'S COURT (Soul/Spooky Theme)
+  # ====================================
+  phantom_set:
+    display_name: '&5&lPHANTOM KING''S COURT'
+    items:
+    - phantom_kings_breastplate
+    - wither_kings_chestplate
+    - assassins_dagger
+    - soul_charm
+    - shadow_cloak
+    bonuses:
+      '2':
+        potion_effects:
+        - INVISIBILITY;1
+        action-bar: '&8👻 &lFading Soul (2/5)'
+      '3':
+        potion_effects:
+        - SPEED;2
+        attributes:
+        - GENERIC_ARMOR;ADD_NUMBER;2.0
+        action-bar: '&7👻 &lRestless Spirit (3/5)'
+      '4':
+        potion_effects:
+        - DAMAGE_RESISTANCE;1
+        action-bar: '&d👻 &lWraith''s Embrace (4/5)'
+      '5':
+        potion_effects:
+        - REGENERATION;2
+        - NIGHT_VISION;1
+        attributes:
+        - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;4.0
+        action-bar: '&5&l👑 PHANTOM KING ASCENDANT! (5/5)'
+        boss-bar:
+          title: '&5&lPHANTOM KING''S COURT - COMPLETE!'
+          color: PURPLE
+          style: SEGMENTED_10
+  
+  # ====================================
+  # SET 3: FROSTBORN (Ice/Water Theme)
+  # ====================================
+  frostborn_set:
+    display_name: '&b&lFROSTBORN'
+    items:
+    - frost_walker_boots
+    - frost_robe_chestplate
+    - frost_crown_helmet
+    - frost_legs_leggings
+    - ice_scepter
+    bonuses:
+      '2':
+        potion_effects:
+        - DOLPHINS_GRACE;1
+        action-bar: '&b❄️ &lFrost Walker (2/5)'
+      '3':
+        potion_effects:
+        - SPEED;2
+        attributes:
+        - GENERIC_ARMOR;ADD_NUMBER;2.0
+        action-bar: '&3❄️ &lIce Blood (3/5)'
+      '4':
+        potion_effects:
+        - WATER_BREATHING;1
+        - JUMP_BOOST;1
+        action-bar: '&b❄️ &lPermafrost (4/5)'
+      '5':
+        potion_effects:
+        - SPEED;3
+        - JUMP_BOOST;2
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;4.0
+        action-bar: '&b&l🧊 FROSTBORN LEGEND! (5/5)'
+        boss-bar:
+          title: '&b&lFROSTBORN - COMPLETE!'
+          color: BLUE
+          style: SOLID
+  
+  # ====================================
+  # SET 4: BERSERKER'S FURY (Combat/Strength Theme)
+  # ====================================
+  berserker_set:
+    display_name: '&c&lBERSERKER''S FURY'
+    items:
+    - berserkers_greaves
+    - warriors_talisman
+    - berserker_axe
+    - berserker_helmet
+    - berserker_chestplate
+    bonuses:
+      '2':
+        potion_effects:
+        - INCREASE_DAMAGE;1
+        action-bar: '&c⚔️ &lBloodlust (2/5)'
+      '3':
+        potion_effects:
+        - SPEED;1
+        attributes:
+        - GENERIC_ATTACK_SPEED;ADD_NUMBER;0.5
+        action-bar: '&4⚔️ &lBattle Fury (3/5)'
+      '4':
+        potion_effects:
+        - DAMAGE_RESISTANCE;1
+        action-bar: '&c⚔️ &lUnstoppable (4/5)'
+      '5':
+        potion_effects:
+        - INCREASE_DAMAGE;2
+        - DAMAGE_RESISTANCE;1
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;6.0
+        - GENERIC_ATTACK_SPEED;ADD_NUMBER;1.0
+        action-bar: '&4&l⚡ BERSERKER GOD! (5/5)'
+        boss-bar:
+          title: '&c&lBERSERKER''S FURY - COMPLETE!'
+          color: RED
+          style: SEGMENTED_6
+  
+  # ====================================
+  # SET 5: STARBOUND (Cosmic/End Game Theme)
+  # ====================================
+  starbound_set:
+    display_name: '&d&lSTARBOUND'
+    items:
+    - starbound_helmet
+    - starbound_chestplate
+    - starbound_leggings
+    - starbound_boots
+    - starbound_wings
+    - starbound_blade
+    bonuses:
+      '2':
+        potion_effects:
+        - SPEED;1
+        - JUMP_BOOST;1
+        action-bar: '&d✨ &lStarlight (2/6)'
+      '3':
+        potion_effects:
+        - REGENERATION;1
+        attributes:
+        - GENERIC_ARMOR;ADD_NUMBER;2.0
+        action-bar: '&5✨ &lCosmic Energy (3/6)'
+      '4':
+        potion_effects:
+        - DAMAGE_RESISTANCE;1
+        - SPEED;2
+        action-bar: '&d✨ &lNebula''s Grace (4/6)'
+      '5':
+        potion_effects:
+        - INCREASE_DAMAGE;1
+        - REGENERATION;1
+        action-bar: '&5✨ &lSupernova (5/6)'
+      '6':
+        potion_effects:
+        - INCREASE_DAMAGE;1
+        - DAMAGE_RESISTANCE;2
+        - SPEED;2
+        - JUMP_BOOST;2
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;8.0
+        - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;6.0
+        action-bar: '&d&l🌟 STARBOUND LEGEND! (6/6)'
+        boss-bar:
+          title: '&d&lSTARBOUND - COMPLETE!'
+          color: PURPLE
+          style: SEGMENTED_12
+
+  # ====================================
+  # SET 6: STARFORGE (Cosmic Forge Theme)
+  # ====================================
+  starforge_set:
+    display_name: '&d&l✦ STARFORGE ✦'
+    items:
+    - starforge_helmet
+    - starforge_chestplate
+    - starforge_leggings
+    - starforge_boots
+    - starforge_blade
+    bonuses:
+      '2':
+        potion_effects:
+        - SPEED;1
+        - NIGHT_VISION;1
+        action-bar: '&d✦ &lStellar Spark (2/5)'
+      '3':
+        potion_effects:
+        - JUMP_BOOST;1
+        attributes:
+        - GENERIC_ARMOR;ADD_NUMBER;2.0
+        - GENERIC_ATTACK_SPEED;MULTIPLY_SCALAR_1;0.05
+        action-bar: '&5✦ &lCosmic Forge (3/5)'
+      '4':
+        potion_effects:
+        - DAMAGE_RESISTANCE;1
+        - REGENERATION;1
+        action-bar: '&d✦ &lNebula Armor (4/5)'
+      '5':
+        potion_effects:
+        - INCREASE_DAMAGE;2
+        - DAMAGE_RESISTANCE;2
+        - SPEED;2
+        - JUMP_BOOST;2
+        attributes:
+        - GENERIC_MAX_HEALTH;ADD_NUMBER;6.0
+        - GENERIC_ARMOR_TOUGHNESS;ADD_NUMBER;4.0
+        - GENERIC_ATTACK_DAMAGE;MULTIPLY_SCALAR_1;0.1
+        action-bar: '&d&l✦ STARFORGED ASCENDANT! (5/5) ✦'
+        boss-bar:
+          title: '&d&l✦ STARFORGE COMPLETE ✦'
+          color: PURPLE
+          style: SEGMENTED_10    
