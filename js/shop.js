@@ -1,5 +1,6 @@
 // shop.js - standalone shop logic (no conflicts with main.js)
 
+
 // ==================== PRODUCT DATA ====================
 const PRODUCTS = [
     // Sets
@@ -7,7 +8,7 @@ const PRODUCTS = [
         id: "set_dragon", 
         cat: "set", 
         name: "DragonBorn Set", 
-        price: 100, 
+        price: 99, 
         desc: "Embrace draconic fury and unlock the Dragon|Born title. Your blade calls the storm.", 
         perks: [
             "Unlocks DRAGON|BORN title",
@@ -27,7 +28,7 @@ const PRODUCTS = [
         id: "set_berserker", 
         cat: "set", 
         name: "Berserker Set", 
-        price: 120, 
+        price: 119, 
         desc: "Unchained rage of the north — claim Berserker title. Enter a trance of destruction.", 
         perks: [
             "Unlocks BERSERKER title",
@@ -48,7 +49,7 @@ const PRODUCTS = [
         id: "set_starbound", 
         cat: "set", 
         name: "StarBound Set", 
-        price: 200, 
+        price: 199, 
         desc: "Cosmic wanderer's arsenal — StarBound title. Unleash the power of the stars.", 
         perks: [
             "Unlocks STARBOUND title",
@@ -70,14 +71,15 @@ const PRODUCTS = [
         id: "wing_seraph", 
         cat: "wing", 
         name: "Seraphs Halo", 
-        price: 70, 
+        price: 69, 
         desc: "Heavenly radiance — grants 15,000 server coins, plus divine particles.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[SERAPHIC] Glowing feather particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/seraphsHalo.png", 
         coinReward: 15000,
@@ -87,14 +89,15 @@ const PRODUCTS = [
         id: "wing_eclipse", 
         cat: "wing", 
         name: "Eclipse Crown", 
-        price: 70, 
+        price: 69, 
         desc: "Shadowed majesty — 15,000 coins. Eclipse particles follow your flight.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[ECLIPSE] Shadow particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/eclipseCrown.png", 
         coinReward: 15000,
@@ -105,14 +108,15 @@ const PRODUCTS = [
         id: "wing_wyrm", 
         cat: "wing", 
         name: "Wyrmguard", 
-        price: 70, 
+        price: 69, 
         desc: "Draconic sentinel wings — 15,000 coins. Scales shimmer in flight.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[WYRM] Scale particle effect",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/wyrmguard.png", 
         coinReward: 15000,
@@ -122,14 +126,15 @@ const PRODUCTS = [
         id: "wing_archmage", 
         cat: "wing", 
         name: "Archmages Halo", 
-        price: 70, 
+        price: 69, 
         desc: "Arcane wisdom — 15,000 coins. Runic circles trail behind you.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[ARCANE] Rune particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/archmageHalo.png", 
         coinReward: 15000,
@@ -139,14 +144,15 @@ const PRODUCTS = [
         id: "wing_prism", 
         cat: "wing", 
         name: "Prism Sovereign", 
-        price: 70, 
+        price: 69, 
         desc: "Iridescent glory — 15,000 coins. Rainbow light shimmers as you soar.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[PRISMATIC] Light particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/prismSovereign.png", 
         coinReward: 15000,
@@ -156,14 +162,15 @@ const PRODUCTS = [
         id: "wing_cinder", 
         cat: "wing", 
         name: "Cinder Diadem", 
-        price: 70, 
+        price: 69, 
         desc: "Ashen phoenix — 15,000 coins. Embers rise from your wings.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[CINDER] Ember particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/cinderDiadem.png", 
         coinReward: 15000,
@@ -173,14 +180,15 @@ const PRODUCTS = [
         id: "wing_celestial", 
         cat: "wing", 
         name: "Celestial Aegis", 
-        price: 70, 
+        price: 69, 
         desc: "Starforged barrier — 15,000 coins. Constellations trace your flight path.", 
         perks: [
             "+15,000 server coins",
             "Unbreakable wing elytra",
             "[CELESTIAL] Stardust constellation particle trail",
             "+10,000 land claims",
-            "+20,000 in-game money"
+            "+20,000 in-game money",
+            "4 stack firework boost"
         ], 
         image: "assets/celestialAegis.png", 
         coinReward: 15000,
@@ -191,7 +199,7 @@ const PRODUCTS = [
         id: "boost_dragon", 
         cat: "booster", 
         name: "Dragon's Hoard", 
-        price: 250, 
+        price: 249, 
         desc: "Mountain of riches — 1,000,000 coins. The ultimate wealth booster.", 
         perks: [
             "+1,000,000 server coins",
@@ -206,7 +214,7 @@ const PRODUCTS = [
         id: "boost_chest", 
         cat: "booster", 
         name: "Treasure Chest", 
-        price: 150, 
+        price: 149, 
         desc: "Bountiful loot — 350,000 coins. A chest full of gleaming riches.", 
         perks: [
             "+350,000 server coins",
@@ -221,7 +229,7 @@ const PRODUCTS = [
         id: "boost_satchel", 
         cat: "booster", 
         name: "Satchel", 
-        price: 100, 
+        price: 99, 
         desc: "Sturdy coin pouch — 150,000 coins. A reliable source of currency.", 
         perks: [
             "+150,000 server coins",
@@ -244,6 +252,54 @@ const PRODUCTS = [
         ], 
         image: "assets/pouch.png",
         coinValue: 50000
+    },
+    {
+        id: "pet_wither",
+        cat: "pet",
+        name: "Wither Pet",
+        price: 199,
+        desc: "Unleash the undead. A loyal Wither companion grants you land, coins, and a dark title.",
+        perks: [
+            "+500,000 server coins",
+            "+30,000 land claims",
+            "Unlocks WITHERHOLDER title",
+            "Summons a loyal Wither companion"
+        ],
+        image: "assets/pet_wither.png", // will be overridden by SVG fallback
+        coinReward: 500000,
+        titleGrant: "WitherHolder"
+    },
+    {
+        id: "pet_golem",
+        cat: "pet",
+        name: "Iron Golem Pet",
+        price: 199,
+        desc: "A steadfast guardian. The Iron Golem offers protection, land, coins, and honour.",
+        perks: [
+            "+500,000 server coins",
+            "+30,000 land claims",
+            "Unlocks GOLEMHOLDER title",
+            "Summons a loyal Iron Golem companion"
+        ],
+        image: "assets/pet_golem.png", // will be overridden by SVG fallback
+        coinReward: 500000,
+        titleGrant: "GolemHolder"
+    },
+    {
+        id: "pet_warden",
+        cat: "pet",
+        name: "Warden Pet",
+        price: 199,
+        desc: "Embrace the deep dark. The Warden pet grants immense power, land, coins, and a fearsome title.",
+        perks: [
+            "+500,000 server coins",
+            "+30,000 land claims",
+            "Unlocks WARDENHOLDER title",
+            "Summons a loyal Warden companion"
+        ],
+        image: "assets/pet_warden.png",
+        coinReward: 500000,
+        titleGrant: "WardenHolder"
     }
 ];
 
@@ -379,6 +435,8 @@ function evaluateTitles(cartItems) {
     const setIds = cartItems.filter(i => i.cat === "set").map(k => k.id);
     const wingIds = cartItems.filter(i => i.cat === "wing").map(w => w.id);
     const boosterIds = cartItems.filter(i => i.cat === "booster").map(b => b.id);
+    const petIds = cartItems.filter(i => i.cat === "pet").map(p => p.id); // NEW
+
     const hasDragonHoard = boosterIds.includes("boost_dragon");
     const setCount = setIds.length;
     const wingCount = wingIds.length;
@@ -387,16 +445,26 @@ function evaluateTitles(cartItems) {
     const hasAnyBooster = boosterIds.length > 0;
     const allThreeSets = setIds.includes("set_dragon") && setIds.includes("set_berserker") && setIds.includes("set_starbound");
     const allSevenWings = ["wing_seraph","wing_eclipse","wing_wyrm","wing_archmage","wing_prism","wing_cinder","wing_celestial"].every(id => wingIds.includes(id));
+    
     const titles = [];
+    // Existing set titles ...
     if (setIds.includes("set_dragon")) titles.push("Dragon|Born");
     if (setIds.includes("set_berserker")) titles.push("Berserker");
     if (setIds.includes("set_starbound")) titles.push("StarBound");
+    
+    // PET TITLES (NEW)
+    if (petIds.includes("pet_wither")) titles.push("WitherHolder");
+    if (petIds.includes("pet_golem")) titles.push("GolemHolder");
+    if (petIds.includes("pet_warden")) titles.push("WardenHolder");
+    
+    // Spend‑based titles
     if (totalSpend <= 100 && totalSpend > 0) titles.push("Patron");
     if (totalSpend >= 100) titles.push("Benefactor");
     if (hasAnySet && hasAnyWing) titles.push("Live|Weaver");
     if (hasAnySet && hasAnyWing && hasAnyBooster) titles.push("Broadcast|Legend");
     if (allThreeSets && allSevenWings && hasDragonHoard) titles.push("Executive");
     if (setCount >= 2 && wingCount >= 3) titles.push("MOD");
+    
     return { titles, totalSpend, allSevenWings, wingCount };
 }
 
@@ -404,7 +472,11 @@ function updateTitleAndCoinPreview() {
     const { titles, totalSpend, allSevenWings, wingCount } = evaluateTitles(cart);
     const wingsInCart = cart.filter(i => i.cat === "wing");
     let coinReward = wingsInCart.length * 15000;
+
     cart.filter(i => i.cat === "booster").forEach(b => { if (b.coinValue) coinReward += b.coinValue; });
+
+    cart.filter(i => i.cat === "pet").forEach(p => { if (p.coinReward) coinReward += p.coinReward; });
+
     if (allSevenWings && wingsInCart.length === 7) coinReward += 105000;
     const previewSpan = document.getElementById("previewCoins");
     if (previewSpan) previewSpan.innerText = coinReward.toLocaleString();

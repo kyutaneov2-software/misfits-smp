@@ -215,6 +215,12 @@
     margin-bottom: 1rem;
     clip-path: polygon(0 0, 90% 0, 100% 30%, 100% 100%, 10% 100%, 0 70%);
 }
+
+.product-card[data-cat="pet"] .product-category {
+    background: rgba(100, 160, 255, 0.15);
+    border-color: #64a0ff;
+    color: #a0c4ff;
+}
 .product-desc {
     font-size: 0.8rem;
     color: rgba(184,196,208,0.7);
