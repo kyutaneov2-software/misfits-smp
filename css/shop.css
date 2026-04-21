@@ -1,7 +1,6 @@
 /* shop.css - shop-specific styles, loaded after main style.css */
 
 .shop-wrapper {
-    max-width: 1400px;
     margin: 0 auto;
     padding: 6rem 2rem 4rem;
     position: relative;
@@ -372,7 +371,7 @@
 .cart-floating {
     position: fixed;
     bottom: 2rem;
-    right: 2rem;
+    left: 2rem;
     width: 64px;
     height: 64px;
     background: linear-gradient(135deg, #1a162e, #0f0c1c);
@@ -517,7 +516,7 @@
     right: -420px;
     width: 400px;
     max-width: 90vw;
-    height: 100vh;
+    height: 100%;
     background: var(--void);
     border-left: 1px solid var(--gold);
     z-index: 1001;
