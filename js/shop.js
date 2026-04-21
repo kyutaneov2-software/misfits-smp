@@ -1,5 +1,4 @@
-// shop.js - standalone shop logic (no conflicts with main.js)
-
+// shop.js – view‑only showcase (no cart, no checkout)
 
 // ==================== PRODUCT DATA ====================
 const PRODUCTS = [
@@ -253,6 +252,7 @@ const PRODUCTS = [
         image: "assets/pouch.png",
         coinValue: 50000
     },
+    // Pets
     {
         id: "pet_wither",
         cat: "pet",
@@ -265,7 +265,7 @@ const PRODUCTS = [
             "Unlocks WITHERHOLDER title",
             "Summons a loyal Wither companion"
         ],
-        image: "assets/pet_wither.png", // will be overridden by SVG fallback
+        image: "assets/pet_wither.png",
         coinReward: 500000,
         titleGrant: "WitherHolder"
     },
@@ -281,7 +281,7 @@ const PRODUCTS = [
             "Unlocks GOLEMHOLDER title",
             "Summons a loyal Iron Golem companion"
         ],
-        image: "assets/pet_golem.png", // will be overridden by SVG fallback
+        image: "assets/pet_golem.png",
         coinReward: 500000,
         titleGrant: "GolemHolder"
     },
@@ -304,41 +304,29 @@ const PRODUCTS = [
 ];
 
 // ==================== STATE ====================
-let cart = [];
 let activeFilter = "all";
 
 // ==================== DOM ELEMENTS ====================
 const productsGrid = document.getElementById("productsGrid");
-const cartItemsDiv = document.getElementById("cartItems");
-const cartFooterDiv = document.getElementById("cartFooter");
-const cartTotalSpan = document.getElementById("cartTotal");
-const cartCountSpan = document.getElementById("cartCount");
-const toastMsg = document.getElementById("toastMsg");
-const cartButton = document.getElementById("cartButton");
 
-// ==================== HELPER: SHOW TOAST ====================
-function showToast(message) {
-    toastMsg.textContent = message;
-    toastMsg.classList.add("show");
-    setTimeout(() => toastMsg.classList.remove("show"), 2500);
-}
-
-// ==================== CLICK SOUND (use main.js function if available) ====================
-const playShopClick = () => {
-    if (typeof window.playClickSound === 'function') {
-        window.playClickSound();
-    }
-};
-
-// ==================== RENDER PRODUCTS ====================
+// ==================== RENDER PRODUCTS (view‑only) ====================
 function renderProducts() {
     const filtered = activeFilter === "all" ? PRODUCTS : PRODUCTS.filter(p => p.cat === activeFilter);
     productsGrid.innerHTML = "";
+    
     filtered.forEach(p => {
         const card = document.createElement("div");
         card.className = "product-card";
         const perksHtml = p.perks.map(perk => `<li>${perk}</li>`).join("");
         const badgeHtml = p.badge ? `<div class="product-badge">${p.badge}</div>` : '';
+        
+        // Category display text
+        let categoryText = "";
+        if (p.cat === "set") categoryText = "SACRED SET";
+        else if (p.cat === "wing") categoryText = "WING";
+        else if (p.cat === "booster") categoryText = "BOOSTER";
+        else if (p.cat === "pet") categoryText = "MYTHIC PET";
+        
         card.innerHTML = `
             ${badgeHtml}
             <div class="product-image-frame">
@@ -347,311 +335,38 @@ function renderProducts() {
             </div>
             <div class="product-info">
                 <div class="product-name">${p.name}</div>
-                <div class="product-category">${p.cat === "set" ? "SACRED SET" : p.cat === "wing" ? "WING" : "BOOSTER"}</div>
+                <div class="product-category">${categoryText}</div>
                 <div class="product-desc">${p.desc}</div>
                 <ul class="product-perks">${perksHtml}</ul>
                 <div class="product-footer">
                     <div class="product-price">₱${p.price}</div>
-                    <button class="buy-btn" data-id="${p.id}">Add to Cart</button>
+                    <!-- No buy button – view only -->
                 </div>
             </div>
         `;
+        
         const img = card.querySelector(".product-img");
         if (img) img.onerror = () => { img.style.opacity = "0.5"; };
-        card.querySelector(".buy-btn").addEventListener("click", (e) => {
-            e.stopPropagation();
-            playShopClick();
-            addToCart(p.id);
-        });
+        
         productsGrid.appendChild(card);
     });
+    
     setTimeout(() => initScrollAnimations(), 50);
 }
 
-// ==================== CART FUNCTIONS ====================
-function addToCart(id) {
-    const product = PRODUCTS.find(p => p.id === id);
-    if (cart.some(i => i.id === id)) {
-        showToast(`${product.name} already in cart`);
-        return;
-    }
-    cart.push({ ...product });
-    updateCartUI();
-    updateTitleAndCoinPreview();
-    showToast(`${product.name} added to cart`);
-    if (cartButton) {
-        cartButton.classList.add('pulse');
-        setTimeout(() => cartButton.classList.remove('pulse'), 400);
-    }
-}
-
-function removeFromCart(id) {
-    cart = cart.filter(i => i.id !== id);
-    updateCartUI();
-    updateTitleAndCoinPreview();
-}
-
-function updateCartUI() {
-    const count = cart.length;
-    if (cartCountSpan) {
-        cartCountSpan.textContent = count;
-        cartCountSpan.style.display = count ? "flex" : "none";
-    }
-    if (cart.length === 0) {
-        if (cartItemsDiv) cartItemsDiv.innerHTML = '<div class="cart-empty">Your cart is empty.</div>';
-        if (cartFooterDiv) cartFooterDiv.style.display = "none";
-        return;
-    }
-    let html = "";
-    let total = 0;
-    cart.forEach(item => {
-        total += item.price;
-        html += `
-            <div class="cart-item">
-                <div>
-                    <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-cat">${item.cat}</div>
-                </div>
-                <div class="cart-item-price">₱${item.price}</div>
-                <button class="remove-item" data-id="${item.id}">✕</button>
-            </div>
-        `;
-    });
-    if (cartItemsDiv) cartItemsDiv.innerHTML = html;
-    if (cartTotalSpan) cartTotalSpan.textContent = `₱${total}`;
-    if (cartFooterDiv) cartFooterDiv.style.display = "block";
-    document.querySelectorAll(".remove-item").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            const id = btn.getAttribute("data-id");
-            playShopClick();
-            removeFromCart(id);
-        });
-    });
-}
-
-// ==================== TITLE & COIN LOGIC ====================
-function evaluateTitles(cartItems) {
-    const totalSpend = cartItems.reduce((s, i) => s + i.price, 0);
-    const setIds = cartItems.filter(i => i.cat === "set").map(k => k.id);
-    const wingIds = cartItems.filter(i => i.cat === "wing").map(w => w.id);
-    const boosterIds = cartItems.filter(i => i.cat === "booster").map(b => b.id);
-    const petIds = cartItems.filter(i => i.cat === "pet").map(p => p.id); // NEW
-
-    const hasDragonHoard = boosterIds.includes("boost_dragon");
-    const setCount = setIds.length;
-    const wingCount = wingIds.length;
-    const hasAnySet = setCount > 0;
-    const hasAnyWing = wingCount > 0;
-    const hasAnyBooster = boosterIds.length > 0;
-    const allThreeSets = setIds.includes("set_dragon") && setIds.includes("set_berserker") && setIds.includes("set_starbound");
-    const allSevenWings = ["wing_seraph","wing_eclipse","wing_wyrm","wing_archmage","wing_prism","wing_cinder","wing_celestial"].every(id => wingIds.includes(id));
-    
-    const titles = [];
-    // Existing set titles ...
-    if (setIds.includes("set_dragon")) titles.push("Dragon|Born");
-    if (setIds.includes("set_berserker")) titles.push("Berserker");
-    if (setIds.includes("set_starbound")) titles.push("StarBound");
-    
-    // PET TITLES (NEW)
-    if (petIds.includes("pet_wither")) titles.push("WitherHolder");
-    if (petIds.includes("pet_golem")) titles.push("GolemHolder");
-    if (petIds.includes("pet_warden")) titles.push("WardenHolder");
-    
-    // Spend‑based titles
-    if (totalSpend <= 100 && totalSpend > 0) titles.push("Patron");
-    if (totalSpend >= 100) titles.push("Benefactor");
-    if (hasAnySet && hasAnyWing) titles.push("Live|Weaver");
-    if (hasAnySet && hasAnyWing && hasAnyBooster) titles.push("Broadcast|Legend");
-    if (allThreeSets && allSevenWings && hasDragonHoard) titles.push("Executive");
-    if (setCount >= 2 && wingCount >= 3) titles.push("MOD");
-    
-    return { titles, totalSpend, allSevenWings, wingCount };
-}
-
-function updateTitleAndCoinPreview() {
-    const { titles, totalSpend, allSevenWings, wingCount } = evaluateTitles(cart);
-    const wingsInCart = cart.filter(i => i.cat === "wing");
-    let coinReward = wingsInCart.length * 15000;
-
-    cart.filter(i => i.cat === "booster").forEach(b => { if (b.coinValue) coinReward += b.coinValue; });
-
-    cart.filter(i => i.cat === "pet").forEach(p => { if (p.coinReward) coinReward += p.coinReward; });
-
-    if (allSevenWings && wingsInCart.length === 7) coinReward += 105000;
-    const previewSpan = document.getElementById("previewCoins");
-    if (previewSpan) previewSpan.innerText = coinReward.toLocaleString();
-    const titleDiv = document.getElementById("titleStatus");
-    if (!titleDiv) return;
-    if (!cart.length) {
-        titleDiv.innerHTML = "— No items in cart —";
-        return;
-    }
-    let html = `<strong>Titles you will unlock:</strong> `;
-    if (titles.length === 0) html += `<em>none yet — add more items</em>`;
-    else html += titles.map(t => `<span style="background:rgba(201,168,76,0.15); padding:0.2rem 0.6rem; margin:0.2rem; display:inline-block;">${t}</span>`).join(" ");
-    html += `<div style="margin-top: 6px;">Total spend: ₱${totalSpend} | Wings owned: ${wingCount}/7</div>`;
-    if (allSevenWings && wingCount === 7) html += `<div>✦ Bonus: All 7 wings → +105,000 extra coins!</div>`;
-    titleDiv.innerHTML = html;
-}
-
-// ==================== MODAL PURCHASE FLOW ====================
-let modalOverlay = null;
-let modalContent = null;
-
-function createModal() {
-    if (modalOverlay) return;
-    modalOverlay = document.createElement("div");
-    modalOverlay.className = "checkout-modal-overlay";
-    modalContent = document.createElement("div");
-    modalContent.className = "checkout-modal-content";
-    modalOverlay.appendChild(modalContent);
-    document.body.appendChild(modalOverlay);
-    modalOverlay.addEventListener("click", (e) => {
-        if (e.target === modalOverlay) closeModal();
-    });
-}
-
-function closeModal() {
-    if (modalOverlay) modalOverlay.classList.remove("open");
-    setTimeout(() => {
-        if (modalOverlay) modalOverlay.style.display = "none";
-    }, 300);
-}
-
-function openModal() {
-    if (!modalOverlay) createModal();
-    modalOverlay.style.display = "flex";
-    setTimeout(() => modalOverlay.classList.add("open"), 10);
-    renderPrivacyStep();
-}
-
-function renderPrivacyStep() {
-    const total = cart.reduce((sum, i) => sum + i.price, 0);
-    const cartItemsHtml = cart.map(item => `<li>${item.name} - ₱${item.price}</li>`).join('');
-    modalContent.innerHTML = `
-        <div class="checkmodal-header">
-            <h2>✦ Complete Your Purchase ✦</h2>
-            <button class="checkmodal-close">&times;</button>
-        </div>
-        <div class="checkmodal-body">
-            <div class="cart-summary">
-                <h3>Your Cart</h3>
-                <ul>${cartItemsHtml || '<li>No items</li>'}</ul>
-                <p><strong>Total: ₱${total}</strong></p>
-            </div>
-            <div class="privacy-policy">
-                <h3>Privacy & Policy Agreement</h3>
-                <p>By proceeding, you agree that:</p>
-                <ul>
-                    <li>All sales are final – no refunds.</li>
-                    <li>Payment must be made via the selected method before delivery.</li>
-                    <li>After payment, you must open a ticket in our Discord and provide:<br>• Your Minecraft Gamertag<br>• Your Discord username<br>• Proof of payment (screenshot / reference number)</li>
-                    <li>Your data will only be used for order fulfillment.</li>
-                </ul>
-                <label class="agree-checkbox">
-                    <input type="checkbox" id="agreeCheckbox"> I have read and agree to the terms.
-                </label>
-            </div>
-        </div>
-        <div class="checkmodal-footer">
-            <button id="agreeBtn" disabled>I Agree & Continue</button>
-        </div>
-    `;
-    const agreeCheck = modalContent.querySelector("#agreeCheckbox");
-    const agreeBtn = modalContent.querySelector("#agreeBtn");
-    agreeCheck.addEventListener("change", () => {
-        agreeBtn.disabled = !agreeCheck.checked;
-    });
-    agreeBtn.addEventListener("click", () => {
-        if (agreeCheck.checked) renderPaymentStep();
-    });
-    modalContent.querySelector(".checkmodal-close").addEventListener("click", closeModal);
-}
-
-function renderPaymentStep() {
-    const total = cart.reduce((sum, i) => sum + i.price, 0);
-    modalContent.innerHTML = `
-        <div class="checkmodal-header">
-            <h2>✦ Select Payment Method ✦</h2>
-            <button class="checkmodal-close">&times;</button>
-        </div>
-        <div class="checkmodal-body">
-            <div class="payment-options">
-                <h3>Choose your payment method</h3>
-                <div class="payment-buttons">
-                    <button class="payment-option" data-method="gcash">GCash</button>
-                    <button class="payment-option" data-method="paypal">PayPal</button>
-                    <button class="payment-option" data-method="maya">Maya</button>
-                </div>
-                <div id="qrContainer" class="qr-container" style="display:none;">
-                    <div id="paymentDetails"></div>
-                    <img id="qrImage" src="" alt="QR Code" style="max-width:180px; margin-top:1rem;">
-                    <p class="payment-note">After payment, click the button below to open a Discord ticket and paste your order summary.</p>
-                </div>
-            </div>
-        </div>
-        <div class="checkmodal-footer">
-            <button id="openDiscordBtn" style="display:none;">Open Discord Ticket & Copy Order</button>
-        </div>
-    `;
-    const paymentAccounts = {
-        gcash: { name: "Jeremy Lobos", number: "09302354996", qr: "assets/qrGcash.jpg" },
-        paypal: { name: "Jeremy Lobos", number: "09302354996", qr: "assets/qrPaypal.jpg" },
-        maya: { name: "kyutaofficial", number: "09302354996", qr: "assets/qrMaya.jpg" }
-    };
-    const qrContainer = modalContent.querySelector("#qrContainer");
-    const qrImage = modalContent.querySelector("#qrImage");
-    const paymentDetailsDiv = modalContent.querySelector("#paymentDetails");
-    const openDiscordBtn = modalContent.querySelector("#openDiscordBtn");
-    const closeBtn = modalContent.querySelector(".checkmodal-close");
-    closeBtn.addEventListener("click", closeModal);
-    document.querySelectorAll(".payment-option").forEach(btn => {
-        btn.addEventListener("click", () => {
-            const method = btn.getAttribute("data-method");
-            const acc = paymentAccounts[method];
-            if (acc) {
-                paymentDetailsDiv.innerHTML = `<p><strong>Account Name:</strong> ${acc.name}</p><p><strong>Account Number:</strong> ${acc.number}</p>`;
-                qrImage.src = acc.qr;
-                qrContainer.style.display = "block";
-                openDiscordBtn.style.display = "block";
+// ==================== SCROLL ANIMATIONS (Intersection Observer) ====================
+function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
             }
         });
-    });
-    openDiscordBtn.addEventListener("click", () => {
-        const itemList = cart.map(i => `- ${i.name} (₱${i.price})`).join("\n");
-        const message = `**New Order Summary**\nItems:\n${itemList}\n**Total:** ₱${total}\n\nPlease provide your Minecraft Gamertag, Discord name, and proof of payment (screenshot/reference number) in this ticket.`;
-        navigator.clipboard.writeText(message).then(() => showToast("Order summary copied to clipboard!"));
-        window.open("https://discord.com/channels/1342157707922243678/1374720029257498704", "_blank");
-        showToast("Opening Discord... Please create a ticket and paste the order summary.");
-        closeModal();
-        cart = [];
-        updateCartUI();
-        updateTitleAndCoinPreview();
-    });
-}
+    }, { threshold: 0.4, rootMargin: '0px 0px -30px 0px' });
 
-// ==================== CART DRAWER CONTROLS ====================
-const overlay = document.getElementById("cartOverlay");
-function openCart() { if (overlay) { overlay.classList.add("open"); document.body.style.overflow = "hidden"; } }
-function closeCart() { if (overlay) { overlay.classList.remove("open"); document.body.style.overflow = ""; } }
-if (document.getElementById("cartButton")) {
-    document.getElementById("cartButton").addEventListener("click", openCart);
-}
-if (document.getElementById("closeCart")) {
-    document.getElementById("closeCart").addEventListener("click", closeCart);
-}
-if (overlay) {
-    overlay.addEventListener("click", (e) => { if (e.target === overlay) closeCart(); });
-}
-const checkoutBtn = document.getElementById("checkoutBtn");
-if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-        if (cart.length === 0) {
-            showToast("Your cart is empty. Add items before checkout.");
-            return;
-        }
-        playShopClick();
-        openModal();
+    document.querySelectorAll('.product-card').forEach(card => {
+        observer.observe(card);
     });
 }
 
@@ -661,30 +376,12 @@ document.querySelectorAll(".filter-btn").forEach(btn => {
         activeFilter = btn.getAttribute("data-filter");
         document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        playShopClick();
         renderProducts();
-        // After new products are added, re-run the observer with a tiny delay
-        setTimeout(() => initScrollAnimations(), 50);
     });
 });
 
-// ==================== SCROLL ANIMATIONS (Intersection Observer) ====================
-function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target); // only trigger once per card
-            }
-        });
-    }, { threshold: 0.4, rootMargin: '0px 0px -30px 0px' }); // triggers when card is near center
-
-    document.querySelectorAll('.product-card').forEach(card => {
-        observer.observe(card);
-    });
-}
-
 // ==================== INITIAL RENDER ====================
 renderProducts();
-updateCartUI();
-updateTitleAndCoinPreview();
+
+// All cart, modal, and checkout code has been removed.
+// The shop is now a pure catalog – view only.
