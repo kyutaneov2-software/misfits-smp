@@ -7,7 +7,7 @@ const PRODUCTS = [
         id: "set_dragon", 
         cat: "set", 
         name: "DragonBorn Set", 
-        price: 99, 
+        price: 109, 
         desc: "Embrace draconic fury and unlock the Dragon|Born title. Your blade calls the storm.", 
         perks: [
             "Unlocks DRAGON|BORN title",
@@ -197,29 +197,29 @@ const PRODUCTS = [
         cat: "booster", 
         name: "Dragon's Hoard", 
         price: 249, 
-        desc: "Mountain of riches — 1,000,000 coins. The ultimate wealth booster.", 
+        desc: "Mountain of riches — 1,500,000 coins. The ultimate wealth booster.", 
         perks: [
-            "+1,000,000 server coins",
+            "+1,500,000 server coins",
             "Best value booster",
             "Legendary dragon hoard effect",
             "+50,000 land claims",
         ], 
         image: "assets/dragons-hoard.png",
-        coinValue: 1000000
+        coinValue: 1500000
     },
     { 
         id: "boost_chest", 
         cat: "booster", 
         name: "Treasure Chest", 
         price: 149, 
-        desc: "Bountiful loot — 350,000 coins. A chest full of gleaming riches.", 
+        desc: "Bountiful loot — 400,000 coins. A chest full of gleaming riches.", 
         perks: [
-            "+350,000 server coins",
+            "+400,000 server coins",
             "Solid value booster",
             "35K land claims",
         ], 
         image: "assets/treasure-chest.png",
-        coinValue: 350000,
+        coinValue: 400000,
         badge: "POPULAR"
     },
     { 
@@ -227,28 +227,28 @@ const PRODUCTS = [
         cat: "booster", 
         name: "Satchel", 
         price: 99, 
-        desc: "Sturdy coin pouch — 150,000 coins. A reliable source of currency.", 
+        desc: "Sturdy coin pouch — 250,000 coins. A reliable source of currency.", 
         perks: [
-            "+150,000 server coins",
+            "+250,000 server coins",
             "Good starter booster",
             "+25,000 land claims",
         ], 
         image: "assets/satchel.png",
-        coinValue: 150000
+        coinValue: 250000
     },
     { 
         id: "boost_pouch", 
         cat: "booster", 
         name: "Pouch", 
         price: 50, 
-        desc: "Humble starter — 50,000 coins. Begin your fortune.", 
+        desc: "Humble starter — 100,000 coins. Begin your fortune.", 
         perks: [
-            "+50,000 server coins",
+            "+100,000 server coins",
             "Entry-level booster",
             "+15,000 land claims",
         ], 
         image: "assets/pouch.png",
-        coinValue: 50000
+        coinValue: 100000
     },
     // Pets
     {
