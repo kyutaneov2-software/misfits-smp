@@ -13,7 +13,6 @@ const PRODUCTS = [
             "Unlocks DRAGON|BORN title",
             "Unbreakable Dragon scale armor set",
             "Fire resistance potions (infinite)",
-            "Dragon breath weapon",
             "[LIGHTNING] Dragon Blade: Summon lightning on your target (20 mana cost)",
             "Bonus: +20,000 in-game money",
             "Bonus: +10,000 land claims"
@@ -33,7 +32,6 @@ const PRODUCTS = [
             "Unlocks BERSERKER title",
             "Unbreakable Berserker armor set",
             "Axe of the Wastes (unbreakable)",
-            "Strength totem (reusable)",
             "[RAGE] Rage Mode: Temporary strength + speed buff (25 mana cost)",
             "Bonus: +20,000 in-game money",
             "Bonus: +10,000 land claims"
